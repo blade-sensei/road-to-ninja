@@ -4,19 +4,23 @@ Road to ninja !
 ## Présentation 
 Road to ninja, est un projet qui permettra d'améliorer les compétences techniques, plus particulièrement dans le domaine de la programmation/coding. Mais aussi dans les domaines de l'infrastucture (réseaux/systèmes), sécurité informatique, IA et design graphique.
 
-Le but du project est de créer une app web, qui va répertorier tout nos projects qu'on souhaite réaliser. La particularité, pour passer à un autre projet, nous devons finir celui en cours.
+Le but du project est de créer une app web, qui va répertorier tous nos projects qu'on souhaite réaliser. 
+Ce n'est pas outils de gestion de projet. Mais plutot un outils pour se concentrer sur 1 projet à la fois. La particularité : Pour passer à un autre projet, nous devons finir celui en cours.
 
-Pour le moment, il n'y a pas de délai (temps) pour terminer un projet, mais nous pourrions mettre en place une régle, avec 1 semaine par exemple.
+Pour le moment, il n'y a pas de délai (temps) pour terminer un projet.
 
 ## Pourquoi ?
 
 Résoudre un problème de procastination, d'organisation et focus. 
 
-Quand on a plusieurs idées de projets, on ne sait pas par où commencer, et une fois qu'on a terminé un projet, on abondonne les prochains par lassitude. On perds la motivation et on procrastine par manque de motivation et par un manque d'orientation.
+Ici c'est plus un problème personnelle, mais je vais utiliser le pronom 'on'. 
 
-On n'arrive pas à garder un focus, sur un objectif précis.
+- Quand on a plusieurs idées de projets, on ne sait pas par où commencer, et une fois qu'on a terminé un projet, on abondonne les prochains par lassitude. 
+- On perds la motivation et on procrastine par manque de motivation et par un manque d'orientation.
 
-Le but du projet est aussi de garder une trace pour voir son évolution.
+- On n'arrive pas à garder un focus, sur un objectif précis.
+
+En extension, le projet permettra aussi de garder une trace pour voir l'évolution des compétences. 
 
 
 ## Comment ?
@@ -50,144 +54,84 @@ Structure
 
 - Le site web, permettra à l'utilisateur de créer des projets. 
 - Chaque projet à un/plusieurs projects à finir avant de pouvoir débuter celui en question.
-- Un projet a un thème ou domaine précis (à voir). 
 - Les projects ont des rendues : soit des documentation, des tutos, ou des explications tout simplement.
-- Tout les documents du projet se trouvent sur le lien git.
+- Tous les documents du projet se trouvent sur le lien git.
 
-## Structure d'un model project
+## Model project
 Un projet est composé des attributs suivants
 
 | attribut | description | 
 | -------- | -------- | 
-| requires | Liste des projects requis pour début ce projet | 
+| requires | Liste des projects requis pour commencer ce projet | 
 | data |Liens vers les documents (rendus, app, description)|
 |title|Titre du projet|
 |description | Une petite description du projet|
-|domains | Liste des domaines que le projet recouvre|
 |status| type de status (en cours) (non started) (finished) |
-|code| code unique|
 
-MVP User Stories
+
+Maquettes
 ===
-Ici c'est les fonctionnalités principales, pour une version 0.1
+## Liste projets
+![](https://i.imgur.com/wrHqPSD.png)
 
-:::info
-ETA = En tant que admin
-ETU = En tant que utilisateur
-:::
+## Ajout de project
+![](https://i.imgur.com/9daaRaG.png)
 
-### ETU je peux accéder à la liste de tous les projets
-- Les projets qui n'ont pas 
+## Modification
+![](https://i.imgur.com/53txC2A.png)
 
-### ETU je peux trier les projets par domaine
-- On début seulement les grand domaines seront affichés ('programming' et 'infrastucture').
-- Par status ou/et par code de project
-
-### ETU je peux modifier un project
-- la description, lien, titre d'un projet et projets requis.
-
-### ETU je peux accéder au lien de la data d'un projet
-- Le lien renvoie vers un lien git 
-
-### ETU je peux commencer un project
-- Avec un button 'démarrer', je pourrai commencer un project
-- Dans une v2 du site, on pourra ajouter une date de démarre, pour faire un tracking
-
-### ETU je peux terminer un project
-- Avec un bouton 'finished', je peux terminer un project, ce qui me débloque les projects qui ont comme requis celui-ci.
-
-### ETU je peux débloquer un project
-- Les projects sont débloqués une fois que les (ou le) projects requis sont marqués comme 'terminés'
-
-## Stats, path domaines
-Exercices
-- C Jutsu = 30 exercices 
-- Python Sennin 
-- Structuresoi = 1 semaine d'exercices + doc structures, même si on termine pas.
 
 Architecture technique
 ===
 
 ## Technos 
+- Backend
+  * Node js
+  * Express
+  * MongoDB
+- Frontend
+  * Vanilla JS
+  * Html / CSS
 
-## Procésus
+- Coding Style
+  * Airbnb style https://github.com/nmussy/javascript-style-guide
+  * ES6 
 
-Idées de project et sujets
+Git
 ===
-Computer Architecture
-Algorithmic complexity / Big-O / Asymptotic analysis
-Data Structures
-- Arrays
-- Linked Lists
-- Stack
-- Queue
-- Hash table
-Binary search
-Bitwise operations
-Trees,Sorting,Graphs
-Recursion
-Dynamic Programming
-Object-Oriented Programming
-Design patterns
-Networking
-Compiler 
-see here : https://github.com/jwasham/coding-interview-university#table-of-contents
+## Utilisation de git
 
-## Projects 
-- The corewar
-- 42SH
-- bistromatic
-- Tiger
-- Tetris game 
-- Snake 
-- TicTacToe
-- Battleship
-- Space Invaders 
-- Pong
-- Démineur 
+- La branche principal est master
 
+- Chaque personne travaille sur une "feature" (fonctionnalité), pour cela il faut créer une nouvelle branche. 
+- chaque changement pendant le développement de la feature droit être commit et push sur le github
+- a la fin de la feature, une validation sera faite et devra être pull request sur la branche stable (master)
+- Les bugs/corrections doivent aussi être fais sur une branche differente
 
-Dans les futures versions
- ===
-### ETA je peux créer un domaine en dessous d'un domaine
-- Un mode 'change' peut être activé pour afficher les boutons de modification, ajout et suppression à côté de chaque domaine
-### ETA je peux modifier le parent du domaine, nom
-- Un mode 'change' peut être activé pour afficher les boutons de modification, ajout et suppression à côté de chaque domaine
-### ETA je peux supprimer un domaine (*)
-- Un mode 'change' peut être activé pour afficher les boutons de modification, ajout et suppression à côté de chaque domaine
+## Nommage des branches
 
-### ETA je peux accéder à la liste des domaines
-- On peut dérouler un domaine pour voir les sous domaines.
-
-(*) mais cela implique supprimer tous les autres sous domaines récursivement
-
-## Bonus user stories
-### ETU je peux rechercher un projet par son id 
-
-### ETU je peux accéder au projets requis d'un projet
-
-
-## Structure d'un domaine
-
-| nom |  description |
-| ----- | ------------ |
-| name| nom du domaine |
-| parent|Le domaine parent|
-
-* Le premier domaine est appelé racine
-* La racine  possède un parent qui est lui même.
-* On ne peut créer que des projects à partir de la racine.
-
-Exemple
+### Features
+ft/[feature-name]
 ```
-|
--racine domaine
-    |
-    - domaine 1
-    |
-    - domaine 2
-            |
-            - sous-domaine 1
-    |
-    - domaine 3
+ft/add-project-admin/
+ft/start-project-user
 ```
+
+### Corrections
+template --> hf/[hotfix-name]
+
+```
+hf/change-project/
+hf/d123-hf/
+```
+
+### BugFix
+bf/[bugfix-name]
+```
+bf/setup-database
+```
+
+Trello
+==
+
+https://trello.com/b/UPrATOhl/road-to-ninja
