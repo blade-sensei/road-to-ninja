@@ -68,18 +68,19 @@ Un projet est composé des attributs suivants
 |description | Une petite description du projet|
 |status| type de status (en cours) (non started) (finished) |
 
+## Model User
+Un utilisateur possède des projets
+| attributs | description |
+| ------- | ---------- |
+| username | pour se logger |
+| name | nom ou nickname |
+| password | mdp |
+| projects | Liste de tous les projets |
 
 Maquettes
 ===
 ## Liste projets
 ![](https://i.imgur.com/wrHqPSD.png)
-
-## Ajout de project
-![](https://i.imgur.com/9daaRaG.png)
-
-## Modification
-![](https://i.imgur.com/53txC2A.png)
-
 
 Architecture technique
 ===
@@ -101,8 +102,9 @@ Git
 ===
 ## Utilisation de git
 
-- La branche principal est master
+Lien : https://github.com/Coyla/road-to-ninja
 
+- La branche principal est master
 - Chaque personne travaille sur une "feature" (fonctionnalité), pour cela il faut créer une nouvelle branche. 
 - chaque changement pendant le développement de la feature droit être commit et push sur le github
 - a la fin de la feature, une validation sera faite et devra être pull request sur la branche stable (master)
@@ -111,14 +113,20 @@ Git
 ## Nommage des branches
 
 ### Features
+Pour le développement des TODO et fonctionnalités
+
 ft/[feature-name]
+
 ```
 ft/add-project-admin/
 ft/start-project-user
 ```
 
-### Corrections
-template --> hf/[hotfix-name]
+### HotFix
+Pour les corrections, la maintenance, les petites changements:, le refactoring ...
+
+hf/[hotfix-name]
+
 
 ```
 hf/change-project/
@@ -126,6 +134,8 @@ hf/d123-hf/
 ```
 
 ### BugFix
+Pour les bugs, un bug n'est pas forcement à traiter de suite, il sera mis dans un patch de correction
+
 bf/[bugfix-name]
 ```
 bf/setup-database
@@ -134,4 +144,10 @@ bf/setup-database
 Trello
 ==
 
-https://trello.com/b/UPrATOhl/road-to-ninja
+Lien du board : https://trello.com/b/UPrATOhl/road-to-ninja
+- Rajouter toujours un label (feature, bug, etc)
+- Si besoin rajouter un commentaire dans le "card" pour rajouter des informations
+- Backlog c'est toute les fonctionnalités. Chaque semaine on doit prendre des cartes et les mettre dans le TODO. On ne peut pas rajouter des
+cartes dans le TODO en milieu de semaine.
+
+
