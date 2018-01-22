@@ -145,9 +145,19 @@ Trello
 ==
 
 Lien du board : https://trello.com/b/UPrATOhl/road-to-ninja
+- Une carte = une tache 
+- Si possible rajouter un element de "checklist" dans une carte pour décrire les étapes pour completer la carte, et si la carte a besoin d'être coupé,
+on peut créer une autre carte mais il faut préciser dans le titre qu'elle appartient à une autre carte.
+- Le elements d'une checklist sont arbitraires, ça peut être des toutes petites taches (ex: initialiser la variable projets .. ) ou des plus importantes  (ex :créer un service web)
+- Pour rajouter un checklist. Clicker sur la carte --> a droite dans Add clicker sur Checklist --> rajouter les elements
 - Rajouter toujours un label (feature, bug, etc)
 - Si besoin rajouter un commentaire dans le "card" pour rajouter des informations
 - Backlog c'est toute les fonctionnalités. Chaque semaine on doit prendre des cartes et les mettre dans le TODO. On ne peut pas rajouter des
 cartes dans le TODO en milieu de semaine.
+
+Exemple de checklist pour une US (User Storie)
+[] Installer Express
+[] Appeler l'API blabla
+[] Rajouter les données dans le template Angular ...
 
 
