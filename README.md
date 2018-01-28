@@ -60,16 +60,18 @@ Structure
 ## Model project
 Un projet est composé des attributs suivants
 
-| attribut | description | 
-| -------- | -------- | 
+
+| Attribut | Description | 
+| ------ | ---- | 
 | requires | Liste des projects requis pour commencer ce projet | 
-| data |Liens vers les documents (rendus, app, description)|
-|title|Titre du projet|
-|description | Une petite description du projet|
-|status| type de status (en cours) (non started) (finished) |
+| data | Liens vers les documents (rendus, app, description) |
+| title | Titre du projet |
+| description | Une petite description du projet |
+| status | type de status (en cours) (non started) (finished) |
 
 ## Model User
 Un utilisateur possède des projets
+
 | attributs | description |
 | ------- | ---------- |
 | username | pour se logger |
