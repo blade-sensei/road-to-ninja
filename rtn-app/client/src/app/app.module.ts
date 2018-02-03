@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { RouterModule } from '@angular/router';
+import {ProjectsService} from "./projects.service";
 
 const routes = [
   {
@@ -19,10 +21,11 @@ const routes = [
     ProjectsComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [ProjectsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

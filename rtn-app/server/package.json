@@ -1,0 +1,19 @@
+{
+  "name": "server-app",
+  "version": "0.1.0",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^5.0.2"
+  },
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "description": "backend for api",
+  "main": "server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {},
+  "author": ""
+}

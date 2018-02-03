@@ -5,9 +5,15 @@ const index = require('./routes/index');
 const path = require('path');
 
 //setup cross origin
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
 
-app.use(express.static(path.join(__dirname, '../dist')));
 //web server
+
 app.use('/', index);
 app.use('/api',api);
 app.get('*', (req, res) => {
