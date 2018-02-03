@@ -13,7 +13,6 @@ db.once('open', () => {
 });
 
 router.get('/projects', (req,res) => {
-
   projectsModel.find((err, docs) => {
     res.send(docs);
   });

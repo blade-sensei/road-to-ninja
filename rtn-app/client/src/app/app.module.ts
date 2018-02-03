@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
-import { AppComponent } from './app.component';
-import { ProjectsComponent } from './projects/projects.component';
+import { AppComponent } from './components/app/app.component';
+import { ProjectsComponent } from './components/projects/projects.component';
 import { RouterModule } from '@angular/router';
-import {ProjectsService} from "./projects.service";
+import {ProjectsService} from "./components/projects/projects.service";
 
 const routes = [
   {

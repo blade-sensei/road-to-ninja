@@ -7,7 +7,7 @@
     "mongoose": "^5.0.2"
   },
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server.js"
   },
   "description": "backend for api",
   "main": "server.js",

@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 const api = require('./routes/api');
 const index = require('./routes/index');
-const path = require('path');
 
-//setup cross origin
+
+//enable cross origin
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
@@ -12,21 +12,19 @@ app.use(function(req, res, next) {
   next();
 });
 
-//web server
-
+//adding routes modules
 app.use('/', index);
 app.use('/api',api);
-app.get('*', (req, res) => {
-  console.log('test');
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
 
+//config server
 app.use(function(req, res){
   res.send(404);
 });
 const port = process.env.port || '3000';
+
 app.listen(port, () => {
-  console.log(`server running and listening on : ${port} ...`);
+  console.log(`server running on : ${port}, 
+  and listening on host : ${process.env.host} ...` );
 });
 
 module.exports = app;
