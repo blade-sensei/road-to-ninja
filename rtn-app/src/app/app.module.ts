@@ -4,7 +4,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { RouterModule } from '@angular/router';
 
+const routes = [
+  {
+    path : 'projects',
+    component : ProjectsComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -12,7 +19,8 @@ import { ProjectsComponent } from './projects/projects.component';
     ProjectsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
