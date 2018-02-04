@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const api = require('./routes/api');
 const index = require('./routes/index');
+const logger = require('./helpers/logger');
 
 
 //enable cross origin
@@ -23,8 +24,7 @@ app.use(function(req, res){
 const port = process.env.port || '3000';
 
 app.listen(port, () => {
-  console.log(`server running on : ${port}, 
-  and listening on host : ${process.env.host} ...` );
+  logger.info(`server api is running on : ${port} port ...` );
 });
 
 module.exports = app;
