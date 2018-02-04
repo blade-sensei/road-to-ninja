@@ -1,31 +1,22 @@
+///<reference path="app.routes.ts"/>
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
-
 import { AppComponent } from './components/app/app.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { RouterModule } from '@angular/router';
-import {ProjectsService} from "./components/projects/projects.service";
-
-const routes = [
-  {
-    path : 'projects',
-    component : ProjectsComponent
-  }
-];
+import {UserService} from "./components/user/user.service";
+import { AppRoutingModule, routingComponents } from "./app.routes";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectsComponent
+    routingComponents
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    RouterModule.forRoot(routes)
+      AppRoutingModule// Add routes to the app
   ],
-  providers: [ProjectsService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

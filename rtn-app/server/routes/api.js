@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const logger = require('../helpers/logger');
 
 //models
-const projectsModel = require('../models/project.model');
+const userModel = require('../models/user.model');
 
 //database server
 mongoose.connect('mongodb://127.0.0.1/test');
@@ -13,8 +13,9 @@ db.once('open', () => {
   logger.info('database connexion success!');
 });
 
-router.get('/projects', (req,res) => {
-  projectsModel.find((err, docs) => {
+router.get('/users', (req,res) => {
+  userModel.find((err, docs) => {
+    logger.debug(docs);
     res.send(docs);
   });
 });
