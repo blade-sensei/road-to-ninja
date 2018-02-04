@@ -3,7 +3,8 @@ const app = express();
 const api = require('./routes/api');
 const index = require('./routes/index');
 const logger = require('./helpers/logger');
-
+const mongoose = require('mongoose');
+const config = require('./config');
 
 //enable cross origin
 app.use(function(req, res, next) {
@@ -21,10 +22,17 @@ app.use('/api',api);
 app.use(function(req, res){
   res.send(404);
 });
-const port = process.env.port || '3000';
-
+const port = process.env.port || config.server.port;
 app.listen(port, () => {
   logger.info(`server api is running on : ${port} port ...` );
 });
+
+mongoose.connect(`mongodb://${config.db.host}/${config.db.name}`).then(() => {
+    mongoose.set('debug', true);
+  logger.info(`database connection on ${mongoose.connection.port} port with success!`);
+  }
+);
+
+
 
 module.exports = app;
