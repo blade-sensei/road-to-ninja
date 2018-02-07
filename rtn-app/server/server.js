@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const api = require('./routes/api');
 const index = require('./routes/index');
+const seed = require('./routes/seed');
 const logger = require('./helpers/logger');
 const mongoose = require('mongoose');
 const config = require('./config');
@@ -17,6 +18,7 @@ app.use(function(req, res, next) {
 //adding routes modules
 app.use('/', index);
 app.use('/api',api);
+app.use('/seed',seed);
 
 //config server
 app.use(function(req, res){
