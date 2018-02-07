@@ -1,31 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const logger = require('../helpers/logger');
+const seedData = require('../helpers/seeds/seedData');
 
-//models
 const userModel = require('../models/user.model');
+const projectModel = require('../models/project.model');
 
 router.get('/users', (req,res) => {
-  let users = [
-    {
-      username : 'sensei',
-      name: 'juan',
-      password : 'pswd',
-      projects : []
-    },
-    {
-      username : 'repou',
-      name: 'poure',
-      password : 'pswd',
-      projects : []
-    },
-    {
-      username : 'pampa',
-      name: 'pampa',
-      password : 'pswd',
-      projects : []
-    }
-  ];
+  let users = seedData.users;
   seedRemove(userModel).then(() => {
     seedFeed(userModel, users).then((documents) => {
       res.send(documents);
@@ -33,16 +15,13 @@ router.get('/users', (req,res) => {
   });
 });
 
-
-
-router.get('user/find', (req,res) => {
-
-});
-
-router.post('/project',  (req, res) => {
-  userModel.create({name : 'quention poure'}, (err, user) => {
-    logger.debug(user);
-  })
+router.get('/projects',  (req, res) => {
+  let projects = seedData.projects;
+  seedRemove(projectModel).then(() => {
+    seedFeed(projectModel, projects).then((documents) => {
+      res.send(documents);
+    })
+  });
 });
 
 const seedRemove = (model) => {
@@ -63,10 +42,6 @@ const seedFeed = (model, documents) => {
       });
     });
   });
-};
-
-const seedFind = (model, documents) => {
-
 };
 
 module.exports = router;
