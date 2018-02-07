@@ -6,6 +6,7 @@ let schema = new mongoose.Schema({
   description: String,
   status : String,
   data : String,
+  username : String,
   requires : Array
 });
 
