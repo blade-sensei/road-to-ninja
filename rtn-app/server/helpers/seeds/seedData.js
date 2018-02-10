@@ -2,16 +2,19 @@ const data = {
   'users' : [
     {
       username : 'sensei',
+      uid : '1',
       name: 'juan',
       password : 'pswd',
     },
     {
       username : 'repou',
+      uid : '2',
       name: 'poure',
       password : 'pswd',
     },
     {
       username : 'pampa',
+      uid : '3',
       name: 'pampa',
       password : 'pswd',
     }
@@ -22,7 +25,7 @@ const data = {
       description: 'This is the description for project 1',
       status : 'finished',
       data : 'https://',
-      username : 'sensei',
+      uid : '1',
       requires : [],
     },
     {
@@ -30,7 +33,7 @@ const data = {
       description: 'This is the description for project 1b',
       status : 'finished',
       data : 'https://',
-      username : 'repou',
+      uid : '2',
       requires : []
     },
     {
@@ -38,7 +41,7 @@ const data = {
       description: 'This is the description for project 2b',
       status : 'no started',
       data : 'https://',
-      username : 'repou',
+      uid : '2',
       requires : [{
         title : 'project 1b',
         description: 'This is the description for project 1b',
@@ -50,7 +53,7 @@ const data = {
       description: 'This is the description for project 3',
       status: 'started',
       data: 'https://',
-      username : 'sensei',
+      uid : '1',
       requires: [
         {
           title : 'project 1',
@@ -63,7 +66,7 @@ const data = {
       description: 'This is the description for project 4',
       status: 'in progress',
       data: 'https://',
-      username : 'sensei',
+      uid : '1',
       requires: [
         {
           title : 'project 1',
