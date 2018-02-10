@@ -1,0 +1,10 @@
+<p> --- info project--- </p>
+<ul>
+  <li> {{ project.title }}</li>
+  <li> {{ project.description }}</li>
+  <li> {{ project.status }}</li>
+  <li> {{ project.data }}</li>
+  <ul *ngFor="let req of project.requires">
+    <li>{{req.title}}</li>
+  </ul>
+</ul>
