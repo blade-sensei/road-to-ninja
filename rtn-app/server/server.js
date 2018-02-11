@@ -6,6 +6,7 @@ const seed = require('./routes/seed');
 const logger = require('./helpers/logger');
 const mongoose = require('mongoose');
 const config = require('./config');
+const bodyParser = require('body-parser');
 
 //enable cross origin
 app.use(function(req, res, next) {
@@ -14,6 +15,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
 });
+app.use(bodyParser.json());
 
 //adding routes modules
 app.use('/', index);
@@ -34,7 +36,6 @@ mongoose.connect(`mongodb://${config.db.host}/${config.db.name}`).then(() => {
   logger.info(`database connection on ${mongoose.connection.port} port with success!`);
   }
 );
-
 
 
 module.exports = app;
