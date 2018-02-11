@@ -4,10 +4,11 @@ const logger = new (winston.Logger)({
   transports: [
     // colorize the output to the console
     new (winston.transports.Console)({
-      timestamp: tsFormat,
+      prettyPrint : true,
       colorize: true,
+      silent: false,
+      timestamp : tsFormat
     })
   ]
 });
-
 module.exports = logger;
