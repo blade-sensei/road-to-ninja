@@ -5,18 +5,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './components/app/app.component';
 import {UserService} from "./components/user/user.service";
 import { AppRoutingModule, routingComponents } from "./app.routes";
+import { UserProjectsComponent } from './components/user-projects/user-projects.component';
+import { ProjectInfoComponent } from './components/project-info/project-info/project-info.component';
+import {UserProjectsService} from "./components/user-projects/user-projects.service";
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    UserProjectsComponent,
+    ProjectInfoComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
       AppRoutingModule// Add routes to the app
   ],
-  providers: [UserService],
+  providers: [UserService, UserProjectsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

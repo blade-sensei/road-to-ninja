@@ -5,6 +5,7 @@ const logger = require('../helpers/logger');
 
 //models
 const userModel = require('../models/user.model');
+const projectModel = require('../models/project.model');
 
 router.get('/users', (req,res) => {
   userModel.find((err, docs) => {
@@ -13,9 +14,10 @@ router.get('/users', (req,res) => {
   });
 });
 
-router.post('/user/feed',  (req, res) => {
-  userModel.create({name : 'quention poure'}, (err, user) => {
-    logger.debug(user);
+router.get('/users/:id/projects', (req, res) => {
+  logger.debug(req.params.id);
+  projectModel.find({uid : req.params.id}, ( error, docs ) => {
+    res.send(docs);
   })
 });
 
