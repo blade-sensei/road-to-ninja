@@ -10,7 +10,7 @@ export class UserProjectsComponent implements OnInit {
   projects : any = [];
   constructor(private userProjectService : UserProjectsService) { }
   ngOnInit() {
-    this.userProjectService.getAllProjects().subscribe(projects => {
+    this.userProjectService.getAllProjects(1).subscribe(projects => {
       this.projects = projects;
     })
   }
