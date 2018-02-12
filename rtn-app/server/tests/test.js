@@ -1,28 +1,13 @@
 const isRequireParametersFounded = (parameters, bodyParameters) => {
-  for (let parameter of parameters) {
-    if(!bodyParameters.hasOwnProperty(parameter)){
-      return false;
-    }
-  }
-  return true;
+  return parameters.every(parameter => bodyParameters.hasOwnProperty(parameter));
 };
 
 let bodyParams = {
-  'title' :  'tile',
-  'description' : 'description'
+  'title' :  'tile'
 };
 
 let parameters = ['description','title'];
 
-const isBad = () => {
-  console.log('isfalse');
-  return false;
-};
-
-const isGood = () => {
-  console.log('isgood');
-  return true;
-};
 if(isRequireParametersFounded(parameters, bodyParams, isGood, isBad)){
   console.log('founded');
 }
