@@ -30,33 +30,21 @@ router.get('/users/:id/projects', (req, res) => {
 });
 
 router.post('/projects/add', (req, res, next) => {
-  let requiredPameters = ['title','uid'];
-  hasRequiredParameters(requiredPameters, req.body) ?  next() :
-    res.status(406).send('require parameters');
+  let requiredPameters = ['title', 'uid'];
+  hasRequiredParameters(requiredPameters, req.body) ? next() :
+    res.status(404).send('somme of this required parameters are missing: '
+      .concat(requiredPameters.join(', ')))
   }, (req, res) => {
   logger.info(req.body);
   let project = new projectModel(req.body);
   project.save( (err, ) => {
-    if(err){
-      res.status(400).send('insert dabatase failed');
-    }
-    res.send({'validation' : 'ok'});
+    (err) ? res.status(400).send('insert dabatase failed') :
+      res.send({"validated" : true});
   });
-
 });
 
-//middlewares
+//middleware
 const hasRequiredParameters = (requiredParameters, bodyParameters) =>
   requiredParameters.every(parameter => bodyParameters.hasOwnProperty(parameter));
-
-const getMissingParameters = (requiredParameters, bodyParameters) => {
-  let missingParameters = [];
-  for(let  parameter of  requiredParameters ){
-    if(bodyParameters.hasOwnProperty(parameter)){
-      missingParameters.push(parameter);
-    }
-  }
-  return missingParameters;
-};
 
 module.exports = router;
