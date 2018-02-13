@@ -43,6 +43,7 @@ router.post('/projects/add', (req, res, next) => {
   });
 });
 
+//this is another commit 2 + than test
 //this is the comment for merging branch
 const hasRequiredParameters = (requiredParameters, bodyParameters) =>
   requiredParameters.every(parameter => bodyParameters.hasOwnProperty(parameter));
