@@ -43,8 +43,9 @@ router.post('/projects/add', (req, res, next) => {
   });
 });
 
-//middleware
+//this is the comment for merging branch
 const hasRequiredParameters = (requiredParameters, bodyParameters) =>
   requiredParameters.every(parameter => bodyParameters.hasOwnProperty(parameter));
 
 module.exports = router;
+
