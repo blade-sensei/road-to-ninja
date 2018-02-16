@@ -37,6 +37,9 @@ router.post('/projects/add', (req, res, next) => {
   }, (req, res) => {
   logger.info(req.body);
   let project = new projectModel(req.body);
+  console.log(typeof project);
+  Object.defineProperty(project, '')
+
   project.save( (err, ) => {
     (err) ? res.status(400).send('insert dabatase failed') :
       res.send({"validated" : true});
