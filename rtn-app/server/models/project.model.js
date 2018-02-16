@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 let schema = new mongoose.Schema({
   title : String,
   description: String,
-  status : String,
+  status : {type : String, default : 'not started' },
   data : String,
   uid : String,
   requires : Array
