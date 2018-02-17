@@ -30,24 +30,18 @@ router.get('/users/:id/projects', (req, res) => {
 });
 
 router.post('/projects/add', (req, res, next) => {
-  let requiredPameters = ['title', 'uid'];
-  hasRequiredParameters(requiredPameters, req.body) ? next() :
+  let requiredParameters = ['title', 'uid'];
+  hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
     res.status(404).send('somme of this required parameters are missing: '
-      .concat(requiredPameters.join(', ')))
+      .concat(requiredParameters.join(', ')))
   }, (req, res) => {
-  logger.info(req.body);
-  let project = new projectModel(req.body);
-  console.log(typeof project);
-  Object.defineProperty(project, '')
-
-  project.save( (err, ) => {
-    (err) ? res.status(400).send('insert dabatase failed') :
-      res.send({"validated" : true});
-  });
+  new projectModel(req.body).save().then( project => res.send(project))
+    .catch( err => { res.status(500).send(`database error ${err}`);
+  })
 });
 
 //middleware
-const hasRequiredParameters = (requiredParameters, bodyParameters) =>
-  requiredParameters.every(parameter => bodyParameters.hasOwnProperty(parameter));
+const hasRequestRequiredParameters = (requiredParameters, requestBody) =>
+  requiredParameters.every(parameter => requestBody.hasOwnProperty(parameter));
 
 module.exports = router;

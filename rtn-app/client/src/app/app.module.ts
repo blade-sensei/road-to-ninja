@@ -8,13 +8,15 @@ import { AppRoutingModule, routingComponents } from "./app.routes";
 import { UserProjectsComponent } from './components/user-projects/user-projects.component';
 import { ProjectInfoComponent } from './components/project-info/project-info/project-info.component';
 import {UserProjectsService} from "./components/user-projects/user-projects.service";
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
     UserProjectsComponent,
-    ProjectInfoComponent
+    ProjectInfoComponent,
+    MenuComponent
   ],
   imports: [
     HttpClientModule,
