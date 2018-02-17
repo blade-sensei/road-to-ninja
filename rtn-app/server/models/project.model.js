@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 
 let schema = new mongoose.Schema({
   title : String,
-  description: String,
+  description: {type : String, default : ''},
   status : {type : String, default : 'not started' },
-  data : String,
+  data : {type : String, default : 'http://'},
   uid : String,
   requires : Array
 });
