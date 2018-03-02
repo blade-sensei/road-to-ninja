@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
+import {BsModalRef, BsModalService} from "ngx-bootstrap";
+import {ProjectAddComponent} from "../project-add/project-add.component";
 
 @Component({
   selector: 'app-menu',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
-  constructor() { }
+  modalRef : BsModalRef;
+  constructor(private modalService : BsModalService) { }
 
   ngOnInit() {
+  }
+
+  openModal() {
+    this.modalRef = this.modalService.show(ProjectAddComponent);
   }
 
 }
