@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BsModalRef} from "ngx-bootstrap";
+import {Project} from "../../models/project";
 
 @Component({
   selector: 'app-project-add',
@@ -7,16 +8,19 @@ import {BsModalRef} from "ngx-bootstrap";
   styleUrls: ['./project-add.component.css']
 })
 export class ProjectAddComponent implements OnInit {
-  project : any = {
-    name : ''
-  };
-  constructor(public bsModalRef: BsModalRef) { }
+  project: Project = new Project("", "1a");
+  uid: any = "1a";
+  constructor(public bsModalRef: BsModalRef) {
 
-  ngOnInit() {
   }
 
-  showData(){
-    console.log(this.project.name);
+  ngOnInit() {
+
+  }
+
+  onRegister(): void{
+    console.log(this.project);
+    this.bsModalRef.hide();
   }
 
 }
