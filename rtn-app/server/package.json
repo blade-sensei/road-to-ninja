@@ -9,14 +9,16 @@
     "winston": "^2.4.0"
   },
   "scripts": {
-    "test" : "node tests/test.js",
-    "start": "node server.js"
+    "test": "node tests/test.js",
+    "start": "nodemon server.js --verbose"
   },
   "description": "backend for api",
   "main": "server.js",
   "directories": {
     "test": "tests"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.17.1"
+  },
   "author": ""
 }

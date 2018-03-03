@@ -44,7 +44,6 @@ const data = {
       uid : '2',
       requires : [{
         title : 'project 1b',
-        description: 'This is the description for project 1b',
         status : 'finished',
       }]
     },
@@ -57,7 +56,6 @@ const data = {
       requires: [
         {
           title : 'project 1',
-          description: 'This is the description for project 1',
           status : 'finished',
         }]
     },
@@ -70,7 +68,6 @@ const data = {
       requires: [
         {
           title : 'project 1',
-          description: 'This is the description for project 1',
           status : 'finished',
         }
       ]
