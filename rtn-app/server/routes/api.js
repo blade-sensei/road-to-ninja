@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const logger = require('../helpers/logger');
 
-
 //models
 const userModel = require('../models/user.model');
 const projectModel = require('../models/project.model');
@@ -20,7 +19,6 @@ router.get('/projects', (req,res) => {
     res.send(docs);
   });
 });
-
 
 router.get('/users/:id/projects', (req, res) => {
   logger.debug(req.params.id);
