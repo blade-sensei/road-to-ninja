@@ -8,30 +8,28 @@ const jwt = require('jsonwebtoken');
 const userModel = require('../models/user.model');
 const projectModel = require('../models/project.model');
 
-router.use(token.verifyToken);
-
-router.get('/users', (req,res) => {
+router.get('/users', token.verifyToken, (req,res) => {
   userModel.find((err, docs) => {
     logger.debug(docs);
     res.send(docs);
   });
 });
 
-router.get('/projects', (req,res) => {
+router.get('/projects', token.verifyToken,(req,res) => {
   projectModel.find((err, docs) => {
     logger.debug(docs);
     res.send(docs);
   });
 });
 
-router.get('/users/:id/projects', (req, res) => {
+router.get('/users/:id/projects', token.verifyToken, (req, res) => {
   logger.debug(req.params.id);
   projectModel.find({uid : req.params.id}, ( error, docs ) => {
     res.send(docs);
   })
 });
 
-router.post('/projects/add', (req, res, next) => {
+router.post('/projects/add', token.verifyToken, (req, res, next) => {
   let requiredParameters = ['title', 'uid'];
   hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
     res.status(404).send('somme of this required parameters are missing: '
