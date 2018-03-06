@@ -29,10 +29,10 @@ router.get('/users/:id/projects', token.verifyToken, (req, res) => {
   })
 });
 
-router.post('/projects/add', token.verifyToken, (req, res, next) => {
+router.post('users/:uid/projects', (req, res, next) => {
   let requiredParameters = ['title', 'uid'];
   hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
-    res.status(404).send('somme of this required parameters are missing: '
+    res.status(404).send('some of this required parameters are missing: '
       .concat(requiredParameters.join(', ')))
   }, (req, res) => {
   new projectModel(req.body).save().then( project => res.send(project))
@@ -59,10 +59,27 @@ router.post('/login', (req, res, next) => {
         req.app.get('secret_key'),{expiresIn : tokenExpirationTime});
       res.cookie('token', token,{ maxAge: tokenExpirationTime, httpOnly: true})
         .json({user : user.username, logged : true, token : token});
-    }
-  })
-});
+}})});
 
+router.patch('/users/:uid/projects/:id', (req, res, next) => {
+  let requiredParameters = ['title'];
+  hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
+    res.status(404).send('Some of these required parameters are missing : ')
+      .concat(requiredParameters.join(', '))
+  }, (req, res) => {
+  let project = Object.assign({}, req.body)
+  projectModel.findOneAndUpdate({'uid':req.params.uid, '_id':req.params.id}, 
+    project, {new: true}, (err, project) => {
+    if(project){
+      res.send(project);
+    }
+    else{
+      res.status(500);
+      res.send('Project not found or couldn\'t save.');
+    }})});
+
+
+//middleware
 const hasRequestRequiredParameters = (requiredParameters, requestBody) =>
   requiredParameters.every(parameter => requestBody.hasOwnProperty(parameter));
 
