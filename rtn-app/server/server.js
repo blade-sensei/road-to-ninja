@@ -39,5 +39,4 @@ mongoose.connect(`mongodb://${config.db.host}/${config.db.name}`).then(() => {
   }
 );
 
- 
 module.exports = app;

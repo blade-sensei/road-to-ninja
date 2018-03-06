@@ -3,6 +3,7 @@ const router = express.Router();
 const logger = require('../helpers/logger');
 const token = require('../middlewares/token');
 const jwt = require('jsonwebtoken');
+const querystring = require('querystring');
 
 //models
 const userModel = require('../models/user.model');
@@ -22,9 +23,11 @@ router.get('/projects', token.verifyToken,(req,res) => {
   });
 });
 
-router.get('/users/:id/projects', token.verifyToken, (req, res) => {
-  logger.debug(req.params.id);
-  projectModel.find({uid : req.params.id}, ( error, docs ) => {
+router.get('/users/:uid/projects', token.verifyToken, (req, res) => {
+  logger.debug(req.params.uid);
+  let params = querystring.parse(url.parse(req.url).query);
+  logger.debug(params)
+  projectModel.find({uid : req.params.uid}, ( error, docs ) => {
     res.send(docs);
   })
 });
