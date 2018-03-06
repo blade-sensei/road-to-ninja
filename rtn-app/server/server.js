@@ -39,8 +39,4 @@ mongoose.connect(`mongodb://${config.db.host}/${config.db.name}`).then(() => {
   }
 );
 
-<<<<<<< HEAD
-=======
- 
->>>>>>> route-projet
 module.exports = app;
