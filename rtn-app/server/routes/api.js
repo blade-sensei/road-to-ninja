@@ -4,6 +4,7 @@ const logger = require('../helpers/logger');
 const token = require('../middlewares/token');
 const jwt = require('jsonwebtoken');
 const querystring = require('querystring');
+const url = require('url');
 
 //models
 const userModel = require('../models/user.model');
@@ -24,13 +25,29 @@ router.get('/projects', token.verifyToken,(req,res) => {
 });
 
 router.get('/users/:uid/projects', token.verifyToken, (req, res) => {
-  logger.debug(req.params.uid);
-  let params = querystring.parse(url.parse(req.url).query);
-  logger.debug(params)
-  projectModel.find({uid : req.params.uid}, ( error, docs ) => {
-    res.send(docs);
-  })
-});
+  console.log(req.query.title);
+  if (req.query.title){
+    projectModel.find({uid: req.params.uid, title:req.query.title}, (error, docs) => {
+      if (error){
+        res.send("Bad request or database problem.");
+      }
+      else{
+        res.status(200);
+        res.send(docs);
+      }
+    })
+  }
+  else{
+      projectModel.find({uid : req.params.uid}, (error, docs) => {
+        if(error){
+          res.send("Bad request or database problem.");
+        }
+        else{
+          res.status(200);    
+          res.send(docs);
+        }
+      })
+  }});
 
 router.post('users/:uid/projects', (req, res, next) => {
   let requiredParameters = ['title', 'uid'];
@@ -43,6 +60,27 @@ router.post('users/:uid/projects', (req, res, next) => {
   })
 });
 
+router.post('/login', (req, res, next) => {
+  console.log(req.cookies);
+  const requiredParameters = ['username', 'password'];
+  hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
+    res.status(404).send('Some of this required parameters are missing: '
+      .concat(requiredParameters.join(', ')))
+}, (req, res) => {
+  let query = userModel.where({username : req.body.username, password: req.body.password});
+  query.findOne((err, user) =>{
+    const tokenExpirationTime = 60 * 60 * 24 * 1000;
+    logger.debug(user);
+    if(!user){
+      res.status(401).send('login fail');
+    }
+    else{
+      let token = jwt.sign({iss : 'rtn-token', id: user.uid},
+        req.app.get('secret_key'),{expiresIn : tokenExpirationTime});
+      res.cookie('token', token,{ maxAge: tokenExpirationTime, httpOnly: true})
+        .json({user : user.username, logged : true, token : token});
+}})});
+
 router.patch('/users/:uid/projects/:id', (req, res, next) => {
   let requiredParameters = ['title'];
   hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
@@ -53,6 +91,7 @@ router.patch('/users/:uid/projects/:id', (req, res, next) => {
   projectModel.findOneAndUpdate({'uid':req.params.uid, '_id':req.params.id}, 
     project, {new: true}, (err, project) => {
     if(project){
+      res.status(200);
       res.send(project);
     }
     else{
