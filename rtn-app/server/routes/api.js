@@ -4,6 +4,7 @@ const logger = require('../helpers/logger');
 const token = require('../middlewares/token');
 const jwt = require('jsonwebtoken');
 const querystring = require('querystring');
+const url = require('url');
 
 //models
 const userModel = require('../models/user.model');
@@ -24,13 +25,29 @@ router.get('/projects', token.verifyToken,(req,res) => {
 });
 
 router.get('/users/:uid/projects', token.verifyToken, (req, res) => {
-  logger.debug(req.params.uid);
-  let params = querystring.parse(url.parse(req.url).query);
-  logger.debug(params)
-  projectModel.find({uid : req.params.uid}, ( error, docs ) => {
-    res.send(docs);
-  })
-});
+  console.log(req.query.title);
+  if (req.query.title){
+    projectModel.find({uid: req.params.uid, title:req.query.title}, (error, docs) => {
+      if (error){
+        res.send("Bad request or database problem.");
+      }
+      else{
+        res.status(200);
+        res.send(docs);
+      }
+    })
+  }
+  else{
+      projectModel.find({uid : req.params.uid}, (error, docs) => {
+        if(error){
+          res.send("Bad request or database problem.");
+        }
+        else{
+          res.status(200);    
+          res.send(docs);
+        }
+      })
+  }});
 
 router.post('users/:uid/projects', (req, res, next) => {
   let requiredParameters = ['title', 'uid'];
@@ -47,7 +64,7 @@ router.post('/login', (req, res, next) => {
   console.log(req.cookies);
   const requiredParameters = ['username', 'password'];
   hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
-    res.status(404).send('somme of this required parameters are missing: '
+    res.status(404).send('Some of this required parameters are missing: '
       .concat(requiredParameters.join(', ')))
 }, (req, res) => {
   let query = userModel.where({username : req.body.username, password: req.body.password});
@@ -74,6 +91,7 @@ router.patch('/users/:uid/projects/:id', (req, res, next) => {
   projectModel.findOneAndUpdate({'uid':req.params.uid, '_id':req.params.id}, 
     project, {new: true}, (err, project) => {
     if(project){
+      res.status(200);
       res.send(project);
     }
     else{
