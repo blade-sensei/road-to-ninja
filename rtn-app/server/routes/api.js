@@ -10,22 +10,20 @@ const url = require('url');
 const userModel = require('../models/user.model');
 const projectModel = require('../models/project.model');
 
-router.get('/users', token.verifyToken, (req,res) => {
+router.get('/users', token.verifyToken, token.isAuthorized, (req,res) => {
   userModel.find((err, docs) => {
     logger.debug(docs);
     res.send(docs);
   });
 });
 
-router.get('/projects', token.verifyToken,(req,res) => {
+router.get('/projects', token.verifyToken, token.isAuthorized, (req,res) => {
   projectModel.find((err, docs) => {
-    logger.debug(docs);
     res.send(docs);
   });
 });
 
-router.get('/users/:uid/projects', token.verifyToken, (req, res) => {
-  console.log(req.query.title);
+router.get('/users/:uid/projects', token.verifyToken, token.isAuthorized, (req, res) => {
   if (req.query.title){
     projectModel.find({uid: req.params.uid, title:req.query.title}, (error, docs) => {
       if (error){
@@ -46,8 +44,22 @@ router.get('/users/:uid/projects', token.verifyToken, (req, res) => {
           res.status(200);    
           res.send(docs);
         }
-      })
+      }) 
   }});
+
+router.get('/user/projects', token.verifyToken, token.isAuthorized,  (req, res) => {
+     projectModel.find({uid: token.decoded.id}, (error, docs) => {
+      if(error){
+        res.status(400);
+        res.send('Bad request or database problem' + error);
+      }
+      else
+      {
+        res.status(200);
+        res.send(docs);
+      }
+    }) 
+});
 
 router.post('users/:uid/projects', (req, res, next) => {
   let requiredParameters = ['title', 'uid'];
@@ -61,7 +73,6 @@ router.post('users/:uid/projects', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-  console.log(req.cookies);
   const requiredParameters = ['username', 'password'];
   hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
     res.status(404).send('Some of this required parameters are missing: '
@@ -70,18 +81,17 @@ router.post('/login', (req, res, next) => {
   let query = userModel.where({username : req.body.username, password: req.body.password});
   query.findOne((err, user) =>{
     const tokenExpirationTime = 60 * 60 * 24 * 1000;
-    logger.debug(user);
     if(!user){
-      res.status(401).send('login fail');
+      res.status(401).send('Login fail');
     }
     else{
-      let token = jwt.sign({iss : 'rtn-token', id: user.uid},
+      let token = jwt.sign({iss : 'rtn-token', id: user.uid, admin: user.admin},
         req.app.get('secret_key'),{expiresIn : tokenExpirationTime});
       res.cookie('token', token,{ maxAge: tokenExpirationTime, httpOnly: true})
         .json({user : user.username, logged : true, token : token});
 }})});
 
-router.patch('/users/:uid/projects/:id', (req, res, next) => {
+router.patch('/users/:uid/projects/:id', token.verifyToken, token.isAuthorized, (req, res, next) => {
   let requiredParameters = ['title'];
   hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
     res.status(404).send('Some of these required parameters are missing : ')
