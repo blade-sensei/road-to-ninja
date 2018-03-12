@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const logger = require('../helpers/logger');
 
 const verifyToken = (req, res, next)  => {
   let token = req.body.token || req.query.token || req.headers['x-access-token']
@@ -9,7 +10,6 @@ const verifyToken = (req, res, next)  => {
         return res.json({ success: false, message: 'Failed to authenticate token.' });
       } else {
         req.auth = decoded;
-        console.log(decoded);
         next();
       }
     });
@@ -21,6 +21,20 @@ const verifyToken = (req, res, next)  => {
   }
 };
 
+const isAuthorized = (req, res, next) => {
+    if (req.auth.admin === true){
+      next();
+    }
+    else if (req.auth.id === req.params.uid){
+      next();
+    }
+    else{
+      res.status(403);
+      res.send('You are not allowed to view this page.');
+    };
+}
+
 module.exports = {
- 'verifyToken' : verifyToken
+  'isAuthorized' : isAuthorized,
+  'verifyToken' : verifyToken
 };
