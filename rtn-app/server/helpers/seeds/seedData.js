@@ -11,12 +11,14 @@ const data = {
       uid : '2',
       name: 'poure',
       password : 'pswd',
+      admin : true,
     },
     {
       username : 'pampa',
       uid : '3',
       name: 'pampa',
       password : 'pswd',
+      admin : false,
     }
   ],
   'projects' :[
