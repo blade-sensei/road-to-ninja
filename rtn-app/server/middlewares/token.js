@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const logger = require('../helpers/logger');
 
 const verifyToken = (req, res, next)  => {
   let token = req.body.token || req.query.token || req.headers['x-access-token']
