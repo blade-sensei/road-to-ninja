@@ -3,8 +3,6 @@ const router = express.Router();
 const logger = require('../helpers/logger');
 const token = require('../middlewares/token');
 const jwt = require('jsonwebtoken');
-const querystring = require('querystring');
-const url = require('url');
 
 //models
 const userModel = require('../models/user.model');
@@ -28,49 +26,46 @@ router.get('/users/:uid/projects', token.verifyToken, token.isAuthorized, (req, 
     projectModel.find({uid: req.params.uid, title:req.query.title}, (error, docs) => {
       if (error){
         res.send("Bad request or database problem.");
-      }
-      else{
+      } else {
         res.status(200);
         res.send(docs);
       }
     })
-  }
-  else{
+  } else {
       projectModel.find({uid : req.params.uid}, (error, docs) => {
         if(error){
           res.send("Bad request or database problem.");
-        }
-        else{
+        } else {
           res.status(200);    
           res.send(docs);
         }
       }) 
-  }});
+  }
+});
 
 router.get('/user/projects', token.verifyToken, token.isAuthorized,  (req, res) => {
      projectModel.find({uid: token.decoded.id}, (error, docs) => {
       if(error){
         res.status(400);
         res.send('Bad request or database problem' + error);
-      }
-      else
-      {
+      } else {
         res.status(200);
         res.send(docs);
       }
-    }) 
+    }); 
 });
 
-router.post('users/:uid/projects', (req, res, next) => {
+router.post('/users/:uid/projects', token.verifyToken, (req, res, next) => {
   let requiredParameters = ['title', 'uid'];
   hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
-    res.status(404).send('some of this required parameters are missing: '
+    res.status(400).send('some of this required parameters are missing: '
       .concat(requiredParameters.join(', ')))
   }, (req, res) => {
   new projectModel(req.body).save().then( project => res.send(project))
     .catch( err => { res.status(500).send(`database error ${err}`);
-  })
-});
+  });
+}); 
+
 
 router.post('/login', (req, res, next) => {
   const requiredParameters = ['username', 'password'];
@@ -96,8 +91,8 @@ router.post('/login', (req, res, next) => {
 router.patch('/users/:uid/projects/:id', token.verifyToken, token.isAuthorized, (req, res, next) => {
   let requiredParameters = ['title'];
   hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
-    res.status(404).send('Some of these required parameters are missing : ')
-      .concat(requiredParameters.join(', '))
+    res.status(404).send('Some of these required parameters are missing : '
+    .concat(requiredParameters.join(', ')));
   }, (req, res) => {
   let project = Object.assign({}, req.body);
   projectModel.findOneAndUpdate({'uid':req.params.uid, '_id':req.params.id}, 
