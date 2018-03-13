@@ -31,8 +31,8 @@ const isAuthorized = (req, res, next) => {
     else{
       res.status(403);
       res.send('You are not allowed to view this page.');
-    };
-}
+    }
+};
 
 module.exports = {
   'isAuthorized' : isAuthorized,

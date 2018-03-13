@@ -89,7 +89,9 @@ router.post('/login', (req, res, next) => {
         req.app.get('secret_key'),{expiresIn : tokenExpirationTime});
       res.cookie('token', token,{ maxAge: tokenExpirationTime, httpOnly: true})
         .json({user : user.username, logged : true, token : token});
-}})});
+    }
+  });
+});
 
 router.patch('/users/:uid/projects/:id', token.verifyToken, token.isAuthorized, (req, res, next) => {
   let requiredParameters = ['title'];
@@ -97,7 +99,7 @@ router.patch('/users/:uid/projects/:id', token.verifyToken, token.isAuthorized, 
     res.status(404).send('Some of these required parameters are missing : ')
       .concat(requiredParameters.join(', '))
   }, (req, res) => {
-  let project = Object.assign({}, req.body)
+  let project = Object.assign({}, req.body);
   projectModel.findOneAndUpdate({'uid':req.params.uid, '_id':req.params.id}, 
     project, {new: true}, (err, project) => {
     if(project){
@@ -107,7 +109,9 @@ router.patch('/users/:uid/projects/:id', token.verifyToken, token.isAuthorized, 
     else{
       res.status(500);
       res.send('Project not found or couldn\'t save.');
-    }})});
+    }
+  });
+});
 
 
 //middleware
