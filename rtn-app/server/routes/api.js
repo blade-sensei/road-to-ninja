@@ -56,7 +56,7 @@ router.get('/user/projects', token.verifyToken, token.isAuthorized,  (req, res) 
 });
 
 router.post('/users/:uid/projects', token.verifyToken, (req, res, next) => {
-  let requiredParameters = ['title', 'uid'];
+  let requiredParameters = ['title'];
   hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
     res.status(400).send('some of this required parameters are missing: '
       .concat(requiredParameters.join(', ')))
@@ -87,6 +87,7 @@ router.post('/login', (req, res, next) => {
     }
   });
 });
+
 
 router.patch('/users/:uid/projects/:id', token.verifyToken, token.isAuthorized, (req, res, next) => {
   let requiredParameters = ['title'];
