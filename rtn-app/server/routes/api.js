@@ -44,7 +44,7 @@ router.get('/users/:uid/projects', token.verifyToken, token.isAuthorized, (req, 
 });
 
 router.get('/user/projects', token.verifyToken, token.isAuthorized,  (req, res) => {
-     projectModel.find({uid: token.decoded.id}, (error, docs) => {
+     projectModel.find({uid: req.auth}, (error, docs) => {
       if(error){
         res.status(400);
         res.send('Bad request or database problem' + error);
@@ -56,7 +56,7 @@ router.get('/user/projects', token.verifyToken, token.isAuthorized,  (req, res) 
 });
 
 router.post('/users/:uid/projects', token.verifyToken, (req, res, next) => {
-  let requiredParameters = ['title', 'uid'];
+  let requiredParameters = ['title'];
   hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
     res.status(400).send('some of this required parameters are missing: '
       .concat(requiredParameters.join(', ')))
