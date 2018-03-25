@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+app = express();
 const api = require('./routes/api');
 const index = require('./routes/index');
 const seed = require('./routes/seed');
@@ -8,6 +8,11 @@ const mongoose = require('mongoose');
 const config = require('./config');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
+
+
 
 //enable cross origin
 app.use(function(req, res, next) {
@@ -22,6 +27,7 @@ app.use(cookieParser());
 app.set('secret_key', config.auth.key);
 //adding routes modules
 app.use('/', index);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api',api);
 app.use('/seed',seed);
 //config server

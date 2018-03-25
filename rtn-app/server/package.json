@@ -8,6 +8,7 @@
     "express": "^4.16.2",
     "jsonwebtoken": "^8.2.0",
     "mongoose": "^5.0.2",
+    "swagger-ui-express": "^3.0.5",
     "winston": "^2.4.0"
   },
   "scripts": {
