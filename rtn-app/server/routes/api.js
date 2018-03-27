@@ -82,8 +82,7 @@ router.post('/login', (req, res, next) => {
     else{
       let token = jwt.sign({iss : 'rtn-token', id: user.uid, admin: user.admin},
         req.app.get('secret_key'),{expiresIn : tokenExpirationTime});
-      res.cookie('token', token,{ maxAge: tokenExpirationTime, httpOnly: true})
-        .json({user : user.username, logged : true, token : token});
+      res.json({user : user.username, logged : true, token : token});
     }
   });
 });

@@ -27,7 +27,7 @@ app.use(cookieParser());
 app.set('secret_key', config.auth.key);
 //adding routes modules
 app.use('/', index);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/explorer', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api',api);
 app.use('/seed',seed);
 //config server
