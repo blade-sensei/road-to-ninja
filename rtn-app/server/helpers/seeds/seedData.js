@@ -4,7 +4,8 @@ const data = {
       username : 'sensei',
       uid : '1',
       name: 'juan',
-      password : 'pswd',
+      password : 'pass',
+      admin: true
     },
     {
       username : 'repou',
