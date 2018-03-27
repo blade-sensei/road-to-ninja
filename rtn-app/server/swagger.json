@@ -73,7 +73,12 @@
               "$ref": "#/definitions/Projects"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -87,7 +92,12 @@
               "$ref": "#/definitions/Project"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
       }
     },
     "/users/{uid}/projects/{id}": {
@@ -121,7 +131,12 @@
               "$ref": "#/definitions/User"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
       }
     },
     "/login": {
@@ -139,7 +154,7 @@
             "in": "body",
             "description": "credentials",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Credentials"
             }
           }
         ],
@@ -149,7 +164,12 @@
               "$ref": "#/definitions/User"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
       }
     },
     "/projects": {
@@ -165,8 +185,20 @@
               "$ref": "#/definitions/Projects"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
       }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "x-access-token",
+      "in": "header"
     }
   },
   "definitions": {
@@ -217,6 +249,20 @@
           "type": "array"
         },
         "uid": {
+          "type": "string"
+        }
+      }
+    },
+    "Credentials": {
+      "required": [
+        "username",
+        "password"
+      ],
+      "properties": {
+        "username": {
+         "type": "string"
+        },
+        "password": {
           "type": "string"
         }
       }
