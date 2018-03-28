@@ -2,14 +2,12 @@ const express = require('express');
 const router = express.Router();
 const logger = require('../helpers/logger');
 const token = require('../middlewares/token');
-const reqParameter = require('../middlewares/req-parameter');
-const jwt = require('jsonwebtoken');
 const userModel = require('../models/user.model');
 const projectModel = require('../models/project.model');
-const hasParameters = require('../helpers/request').hasRequestRequiredParameters;
+const verifyReq = require('../helpers/request');
 
 
-router.get('/users', token.verifyToken, token.isAuthorized, (req,res) => {
+router.get('', token.verifyToken, token.isAuthorized, (req,res) => {
   userModel.find((err, docs) => {
     logger.debug(docs);
     res.send(docs);
@@ -17,7 +15,7 @@ router.get('/users', token.verifyToken, token.isAuthorized, (req,res) => {
 });
 
 //user projects
-router.get('/users/:uid/projects', token.verifyToken, token.isAuthorized, (req, res) => {
+router.get('/:uid/projects', token.verifyToken, token.isAuthorized, (req, res) => {
   if (req.query.title){
     projectModel.find({uid: req.params.uid, title:req.query.title}, (error, docs) => {
       if (error){
@@ -39,9 +37,9 @@ router.get('/users/:uid/projects', token.verifyToken, token.isAuthorized, (req, 
   }
 });
 
-router.post('/users/:uid/projects', token.verifyToken, (req, res, next) => {
+router.post('/:uid/projects', token.verifyToken, token.isAuthorized, (req, res, next) => {
   let requiredParameters = ['title'];
-  hasParameters(requiredParameters, req.body) ? next() :
+  verifyReq.hasRequiredParameters(requiredParameters, req.body) ? next() :
     res.status(404).send('Some of these required parameters are missing : '
       .concat(requiredParameters.join(', ')));
 }, (req, res) => {
@@ -50,10 +48,9 @@ router.post('/users/:uid/projects', token.verifyToken, (req, res, next) => {
     });
 });
 
-/**
-router.patch('/users/:uid/projects/:id', token.verifyToken, token.isAuthorized, (req, res, next) => {
+router.patch('/:uid/projects/:id', token.verifyToken, token.isAuthorized, (req, res, next) => {
   let requiredParameters = ['title'];
-  hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
+  verifyReq.hasRequiredParameters(requiredParameters, req.body) ? next() :
     res.status(404).send('Some of these required parameters are missing : '
       .concat(requiredParameters.join(', ')));
 }, (req, res) => {
@@ -69,6 +66,6 @@ router.patch('/users/:uid/projects/:id', token.verifyToken, token.isAuthorized, 
         res.send('Project not found or couldn\'t save.');
       }
     });
-});**/
+});
 
 module.exports = router;
