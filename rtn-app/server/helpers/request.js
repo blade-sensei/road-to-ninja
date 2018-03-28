@@ -3,5 +3,5 @@ const hasRequestRequiredParameters = (requiredParameters, requestBody) =>
 
 
 module.exports = {
-  'hasRequestRequiredParameters' : hasRequestRequiredParameters
+  'hasRequiredParameters' : hasRequestRequiredParameters
 };

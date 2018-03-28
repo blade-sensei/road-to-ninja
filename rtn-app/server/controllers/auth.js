@@ -1,15 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const logger = require('../helpers/logger');
-const token = require('../middlewares/token');
 const jwt = require('jsonwebtoken');
 const userModel = require('../models/user.model');
-const projectModel = require('../models/project.model');
-
+const verifyReq = require('../helpers/request');
 
 router.post('/login', (req, res, next) => {
   const requiredParameters = ['username', 'password'];
-  hasRequestRequiredParameters(requiredParameters, req.body) ? next() :
+  verifyReq.hasRequiredParameters(requiredParameters, req.body) ? next() :
     res.status(404).send('Some of this required parameters are missing: '
       .concat(requiredParameters.join(', ')))
 }, (req, res) => {
@@ -27,3 +24,4 @@ router.post('/login', (req, res, next) => {
     }
   });
 });
+module.exports = router;
