@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user');
-const logger = require('../helpers/logger');
-const token = require('../middlewares/token');
-const jwt = require('jsonwebtoken');
+const authController = require('../controllers/auth');
+const projectController = require('../controllers/project');
 
 //models
-const userModel = require('../models/user.model');
-const projectModel = require('../models/project.model');
+router.use('/users', userController);
+router.use('/auth', authController);
+router.use('/projects', projectController);
 
-router.use('/user', userController);
 module.exports = router;

@@ -85,6 +85,16 @@
           "Users"
         ],
         "summary": "Create one project for this user",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "project info",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Project added",
@@ -139,7 +149,7 @@
         ]
       }
     },
-    "/login": {
+    "/auth/login": {
       "post": {
         "summary": "Get token",
         "tags": [
@@ -232,17 +242,13 @@
         "uid"
       ],
       "properties": {
-        "_id": {
-          "type": "string",
-          "uniqueItems": true
-        },
         "title": {
           "type": "string"
         },
         "description": {
           "type": "string"
         },
-        "source": {
+        "data": {
           "type": "string"
         },
         "requires" : {

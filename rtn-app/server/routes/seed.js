@@ -1,30 +1,31 @@
 const express = require('express');
 const router = express.Router();
 const logger = require('../helpers/logger');
-const seedData = require('../helpers/seeds/seedData');
+const userData = require('../helpers/seeds/user.feed');
+const projectData = require('../helpers/seeds/project.feed');
 
 const userModel = require('../models/user.model');
 const projectModel = require('../models/project.model');
 
 router.get('/users', (req,res) => {
-  let users = seedData.users;
-  seedRemove(userModel).then(() => {
-    seedFeed(userModel, users).then((documents) => {
+  let users = userData;
+  dropCollection(userModel).then(() => {
+    createCollection(userModel, users).then((documents) => {
       res.send(documents);
     })
   });
 });
 
 router.get('/projects',  (req, res) => {
-  let projects = seedData.projects;
-  seedRemove(projectModel).then(() => {
-    seedFeed(projectModel, projects).then((documents) => {
+  let projects = projectData;
+  dropCollection(projectModel).then(() => {
+    createCollection(projectModel, projects).then((documents) => {
       res.send(documents);
     })
   });
 });
 
-const seedRemove = (model) => {
+const dropCollection = (model) => {
   return new Promise((resolve) =>{
     model.remove(() => {
       logger.debug('remove');
@@ -33,7 +34,7 @@ const seedRemove = (model) => {
   });
 };
 
-const seedFeed = (model, documents) => {
+const createCollection = (model, documents) => {
   return new Promise((resolve) => {
     model.insertMany(documents).then( () => {
       model.find((err, docs) => {
