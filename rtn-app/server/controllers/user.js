@@ -6,6 +6,7 @@ const reqParameter = require('../middlewares/req-parameter');
 const jwt = require('jsonwebtoken');
 const userModel = require('../models/user.model');
 const projectModel = require('../models/project.model');
+const hasParameters = require('../helpers/request').hasRequestRequiredParameters;
 
 
 router.get('/users', token.verifyToken, token.isAuthorized, (req,res) => {
@@ -38,8 +39,12 @@ router.get('/users/:uid/projects', token.verifyToken, token.isAuthorized, (req, 
   }
 });
 
-router.post('/users/:uid/projects', token.verifyToken,
-  reqParameter.verifyParameters(['title']), (req, res) => {
+router.post('/users/:uid/projects', token.verifyToken, (req, res, next) => {
+  let requiredParameters = ['title'];
+  hasParameters(requiredParameters, req.body) ? next() :
+    res.status(404).send('Some of these required parameters are missing : '
+      .concat(requiredParameters.join(', ')));
+}, (req, res) => {
   new projectModel(req.body).save().then( project => res.send(project))
     .catch( err => { res.status(500).send(`database error ${err}`);
     });
