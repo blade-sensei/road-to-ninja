@@ -7,7 +7,7 @@ const projectModel = require('../models/project.model');
 const verifyReq = require('../helpers/request');
 
 
-router.get('', token.verifyToken, token.isAuthorized, (req,res) => {
+router.get('', (req,res) => {
   userModel.find((err, docs) => {
     logger.debug(docs);
     res.send(docs);
@@ -15,7 +15,7 @@ router.get('', token.verifyToken, token.isAuthorized, (req,res) => {
 });
 
 //user projects
-router.get('/:uid/projects', token.verifyToken, token.isAuthorized, (req, res) => {
+router.get('/:uid/projects', (req, res) => {
   if (req.query.title){
     projectModel.find({uid: req.params.uid, title:req.query.title}, (error, docs) => {
       if (error){

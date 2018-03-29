@@ -193,12 +193,7 @@
               "$ref": "#/definitions/Projects"
             }
           }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        }
       }
     }
   },
