@@ -15,12 +15,10 @@ router.post('/login', (req, res, next) => {
     const tokenExpirationTime = 60 * 60 * 24 * 1000;
     if(!user){
       res.status(401).send('Login fail');
-    }
-    else{
+    } else {
       let token = jwt.sign({iss : 'rtn-token', id: user.uid, admin: user.admin},
         req.app.get('secret_key'),{expiresIn : tokenExpirationTime});
-      res.cookie('token', token,{ maxAge: tokenExpirationTime, httpOnly: true})
-        .json({user : user.username, logged : true, token : token});
+      res.json({username : user.username, logged : true, token : token});
     }
   });
 });
