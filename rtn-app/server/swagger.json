@@ -73,12 +73,7 @@
               "$ref": "#/definitions/Projects"
             }
           }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -120,14 +115,16 @@
           {
             "name": "uid",
             "in": "path",
+            "required": true,
             "description": "uid of the user",
             "schema": {
               "$ref": "#/definitions/User"
             }
           },
           {
-            "name": "path",
-            "in": "url",
+            "name": "id",
+            "in": "path",
+            "required": true,
             "description": "Id of project to update",
             "schema": {
               "$ref": "#/definitions/Project"
@@ -136,9 +133,9 @@
         ],
         "responses": {
           "200": {
-            "description": "User is updated",
+            "description": "Updated project",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Project"
             }
           }
         },
@@ -162,6 +159,7 @@
           {
             "name": "credentials",
             "in": "body",
+            "required": true,
             "description": "credentials",
             "schema": {
               "$ref": "#/definitions/Credentials"
@@ -171,7 +169,7 @@
         "responses": {
           "200": {
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/TokenInfo"
             }
           }
         },
@@ -214,14 +212,8 @@
   "definitions": {
     "User": {
       "required": [
-        "email",
-        "_id"
       ],
       "properties": {
-        "_id": {
-          "type": "string",
-          "uniqueItems": true
-        },
         "username": {
           "type": "string"
         },
@@ -270,6 +262,19 @@
         },
         "password": {
           "type": "string"
+        }
+      }
+    },
+    "TokenInfo": {
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "logged": {
+          "type": "boolean"
         }
       }
     },
