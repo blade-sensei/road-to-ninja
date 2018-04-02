@@ -2,7 +2,7 @@ Road to ninja !
 ==
 
 ## Présentation 
-Road to ninja, est un projet qui visant à améliorer les compétences techniques de l'utilisateur. Il a été pensé pour les domaines de la programmation/coding, mais aussi dans les domaines de l'infrastucture (réseaux/systèmes), la sécurité informatique, l'IA et le design graphique.
+Road to ninja, est un projet visant à améliorer les compétences techniques de l'utilisateur. Il a été pensé pour les domaines de la programmation/coding, mais aussi pour l'infrastucture (réseaux/systèmes), la sécurité informatique, l'IA et le design graphique.
 
 Le but du projet est de créer une application web, qui va répertorier tous les projets que l'utilisateur souhaite réaliser. 
 Road to Ninja n'est pas un gestionnaire de projet à proprement parler, mais plutôt un outil permettant de se concentrer sur 1 seul projet à la fois. La particularité : pour passer au projet suivant, l'utilisateur doit finir celui en cours.
@@ -24,59 +24,29 @@ Bien qu'il s'agisse plutôt d'un problème personnel, je vais utiliser le pronom
 En extension, le projet permettra aussi de garder une trace pour voir l'évolution des compétences. 
 
 ## Comment ?
-### ce projet va-t-il améliorer mes compétences ?
+### Ce projet va-t-il améliorer mes compétences ?
 
 Grâce à cette liste: 
 
-- Projets type exercices (*)
-- Projets solo
-- Projets groupe
-- Tutoriels/Explications/Documentation
-- Utilisation d'outils collaboratifs
+- **Exercices :** pour comprendre rapidement une techno avant de passer aux projects. On pourra se donner comme projet, 1 semaine maximum pour terminer 30 exercices sur un thème, comme javascript, POO etc... A nous de trouver les exercices avec les corrections. (C'est un exemple).
+- **Projets solo :** On pourra créer des projets, pour mettre en pratique les notions vues dans les exercices, et apprendre à bien gérer un projet. 
+- **Projets groupe :** pour apprendre à travailler avec d'autres personnes, et apprendre à utiliser des outils collaboratifs (git, trello, etc...).
+- **Tutoriels et Documentation :** les tutoriels et documentations servent à synthétiser le savoir et les acquis : si l'on est incapable d'expliquer ce que l'on apprend, c'est peut-être que le sujet a été mal compris. Ils servent aussi à garder une trace de ce que l'on a pu faire, les erreurs et problèmes rencontrés pour y revenir plus tard et gagner du temps. Tous les documents du projet se trouveront sur le lien git relié au projet.
 
-Le but des exercices est de comprendre une techno de manière rapide avant de passer aux projects.
-
-Les tutoriels et documentations servent à synthétiser le savoir et les acquis : si l'on est incapable d'expliquer ce que l'on apprend, c'est peut-être que le sujet a été mal compris. Ils servent aussi à garder une trace de ce que l'on a pu faire, les erreurs et problèmes rencontrés pour y revenir plus tard et gagner du temps.
-
-Les projets en groupe vont nous permettre d'apprendre à travailler avec d'autres personnes, ainsi qu'a apprendre à utiliser des outils collaboratifs du moment (git, trello, etc...).
-
-:::info
-Projects type exercice (*)
-On pourra se donner comme project, 1 semaine maximum pour terminer 30 exercices sur un thème, comme javascript, POO etc... A nous de trouver les exercices avec les corrections. (C'est un exemple).
-:::
-
-### va-t-il résoudre le problème de focus et procrastination ? 
+### Va-t-il résoudre le problème de focus et procrastination ? 
 
 Le fait d'avoir une interface bloquant les futurs projets et demandant de terminer 1 ET 1 seul projet, va obliger l'utilisateur à se concentrer uniquement sur ce projet pour évoluer. La finalisation des projets et leur avancée vont nous donner envie de continuer... (en tout cas j'espère :+1:)
 
-Structure 
-==
-
-- Le site web permet à l'utilisateur de créer des projets. 
-- Chaque utilisateur a un ou plusieurs projects à finir avant de pouvoir débuter le suivant.
-- Les projets ont des rendus : documentations, tutos, ou simples explications.
-- Tous les documents du projet se trouvent sur le lien git.
-
-## Model project
-Un projet est composé des attributs suivants :
-
-| Attribut | Description | 
-| ------ | ---- | 
-| requires | Liste des projets requis pour commencer ce projet | 
-| data | Liens vers les documents (rendus, app, description) |
-| title | Titre du projet |
-| description | Brève description du projet |
-| status | Statut (started) (non started) (finished) |
-
-## Model User
-Un utilisateur est composé des attributs suivants :
-
-| Attribut | Description |
-| ------- | ---------- |
-| username | Nom d'utlisateur utilisé pour se connecter |
-| name | Nom (complet ou surnom) affiché dans la page de profil |
-| password | Mot de passe |
-| projects | Liste de tous les projets |
+ Structure 
+ ==
+ 
+-- Le site web, permettra à l'utilisateur de créer des projets. 
+-- Chaque projet à un/plusieurs projects à finir avant de pouvoir débuter celui en question.
+-- Les projects ont des rendues : soit des documentation, des tutos, ou des explications tout simplement.
++- Le site web permet à l'utilisateur de créer des projets. 
++- Chaque utilisateur a un ou plusieurs projects à finir avant de pouvoir débuter le suivant.
++- Les projets ont des rendus : documentations, tutos, ou simples explications.
+ - Tous les documents du projet se trouvent sur le lien git.
 
 Maquettes
 ===
