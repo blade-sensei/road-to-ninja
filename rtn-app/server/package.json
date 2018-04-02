@@ -13,7 +13,10 @@
   },
   "scripts": {
     "test": "node tests/test.js",
-    "start": "nodemon server.js --verbose"
+    "start": "nodemon server.js --verbose",
+    "lint": "./node_modules/.bin/eslint **/*.js --ignore-pattern node_modules/ || exit 0",
+    "lint-html": "./node_modules/.bin/eslint **/*.js -f html -o ./reports/lint-results.html || exit 0",
+    "lint-fix": "./node_modules/.bin/eslint --fix **/*.js || exit 0"
   },
   "description": "backend for api",
   "main": "server.js",
@@ -21,6 +24,9 @@
     "test": "tests"
   },
   "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.10.0",
     "nodemon": "^1.17.1"
   },
   "author": ""
