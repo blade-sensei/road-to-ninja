@@ -2,81 +2,80 @@ Road to ninja !
 ==
 
 ## Présentation 
-Road to ninja, est un projet qui permettra d'améliorer les compétences techniques, plus particulièrement dans le domaine de la programmation/coding. Mais aussi dans les domaines de l'infrastucture (réseaux/systèmes), sécurité informatique, IA et design graphique.
+Road to ninja, est un projet qui visant à améliorer les compétences techniques de l'utilisateur. Il a été pensé pour les domaines de la programmation/coding, mais aussi dans les domaines de l'infrastucture (réseaux/systèmes), la sécurité informatique, l'IA et le design graphique.
 
-Le but du project est de créer une app web, qui va répertorier tous nos projects qu'on souhaite réaliser. 
-Ce n'est pas outils de gestion de projet. Mais plutot un outils pour se concentrer sur 1 projet à la fois. La particularité : Pour passer à un autre projet, nous devons finir celui en cours.
+Le but du projet est de créer une application web, qui va répertorier tous les projets que l'utilisateur souhaite réaliser. 
+Road to Ninja n'est pas un gestionnaire de projet à proprement parler, mais plutôt un outil permettant de se concentrer sur 1 seul projet à la fois. La particularité : pour passer au projet suivant, l'utilisateur doit finir celui en cours.
 
 Pour le moment, il n'y a pas de délai (temps) pour terminer un projet.
 
 ## Pourquoi ?
 
-Résoudre un problème de procastination, d'organisation et focus. 
+L'application vise à résoudre un problème de procrastination, d'organisation et de focus. 
 
-Ici c'est plus un problème personnelle, mais je vais utiliser le pronom 'on'. 
+Bien qu'il s'agisse plutôt d'un problème personnel, je vais utiliser le pronom 'on' dans les exemples ci-dessous. 
 
-- Quand on a plusieurs idées de projets, on ne sait pas par où commencer, et une fois qu'on a terminé un projet, on abondonne les prochains par lassitude. 
-- On perds la motivation et on procrastine par manque de motivation et par un manque d'orientation.
+- Quand on a plusieurs idées de projets, on ne sait pas toujours par où commencer, et une fois qu'un projet est terrminé, on abondonne les prochains par lassitude. 
+
+- On perd la motivation et on procrastine par manque de motivation et par manque d'orientation.
 
 - On n'arrive pas à garder un focus, sur un objectif précis.
 
 En extension, le projet permettra aussi de garder une trace pour voir l'évolution des compétences. 
 
-
 ## Comment ?
-### ce projet va améliorer mes compétences ?
+### ce projet va-t-il améliorer mes compétences ?
 
-grâce à cette liste: 
+Grâce à cette liste: 
 
-- Projects type exercices (*)
+- Projets type exercices (*)
 - Projets solo
 - Projets groupe
 - Tutoriels/Explications/Documentation
 - Utilisation d'outils collaboratifs
 
-Le but dans les exercices et de comprendre une techno de manière rapide avant de passer aux projects.
+Le but des exercices est de comprendre une techno de manière rapide avant de passer aux projects.
 
-Les tutoriels et documentation servent à synthétiser le savoir et acquis, car si on n'arrive pas à expliquer ce qu'on apprends, c'est que le sujet n'as pas été bien compris. Le deuxième avantage est de garder une trace de ce qu'on a pu faire, les erreurs/problèmes rencontrées pour revenir plus tard et gagner du temps.
+Les tutoriels et documentations servent à synthétiser le savoir et les acquis : si l'on est incapable d'expliquer ce que l'on apprend, c'est peut-être que le sujet a été mal compris. Ils servent aussi à garder une trace de ce que l'on a pu faire, les erreurs et problèmes rencontrés pour y revenir plus tard et gagner du temps.
 
-Les projets en groupe, vont nous permettre d'apprendre à travailler avec d'autres personnes, connaitre et utiliser des outils collaboratifs du moment, comme git, trello etc...
+Les projets en groupe vont nous permettre d'apprendre à travailler avec d'autres personnes, ainsi qu'a apprendre à utiliser des outils collaboratifs du moment (git, trello, etc...).
 
 :::info
 Projects type exercice (*)
-On pourra se donner comme project, 1 semaine max entière pour terminer 30 exercices sur un thème, comme javascript, poo etc... A nous de trouver les exercices avec les corrections. C'est un exemple.
+On pourra se donner comme project, 1 semaine maximum pour terminer 30 exercices sur un thème, comme javascript, POO etc... A nous de trouver les exercices avec les corrections. (C'est un exemple).
 :::
 
-### Il va résoudre le problème de focus et procrastination ? 
+### va-t-il résoudre le problème de focus et procrastination ? 
 
-Le fait d'avoir une interface qui nous bloque les prochains project et nous demande de terminer 1 ET 1 seul projet, va nous obliquer à nous concentrer uniquement sur ce projet pour évoluer. L'accomplissement des project et l'avancé, vont nous donner envie de continuer ... en tout cas j'espère :+1: 
+Le fait d'avoir une interface bloquant les futurs projets et demandant de terminer 1 ET 1 seul projet, va obliger l'utilisateur à se concentrer uniquement sur ce projet pour évoluer. La finalisation des projets et leur avancée vont nous donner envie de continuer... (en tout cas j'espère :+1:)
 
 Structure 
 ==
 
-- Le site web, permettra à l'utilisateur de créer des projets. 
-- Chaque projet à un/plusieurs projects à finir avant de pouvoir débuter celui en question.
-- Les projects ont des rendues : soit des documentation, des tutos, ou des explications tout simplement.
+- Le site web permet à l'utilisateur de créer des projets. 
+- Chaque utilisateur a un ou plusieurs projects à finir avant de pouvoir débuter le suivant.
+- Les projets ont des rendus : documentations, tutos, ou simples explications.
 - Tous les documents du projet se trouvent sur le lien git.
 
 ## Model project
-Un projet est composé des attributs suivants
-
+Un projet est composé des attributs suivants :
 
 | Attribut | Description | 
 | ------ | ---- | 
-| requires | Liste des projects requis pour commencer ce projet | 
+| requires | Liste des projets requis pour commencer ce projet | 
 | data | Liens vers les documents (rendus, app, description) |
 | title | Titre du projet |
-| description | Une petite description du projet |
-| status | type de status (en cours) (non started) (finished) |
+| description | Brève description du projet |
+| status | Statut (started) (non started) (finished) |
 
 ## Model User
-Un utilisateur possède des projets
+Un utilisateur est composé des attributs suivants :
 
-| attributs | description |
+| Attribut | Description |
 | ------- | ---------- |
-| username | pour se logger |
-| name | nom ou nickname |
-| password | mdp |
+| username | Nom d'utlisateur utilisé pour se connecter |
+| name | Nom (complet ou surnom) affiché dans la page de profil |
+| password | Mot de passe |
 | projects | Liste de tous les projets |
 
 Maquettes
@@ -89,12 +88,12 @@ Architecture technique
 
 ## Technos 
 - Backend
-  * Node js
-  * Express
+  * Node.js
+  * ExpressJS
   * MongoDB
 - Frontend
-  * Vanilla JS
-  * Html / CSS
+  * Angular 4
+  * HTML / CSS
 
 - Coding Style
   * Airbnb style https://github.com/nmussy/javascript-style-guide
@@ -106,11 +105,11 @@ Git
 
 Lien : https://github.com/Coyla/road-to-ninja
 
-- La branche principal est master
+- La branche principale est master.
 - Chaque personne travaille sur une "feature" (fonctionnalité), pour cela il faut créer une nouvelle branche. 
-- chaque changement pendant le développement de la feature droit être commit et push sur le github
-- a la fin de la feature, une validation sera faite et devra être pull request sur la branche stable (master)
-- Les bugs/corrections doivent aussi être fais sur une branche differente
+- Chaque changement pendant le développement de la feature doit être commit et push sur le serveur Github
+- Une fois le développement de la feature terminé, une pull request sur la branche stable (master) est demandée, et la validation est effectuée par un admin.
+- Les bugs/corrections doivent aussi être faits sur une branche differente.
 
 ## Nommage des branches
 
@@ -125,7 +124,7 @@ ft/start-project-user
 ```
 
 ### HotFix
-Pour les corrections, la maintenance, les petites changements:, le refactoring ...
+Pour les corrections, la maintenance, les petits changements, le refactoring ...
 
 hf/[hotfix-name]
 
@@ -136,7 +135,7 @@ hf/d123-hf/
 ```
 
 ### BugFix
-Pour les bugs, un bug n'est pas forcement à traiter de suite, il sera mis dans un patch de correction
+Pour les bugs, un bug n'est pas forcement à traiter immédiatement, il sera mis dans un patch de correction.
 
 bf/[bugfix-name]
 ```
@@ -147,19 +146,17 @@ Trello
 ==
 
 Lien du board : https://trello.com/b/UPrATOhl/road-to-ninja
-- Une carte = une tache 
-- Si possible rajouter un element de "checklist" dans une carte pour décrire les étapes pour completer la carte, et si la carte a besoin d'être coupé,
-on peut créer une autre carte mais il faut préciser dans le titre qu'elle appartient à une autre carte.
-- Le elements d'une checklist sont arbitraires, ça peut être des toutes petites taches (ex: initialiser la variable projets .. ) ou des plus importantes  (ex :créer un service web)
-- Pour rajouter un checklist. Clicker sur la carte --> a droite dans Add clicker sur Checklist --> rajouter les elements
-- Rajouter toujours un label (feature, bug, etc)
-- Si besoin rajouter un commentaire dans le "card" pour rajouter des informations
-- Backlog c'est toute les fonctionnalités. Chaque semaine on doit prendre des cartes et les mettre dans le TODO. On ne peut pas rajouter des
-cartes dans le TODO en milieu de semaine.
+- Une carte = une tâche.
+- Si possible, ajouter un élément de "checklist" dans une carte pour décrire les étapes pour compléter la carte. Si la carte a besoin d'être coupée, on peut en créer une nouvelle, mais il faut préciser dans le titre qu'elle appartient à une autre carte.
+- Les éléments d'une checklist sont arbitraires : cela peut-être de toutes petites taches (ex : initialiser une variable... ) ou des plus importantes  (ex : créer un service web).
+- Pour rajouter une checklist : cliquer sur la carte --> à droite dans Add, cliquer sur Checklist --> rajouter les elements.
+- Toujours ajouter un label (feature, bug, etc).
+- Si besoin, ajouter un commentaire dans le "card" pour rajouter des informations.
+- Le backlog regroupe toutes les fonctionnalités. Chaque semaine, certaines cartes doivent être déplacées vers le TODO. Aucune carte ne doit être ajoutée dans TODO en milieu de semaine.
 
-Exemple de checklist pour une US (User Storie)
+Exemple de checklist pour une US (User Story)
 [] Installer Express
 [] Appeler l'API blabla
-[] Rajouter les données dans le template Angular ...
+[] Rajouter les données dans le template Angular...
 
 
