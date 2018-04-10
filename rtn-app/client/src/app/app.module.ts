@@ -12,6 +12,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import {ModalModule} from "ngx-bootstrap";
 import { ProjectAddComponent } from './components/project-add/project-add.component';
 import {FormsModule} from "@angular/forms";
+import { AuthFormComponent } from './components/auth/auth-form/auth-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {FormsModule} from "@angular/forms";
     UserProjectsComponent,
     ProjectInfoComponent,
     MenuComponent,
-    ProjectAddComponent
+    ProjectAddComponent,
+    AuthFormComponent
   ],
   imports: [
     HttpClientModule,
