@@ -13,6 +13,7 @@ import {ModalModule} from "ngx-bootstrap";
 import { ProjectAddComponent } from './components/project-add/project-add.component';
 import {FormsModule} from "@angular/forms";
 import { AuthFormComponent } from './components/auth/auth-form/auth-form.component';
+import {AuthenticationService} from "./components/auth/authentication.service";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { AuthFormComponent } from './components/auth/auth-form/auth-form.compone
     ModalModule.forRoot()
   ],
   entryComponents : [ProjectAddComponent],
-  providers: [UserService, UserProjectsService],
+  providers: [UserService, UserProjectsService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
