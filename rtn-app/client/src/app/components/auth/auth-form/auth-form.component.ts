@@ -8,8 +8,8 @@ import {AuthenticationService} from "../authentication.service";
 })
 export class AuthFormComponent implements OnInit {
 
-  public username: string = 'test';
-  public password: string = 'test';
+  public username: string;
+  public password: string;
   constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
@@ -20,9 +20,14 @@ export class AuthFormComponent implements OnInit {
       username: this.username,
       password: this.password,
     };
-    this.authenticationService.login(credentials).subscribe( (data:any) => {
-      console.log(data);
-    });
+    this.authenticationService.login(credentials).subscribe(
+      token => {
+        //redirect to admin space
+      },
+      error => {
+        //redirect login page with errors
+      },
+    );
   }
 
 }
