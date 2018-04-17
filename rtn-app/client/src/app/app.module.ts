@@ -1,7 +1,7 @@
 ///<reference path="app.routes.ts"/>
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './components/app/app.component';
 import {UserService} from "./components/user/user.service";
 import { AppRoutingModule, routingComponents } from "./app.routes";
@@ -14,6 +14,7 @@ import { ProjectAddComponent } from './components/project-add/project-add.compon
 import {FormsModule} from "@angular/forms";
 import { AuthFormComponent } from './components/auth/auth-form/auth-form.component';
 import {AuthenticationService} from "./components/auth/authentication.service";
+import {AuthInterceptorService} from "./services/authentication/auth-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,16 @@ import {AuthenticationService} from "./components/auth/authentication.service";
     ModalModule.forRoot()
   ],
   entryComponents : [ProjectAddComponent],
-  providers: [UserService, UserProjectsService, AuthenticationService],
+  providers: [
+    UserService,
+    UserProjectsService,
+    AuthenticationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
