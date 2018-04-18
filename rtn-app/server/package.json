@@ -14,7 +14,7 @@
   "scripts": {
     "test": "node tests/test.js",
     "start": "nodemon server.js --verbose",
-    "lint": "./node_modules/.bin/eslint **/*.js --ignore-pattern node_modules/ || exit 0",
+    "lint": "./node_modules/.bin/eslint  . --ext .js  --ignore-pattern node_modules/ || exit 0",
     "lint-html": "./node_modules/.bin/eslint **/*.js -f html -o ./reports/lint-results.html || exit 0",
     "lint-fix": "./node_modules/.bin/eslint --fix **/*.js || exit 0"
   },
