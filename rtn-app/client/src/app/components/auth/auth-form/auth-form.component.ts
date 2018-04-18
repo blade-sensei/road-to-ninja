@@ -11,6 +11,7 @@ export class AuthFormComponent implements OnInit {
 
   public username: string;
   public password: string;
+  public errors: string[] = [];
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router,
@@ -29,6 +30,7 @@ export class AuthFormComponent implements OnInit {
         this.router.navigate(['/']);
       },
       error => {
+        this.errors.push(error.error);
         this.router.navigate(['/login']);
         //redirect login page with errors
       },
