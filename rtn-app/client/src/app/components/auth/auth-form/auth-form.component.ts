@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from "../authentication.service";
+import { AuthenticationService } from "../authentication.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-auth-form',
@@ -10,7 +11,10 @@ export class AuthFormComponent implements OnInit {
 
   public username: string;
   public password: string;
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
   }
@@ -22,9 +26,10 @@ export class AuthFormComponent implements OnInit {
     };
     this.authenticationService.login(credentials).subscribe(
       token => {
-        //redirect to admin space
+        this.router.navigate(['/']);
       },
       error => {
+        this.router.navigate(['/login']);
         //redirect login page with errors
       },
     );
