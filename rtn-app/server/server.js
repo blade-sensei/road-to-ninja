@@ -1,5 +1,4 @@
 const express = require('express');
-const app = express();
 const api = require('./routes/api');
 const index = require('./routes/index');
 const seed = require('./routes/seed');
@@ -10,6 +9,9 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
+
+const app = express();
+
 // enable cross origin
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
