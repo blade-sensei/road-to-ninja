@@ -1,6 +1,6 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
-import {BsModalRef, BsModalService} from "ngx-bootstrap";
-import {ProjectAddComponent} from "../project-add/project-add.component";
+import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
+import {ProfileService} from "../../services/profile.service";
 
 @Component({
   selector: 'app-menu',
@@ -8,14 +8,27 @@ import {ProjectAddComponent} from "../project-add/project-add.component";
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  modalRef : BsModalRef;
-  constructor(private modalService : BsModalService) { }
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit() {
   }
 
-  openModal() {
-    this.modalRef = this.modalService.show(ProjectAddComponent);
+  onRedirectToLogin() {
+  this.router.navigate(['/login'])
+  }
+
+  isUserLoggedIn(): boolean {
+    const currentUser = ProfileService.getCurrentUser();
+    if(currentUser) {
+      return currentUser.logged;
+    }
+    return false;
+  }
+
+  onLogout() {
+    ProfileService.logout();
   }
 
 }

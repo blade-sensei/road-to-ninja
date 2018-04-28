@@ -3,8 +3,15 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="/"> Road to ninja </a>
     </div>
-    <a type="button" class="btn btn-default navbar-btn"
-    [routerLink]="['/login']"> Login </a>
+    <div class="profile-actions">
+      <button type="button" class="btn btn-default navbar-btn"
+              (click)="onRedirectToLogin()" *ngIf="!isUserLoggedIn(); else logout">Login
+      </button>
+    </div>
+    <ng-template #logout>
+      <button type="button" class="btn btn-default navbar-btn" (click)="onLogout()"> logout </button>
+    </ng-template>
+
   </div>
 </nav>
 
