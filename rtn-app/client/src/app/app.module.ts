@@ -15,6 +15,7 @@ import {FormsModule} from "@angular/forms";
 import { AuthFormComponent } from './components/auth/auth-form/auth-form.component';
 import {AuthenticationService} from "./components/auth/authentication.service";
 import {AuthInterceptorService} from "./services/authentication/auth-interceptor.service";
+import {ProfileService} from "./services/profile.service";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {AuthInterceptorService} from "./services/authentication/auth-interceptor
     UserService,
     UserProjectsService,
     AuthenticationService,
+    ProfileService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
