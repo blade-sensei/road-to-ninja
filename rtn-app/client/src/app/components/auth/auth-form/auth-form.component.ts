@@ -17,22 +17,15 @@ export class AuthFormComponent implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   onSubmitLogin() {
-    const credentials = {
-      username: this.username,
-      password: this.password,
-    };
+    const credentials = { username: this.username, password: this.password };
     this.authenticationService.login(credentials).subscribe(
-      token => {
-        this.router.navigate(['/']);
-      },
+      token => { this.router.navigate(['/']) },
       error => {
         this.errors.push(error.error);
         this.router.navigate(['/login']);
-        //redirect login page with errors
       },
     );
   }
