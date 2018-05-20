@@ -4,7 +4,7 @@ const data = [
     uid: '1',
     name: 'juan',
     password: 'pass',
-    admin: true
+    admin: true,
   },
   {
     username: 'repou',
@@ -19,6 +19,6 @@ const data = [
     name: 'pampa',
     password: 'pswd',
     admin: false,
-  }
+  },
 ];
 module.exports = data;
