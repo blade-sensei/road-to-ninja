@@ -13,7 +13,7 @@ const data = [
     status: 'finished',
     data: 'https://',
     uid: '2',
-    requires: []
+    requires: [],
   },
   {
     title: 'project 2b',
@@ -24,7 +24,7 @@ const data = [
     requires: [{
       title: 'project 1b',
       status: 'finished',
-    }]
+    }],
   },
   {
     title: 'project 3',
@@ -32,11 +32,10 @@ const data = [
     status: 'started',
     data: 'https://',
     uid: '1',
-    requires: [
-      {
-        title: 'project 1',
-        status: 'finished',
-      }]
+    requires: [{
+      title: 'project 1',
+      status: 'finished',
+    }],
   },
   {
     title: 'project 4',
@@ -44,13 +43,11 @@ const data = [
     status: 'in progress',
     data: 'https://',
     uid: '1',
-    requires: [
-      {
-        title: 'project 1',
-        status: 'finished',
-      }
-    ]
-  }
+    requires: [{
+      title: 'project 1',
+      status: 'finished',
+    }],
+  },
 ];
 
 module.exports = data;
