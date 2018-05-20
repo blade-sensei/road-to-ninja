@@ -89,11 +89,10 @@ router.patch(
 );
 
 router.get('/:name', (req, res) => {
-  userModel.findOne({ 'name': req.params.name }, (err, user) => {
-    if(user) {
+  userModel.findOne({ name: req.params.name }, (err, user) => {
+    if (user) {
       res.send(user);
-    }
-    else {
+    } else {
       res.status(404).send('not found');
     }
   });
