@@ -1,4 +1,5 @@
-<div class="row"> --  user-template-container -- </div>
-<app-user-projects class="row">
+<app-user-projects class="row" *ngIf="user" [user]="user">
+
 </app-user-projects>
+<div class="row" *ngIf="!user"> User not founded </div>
 
