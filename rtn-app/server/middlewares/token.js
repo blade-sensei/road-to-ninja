@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
-  const token = req.body.token || req.query.token || req.headers['x-access-token']
-    || req.cookies.token;
+  const token = req.body.token || req.query.token ||
+    req.headers['x-access-token'] || req.cookies.token;
   if (token) {
     return jwt.verify(token, req.app.get('secret_key'), (err, decoded) => {
       if (err) {
