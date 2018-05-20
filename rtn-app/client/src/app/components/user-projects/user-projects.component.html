@@ -1,3 +1,6 @@
 <app-project-info class="col-sm col-md-3" *ngFor="let project of projects" [project] = "project">
-  
 </app-project-info>
+
+<div *ngIf="!projects.length > 0">
+  This user has not projects
+</div>

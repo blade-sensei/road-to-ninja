@@ -5,7 +5,8 @@ import { HttpClient } from "@angular/common/http";
 export class UserService {
 
   constructor(private http : HttpClient) { }
-  getAllUsers(){
-    return this.http.get('http://localhost:3000/api/users')
+
+  getUserByName(name) {
+    return this.http.get(`http://localhost:3000/api/users/${name}`)
   }
 }
