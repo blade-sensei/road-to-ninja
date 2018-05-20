@@ -20,11 +20,7 @@ export class MenuComponent implements OnInit {
   }
 
   isUserLoggedIn(): boolean {
-    const currentUser = ProfileService.getCurrentUser();
-    if(currentUser) {
-      return currentUser.logged;
-    }
-    return false;
+    return ProfileService.isUserLogged();
   }
 
   onLogout() {
