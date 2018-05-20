@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { UserProjectsService} from "./user-projects.service";
 
 @Component({
@@ -8,9 +8,10 @@ import { UserProjectsService} from "./user-projects.service";
 })
 export class UserProjectsComponent implements OnInit {
   projects : any = [];
+  @Input() user: any;
   constructor(private userProjectService : UserProjectsService) { }
   ngOnInit() {
-    this.userProjectService.getAllProjects(1).subscribe(projects => {
+    this.userProjectService.getAllProjects(this.user.uid).subscribe(projects => {
       this.projects = projects;
     })
   }

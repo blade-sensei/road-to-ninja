@@ -4,7 +4,7 @@ import { UserComponent } from "./components/user/user.component";
 import {AuthFormComponent} from "./components/auth/auth-form/auth-form.component";
 
 const routes : Routes = [
-  { path: 'users', component: UserComponent },
+  { path: 'user/:username', component: UserComponent },
   { path: 'login', component: AuthFormComponent },
 ];
 @NgModule({
