@@ -1,9 +1,9 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserComponent } from "./components/user/user.component";
-import {AuthFormComponent} from "./components/auth/auth-form/auth-form.component";
+import { UserComponent } from './components/user/user.component';
+import {AuthFormComponent} from './components/auth/auth-form/auth-form.component';
 
-const routes : Routes = [
+const routes: Routes = [
   { path: 'user/:username', component: UserComponent },
   { path: 'login', component: AuthFormComponent },
 ];
