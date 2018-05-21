@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { UserProjectsService} from "./user-projects.service";
+import { UserProjectsService} from './user-projects.service';
 
 @Component({
   selector: 'app-user-projects',
@@ -7,13 +7,13 @@ import { UserProjectsService} from "./user-projects.service";
   styleUrls: ['./user-projects.component.css']
 })
 export class UserProjectsComponent implements OnInit {
-  projects : any = [];
+  projects: any = [];
   @Input() user: any;
-  constructor(private userProjectService : UserProjectsService) { }
+  constructor(private userProjectService: UserProjectsService) { }
   ngOnInit() {
     this.userProjectService.getAllProjects(this.user.uid).subscribe(projects => {
       this.projects = projects;
-    })
+    });
   }
 
 }
