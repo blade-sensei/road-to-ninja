@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {ProfileService} from "../../services/profile.service";
+import {Router} from '@angular/router';
+import {ProfileService} from '../../services/profile.service';
 
 @Component({
   selector: 'app-menu',
@@ -16,7 +16,7 @@ export class MenuComponent implements OnInit {
   }
 
   onRedirectToLogin() {
-  this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 
   isUserLoggedIn(): boolean {
