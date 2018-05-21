@@ -6,8 +6,10 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./project-info.component.css']
 })
 export class ProjectInfoComponent implements OnInit {
-  @Input() project : any;
+  @Input() project: any;
+
   constructor() { }
+
   ngOnInit() {
   }
 
