@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "./user.service";
-import {ProfileService} from "../../services/profile.service";
-import {ActivatedRoute} from "@angular/router";
+import {UserService} from './user.service';
+import {ProfileService} from '../../services/profile.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -20,6 +20,6 @@ export class UserComponent implements OnInit {
   setupUser(name) {
     this.userService.getUserByName(name).subscribe(user => {
       this.user = user;
-    })
+    });
   }
 }
