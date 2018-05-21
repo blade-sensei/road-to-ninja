@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from "../authentication.service";
-import { Router } from "@angular/router";
+import { AuthenticationService } from '../authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-form',
@@ -22,7 +22,7 @@ export class AuthFormComponent implements OnInit {
   onSubmitLogin() {
     const credentials = { username: this.username, password: this.password };
     this.authenticationService.login(credentials).subscribe(
-      token => { this.router.navigate(['/']) },
+      token => { this.router.navigate(['/']); },
       error => {
         this.errors.push(error.error);
         this.router.navigate(['/login']);
