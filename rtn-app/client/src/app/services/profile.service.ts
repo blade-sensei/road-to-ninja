@@ -12,9 +12,9 @@ export class ProfileService {
     localStorage.removeItem('currentUser');
   }
 
-  static isUserLogged(): boolean{
+  static isUserLogged(): boolean {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if(currentUser) {
+    if (currentUser) {
       return currentUser.logged;
     }
     return false;
