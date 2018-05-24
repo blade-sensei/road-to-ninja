@@ -7,10 +7,13 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ProjectInfoComponent implements OnInit {
   @Input() project: any;
-
+  @Input() isUserLogged: boolean;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onEditProject() {
   }
 
 }

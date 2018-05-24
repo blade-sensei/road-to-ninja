@@ -1,6 +1,9 @@
 <div class="card border-primary">
   <div class="card-body">
-    <h5 class="card-title">{{project.title}}</h5>
+    <div class="text-right" *ngIf="isUserLogged">
+      <button (click)="onEditProject()"> Edit </button>
+    </div>
+    <h5 class="card-title">{{ project.title }}</h5>
     <p class="card-text">{{ project.description }}</p>
     <p class="card-text"> status: {{ project.status }}</p>
     <div>
