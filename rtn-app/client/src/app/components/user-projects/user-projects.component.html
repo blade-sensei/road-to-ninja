@@ -1,10 +1,11 @@
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-12 col-lg-12">
     <h3> Projets de : {{ user.name }} </h3>
   </div>
 </div>
 <div class="row">
-  <app-project-info class="col-sm col-md-3" *ngFor="let project of projects" [project] = "project">
+  <app-project-info class="col-lg-4 col-md-12" *ngFor="let project of projects"
+                    [project] = "project" [isUserLogged]="isUserLogged">
   </app-project-info>
 </div>
 <div class="row" *ngIf="!projects.length > 0">
