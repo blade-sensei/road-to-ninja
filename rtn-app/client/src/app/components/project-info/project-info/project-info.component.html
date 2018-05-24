@@ -1,16 +1,15 @@
-<p> --- info project--- </p>
-  <div class="card border-primary">
-    <div class="card-body">
-      <h5 class="card-title">{{project.title}}</h5>
-      <p class="card-text">{{ project.description }}</p>
-      <p class="card-text"> status:  {{ project.status }}</p>
-      <div>
-        <a href="{{ project.data }}"> sources </a>
-      </div>
-      requires projects :
-      <ul *ngFor="let req of project.requires">
-        <li>{{ req.title }}</li>
-      </ul>
-      <button>Go somewhere</button>
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">{{project.title}}</h5>
+    <p class="card-text">{{ project.description }}</p>
+    <p class="card-text"> status: {{ project.status }}</p>
+    <div>
+      <a href="{{ project.data }}"> sources </a>
     </div>
+    requires projects :
+    <ul *ngFor="let req of project.requires">
+      <li>{{ req.title }}</li>
+    </ul>
+    <button>Go somewhere</button>
   </div>
+</div>
