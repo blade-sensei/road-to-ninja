@@ -1,0 +1,7 @@
+<p *ngIf="!requiredProjects.length > 0">
+  There no required projects yet
+</p>
+<ul *ngFor="let project of requiredProjects">
+  <li> {{ project.title }}  --- {{ project.status }}</li>
+</ul>
+

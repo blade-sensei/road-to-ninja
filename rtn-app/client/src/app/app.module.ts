@@ -16,6 +16,7 @@ import { AuthFormComponent } from './components/auth/auth-form/auth-form.compone
 import {AuthenticationService} from './components/auth/authentication.service';
 import {AuthInterceptorService} from './services/authentication/auth-interceptor.service';
 import {ProfileService} from './services/profile.service';
+import { RequiredProjectsComponent } from './components/required-projects/required-projects.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {ProfileService} from './services/profile.service';
     ProjectInfoComponent,
     MenuComponent,
     ProjectAddComponent,
-    AuthFormComponent
+    AuthFormComponent,
+    RequiredProjectsComponent
   ],
   imports: [
     HttpClientModule,
@@ -34,7 +36,10 @@ import {ProfileService} from './services/profile.service';
     AppRoutingModule,
     ModalModule.forRoot()
   ],
-  entryComponents : [ProjectAddComponent],
+  entryComponents : [
+    ProjectAddComponent,
+    RequiredProjectsComponent
+  ],
   providers: [
     UserService,
     UserProjectsService,

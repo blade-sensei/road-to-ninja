@@ -1,18 +1,14 @@
 <div class="card border-primary">
   <div class="card-body">
-    <div class="text-right" *ngIf="isUserLogged">
-      <button (click)="onEditProject()"> Edit </button>
-    </div>
     <h5 class="card-title">{{ project.title }}</h5>
     <p class="card-text">{{ project.description }}</p>
     <p class="card-text"> status: {{ project.status }}</p>
     <div>
       <a href="{{ project.data }}"> sources </a>
     </div>
-    requires projects :
-    <ul *ngFor="let req of project.requires">
-      <li>{{ req.title }}</li>
-    </ul>
-    <button>Go somewhere</button>
+    <button (mouseenter)="showRequiredProjects()"> Required projects </button>
   </div>
 </div>
+
+<template #requiredProjects>
+</template>

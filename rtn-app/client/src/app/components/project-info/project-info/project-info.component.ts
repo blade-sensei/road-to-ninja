@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ComponentFactoryResolver, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {RequiredProjectsComponent} from '../../required-projects/required-projects.component';
 
 @Component({
   selector: 'app-project-info',
@@ -8,12 +9,28 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ProjectInfoComponent implements OnInit {
   @Input() project: any;
   @Input() isUserLogged: boolean;
-  constructor() { }
+  @ViewChild('requiredProjects', {read: ViewContainerRef})
+  requiredProjectsTemplate;
+  componentRef: ComponentRef<RequiredProjectsComponent>;
+  constructor(private componentFactory: ComponentFactoryResolver) {
+  }
 
   ngOnInit() {
   }
 
-  onEditProject() {
+  showRequiredProjects() {
+    this.requiredProjectsTemplate.clear();
+    const factory = this.componentFactory
+      .resolveComponentFactory(RequiredProjectsComponent);
+    this.componentRef = this.requiredProjectsTemplate.createComponent(factory);
+    const requiredProjects = <RequiredProjectsComponent>this.componentRef.instance;
+    requiredProjects.requiredProjects = this.project.requires;
+  }
+
+  hideRequiredProjects() {
+    this.componentRef.destroy();
   }
 
 }
+
+
