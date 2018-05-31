@@ -19,7 +19,6 @@ export class ProjectAddComponent implements OnInit {
   }
 
   onRegister(): void {
-    console.log(this.project);
     this.bsModalRef.hide();
   }
 
