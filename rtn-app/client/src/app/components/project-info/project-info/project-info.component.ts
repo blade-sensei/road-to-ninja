@@ -9,8 +9,8 @@ import {RequiredProjectsComponent} from '../../required-projects/required-projec
 export class ProjectInfoComponent implements OnInit {
   @Input() project: any;
   @Input() isUserLogged: boolean;
-  @ViewChild('requiredProjects', {read: ViewContainerRef})
-  requiredProjectsTemplate;
+  @ViewChild('requiredProjects', {read: ViewContainerRef}) requiredProjectsTemplate;
+  isUpdateActivated = false;
   componentRef: ComponentRef<RequiredProjectsComponent>;
   constructor(private componentFactory: ComponentFactoryResolver) {
   }
@@ -25,6 +25,14 @@ export class ProjectInfoComponent implements OnInit {
     this.componentRef = this.requiredProjectsTemplate.createComponent(factory);
     const requiredProjects = <RequiredProjectsComponent>this.componentRef.instance;
     requiredProjects.requiredProjects = this.project.requires;
+  }
+
+  showUpdateButton() {
+    this.isUpdateActivated = true;
+  }
+
+  hiddeUpdateButton() {
+    this.isUpdateActivated = false;
   }
 
   hideRequiredProjects() {
