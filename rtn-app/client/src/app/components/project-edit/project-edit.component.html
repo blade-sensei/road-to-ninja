@@ -1,3 +1,4 @@
-<p>
-  project-edit works!
-</p>
+<label for="project-name"> project name:  </label> <input type="text" id="project-name" [(ngModel)]="projectUpdated.title"> <BR>
+<label for="description"> description: </label> <BR> <textarea id="description" [(ngModel)]="projectUpdated.description"></textarea> <BR>
+<label for="sources"> sources:  </label> <input type="text" id="sources" [(ngModel)]="projectUpdated.data" > <BR>
+<button (click)="saveProject()"> save </button>
