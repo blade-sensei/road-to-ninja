@@ -40,7 +40,8 @@ import { ProjectEditComponent } from './components/project-edit/project-edit.com
   ],
   entryComponents : [
     ProjectAddComponent,
-    RequiredProjectsComponent
+    RequiredProjectsComponent,
+    ProjectEditComponent
   ],
   providers: [
     UserService,

@@ -2,7 +2,7 @@
 (mouseleave)="hiddeUpdateButton()">
   <div class="card-body">
     <div *ngIf="isUpdateActivated">
-      <button class="float-right"> modifier </button>
+      <button class="float-right" (click)="showEditModal(project)"> modifier </button>
     </div>
     <h5 class="card-title">{{ project.title }}</h5>
     <p class="card-text">{{ project.description }}</p>
