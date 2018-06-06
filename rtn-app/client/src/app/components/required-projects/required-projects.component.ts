@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-required-projects',
@@ -8,9 +8,9 @@ import {Component, Input, OnInit} from '@angular/core';
 export class RequiredProjectsComponent implements OnInit {
   @Input()
   requiredProjects: any;
+
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

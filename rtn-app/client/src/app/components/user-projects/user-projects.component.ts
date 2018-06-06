@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import { UserProjectsService} from './user-projects.service';
-import {ProfileService} from '../../services/profile.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { UserProjectsService } from './user-projects.service';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-user-projects',
@@ -13,6 +13,7 @@ export class UserProjectsComponent implements OnInit {
   @Input() user: any;
 
   constructor(private userProjectService: UserProjectsService) { }
+
   ngOnInit() {
     this.userProjectService.getAllProjects(this.user.uid).subscribe(projects => {
       this.projects = projects;

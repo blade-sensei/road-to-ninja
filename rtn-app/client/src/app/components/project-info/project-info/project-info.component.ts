@@ -1,7 +1,7 @@
-import {Component, ComponentFactoryResolver, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import {RequiredProjectsComponent} from '../../required-projects/required-projects.component';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
-import {ProjectEditComponent} from '../../project-edit/project-edit.component';
+import { Component, ComponentFactoryResolver, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { RequiredProjectsComponent } from '../../required-projects/required-projects.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { ProjectEditComponent } from '../../project-edit/project-edit.component';
 
 @Component({
   selector: 'app-project-info',
@@ -11,15 +11,14 @@ import {ProjectEditComponent} from '../../project-edit/project-edit.component';
 export class ProjectInfoComponent implements OnInit {
   @Input() project: any;
   @Input() isUserLogged: boolean;
-  @ViewChild('requiredProjects', {read: ViewContainerRef}) requiredProjectsTemplate;
+  @ViewChild('requiredProjects', { read: ViewContainerRef }) requiredProjectsTemplate;
   isUpdateActivated = false;
   componentRef: ComponentRef<RequiredProjectsComponent>;
   modalEdit: BsModalRef;
 
-  constructor(
-    private componentFactory: ComponentFactoryResolver,
-    private modalService: BsModalService,
-  ) { }
+  constructor(private componentFactory: ComponentFactoryResolver,
+              private modalService: BsModalService) {
+  }
 
   ngOnInit() {
   }
