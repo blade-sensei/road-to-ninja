@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BsModalRef} from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-project-edit',
@@ -10,6 +10,7 @@ export class ProjectEditComponent implements OnInit {
   project: any;
   projectUpdated: any;
   modalEdit: BsModalRef;
+
   constructor() { }
 
   ngOnInit() {
