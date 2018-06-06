@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {ProfileService} from '../../services/profile.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,9 +8,8 @@ import {ProfileService} from '../../services/profile.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  constructor(
-    private router: Router,
-  ) { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit() {
   }
