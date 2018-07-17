@@ -2,6 +2,8 @@ import { Component, ComponentFactoryResolver, ComponentRef, Input, OnInit, ViewC
 import { RequiredProjectsComponent } from '../../required-projects/required-projects.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ProjectEditComponent } from '../../project-edit/project-edit.component';
+import { ModalTrelloLikeComponent } from '../../modal-trello-like/modal-trello-like.component';
+import { ModalTrelloLikeService } from '../../../services/modal-trello-like.service';
 
 @Component({
   selector: 'app-project-info',
@@ -16,8 +18,9 @@ export class ProjectInfoComponent implements OnInit {
   componentRef: ComponentRef<RequiredProjectsComponent>;
   modalEdit: BsModalRef;
 
-  constructor(private componentFactory: ComponentFactoryResolver,
-              private modalService: BsModalService) {
+  constructor(
+    private componentFactory: ComponentFactoryResolver,
+    private modalService: ModalTrelloLikeService) {
   }
 
   ngOnInit() {
@@ -46,7 +49,7 @@ export class ProjectInfoComponent implements OnInit {
 
   showEditModal(project) {
     const initialState = { project };
-    this.modalEdit = this.modalService.show(ProjectEditComponent, { initialState });
+    this.modalEdit = this.modalService.showModal(ProjectEditComponent, initialState );
     this.modalEdit.content.modalEdit = this.modalEdit;
   }
 
