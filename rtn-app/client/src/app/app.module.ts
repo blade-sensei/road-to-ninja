@@ -18,6 +18,8 @@ import { AuthInterceptorService } from './services/authentication/auth-intercept
 import { ProfileService } from './services/profile.service';
 import { RequiredProjectsComponent } from './components/required-projects/required-projects.component';
 import { ProjectEditComponent } from './components/project-edit/project-edit.component';
+import { ModalTrelloLikeComponent } from './components/modal-trello-like/modal-trello-like.component';
+import { ModalTrelloLikeService } from './services/modal-trello-like.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { ProjectEditComponent } from './components/project-edit/project-edit.com
     ProjectAddComponent,
     AuthFormComponent,
     RequiredProjectsComponent,
-    ProjectEditComponent
+    ProjectEditComponent,
+    ModalTrelloLikeComponent,
   ],
   imports: [
     HttpClientModule,
@@ -53,6 +56,7 @@ import { ProjectEditComponent } from './components/project-edit/project-edit.com
       useClass: AuthInterceptorService,
       multi: true,
     },
+    ModalTrelloLikeService
   ],
   bootstrap: [AppComponent]
 })
