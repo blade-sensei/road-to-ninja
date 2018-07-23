@@ -1,3 +1,8 @@
-<p>
-  modal-trello-like works!
-</p>
+<div id="modal" class="modal-trello-edition"  [style.display]="getDisplayStyle()">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <app-project-edit
+      [project]="projectEdition">
+    </app-project-edit>
+  </div>
+</div>
