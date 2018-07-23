@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
@@ -7,7 +7,7 @@ import { BsModalRef } from 'ngx-bootstrap';
   styleUrls: ['./project-edit.component.css']
 })
 export class ProjectEditComponent implements OnInit {
-  project: any;
+  @Input() project: any;
   projectUpdated: any;
   modalEdit: BsModalRef;
 
