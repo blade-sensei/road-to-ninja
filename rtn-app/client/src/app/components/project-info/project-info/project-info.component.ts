@@ -14,13 +14,15 @@ export class ProjectInfoComponent implements OnInit {
   @Input() project: any;
   @Input() isUserLogged: boolean;
   @ViewChild('requiredProjects', { read: ViewContainerRef }) requiredProjectsTemplate;
-  isUpdateActivated = false;
+  @ViewChild('trello', { read: ViewContainerRef }) trello;
+  private isUpdateActivated = false;
   componentRef: ComponentRef<RequiredProjectsComponent>;
+  trelloRef: ComponentRef<ModalTrelloLikeComponent>;
   modalEdit: BsModalRef;
 
   constructor(
     private componentFactory: ComponentFactoryResolver,
-    private modalService: ModalTrelloLikeService) {
+    private modalTrelloService: ModalTrelloLikeService) {
   }
 
   ngOnInit() {
@@ -48,9 +50,8 @@ export class ProjectInfoComponent implements OnInit {
   }
 
   showEditModal(project) {
-    const initialState = { project };
-    this.modalEdit = this.modalService.showModal(ProjectEditComponent, initialState );
-    this.modalEdit.content.modalEdit = this.modalEdit;
+    this.modalTrelloService.setOpenModalSource(true);
+    this.modalTrelloService.setProjectEdition(this.project);
   }
 
 }
