@@ -24,6 +24,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
+   this.setDropBackClickEvent();
   }
 
   ngOnDestroy() {
@@ -39,6 +40,15 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
     this.isModalOpen = false;
   }
 
+  setDropBackClickEvent() {
+    window.addEventListener('click', (event: any) => {
+      if (this.isClickedTargetModal(event)) {
+        this.closeModal();
+      }
+    });
+  }
 
-
+  isClickedTargetModal(event) {
+    return (event.target.className === 'modal-trello-edition');
+  }
 }
