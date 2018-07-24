@@ -7,7 +7,7 @@ import { BsModalRef } from 'ngx-bootstrap';
   styleUrls: ['./project-edit.component.css']
 })
 export class ProjectEditComponent implements OnInit {
-  @Input() project: any;
+  @Input() project: any = {};
   projectUpdated: any;
   modalEdit: BsModalRef;
 
