@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Project } from '../../models/project';
+import { ProjectEditComponent } from '../project-edit/project-edit.component';
 
 @Component({
   selector: 'app-modal-trello-like',
@@ -10,7 +11,7 @@ import { Project } from '../../models/project';
 })
 export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   isModalOpen = false;
-  projectEdition: Project;
+  projectEdition: any = {};
 
   isOpenSubscription: Subscription;
   projectSubscription: Subscription;
