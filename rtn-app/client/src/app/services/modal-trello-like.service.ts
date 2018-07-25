@@ -12,11 +12,11 @@ export class ModalTrelloLikeService {
 
   constructor() { }
 
-  setProjectEdition(project: Project) {
+  setProjectEdition(project: any) {
     this.projectEditionSource.next(project);
   }
 
-  getProjectEdition(): Observable<Project> {
+  getProjectEdition(): Observable<any> {
     return this.projectEditionSource.asObservable();
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Project } from '../../models/project';
@@ -17,14 +17,16 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   projectSubscription: Subscription;
   constructor(
     private modalTrelloService: ModalTrelloLikeService,
-  ) {
-      this.isOpenSubscription = this.modalTrelloService.getOpenModalSource()
-        .subscribe(openModal => this.isModalOpen = openModal);
-      this.projectSubscription =  this.modalTrelloService.getProjectEdition()
-      .subscribe(project => this.projectEdition = project);
-    }
+  ) { }
+
 
   ngOnInit() {
+    this.isOpenSubscription = this.modalTrelloService.getOpenModalSource()
+      .subscribe(openModal => this.isModalOpen = openModal);
+    this.projectSubscription =  this.modalTrelloService.getProjectEdition()
+      .subscribe(project => {
+        this.projectEdition = project;
+      });
    this.setDropBackClickEvent();
   }
 
@@ -38,6 +40,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   }
 
   closeModal() {
+    this.projectEdition = {};
     this.isModalOpen = false;
   }
 
