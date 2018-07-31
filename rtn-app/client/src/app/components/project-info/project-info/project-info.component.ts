@@ -1,8 +1,12 @@
-import { Component, ComponentFactoryResolver, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  ComponentRef,
+  Input, OnInit,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { RequiredProjectsComponent } from '../../required-projects/required-projects.component';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { ProjectEditComponent } from '../../project-edit/project-edit.component';
-import { ModalTrelloLikeComponent } from '../../modal-trello-like/modal-trello-like.component';
 import { ModalTrelloLikeService } from '../../../services/modal-trello-like.service';
 
 @Component({
@@ -17,12 +21,10 @@ export class ProjectInfoComponent implements OnInit {
   @ViewChild('trello', { read: ViewContainerRef }) trello;
   private isUpdateActivated = false;
   componentRef: ComponentRef<RequiredProjectsComponent>;
-  trelloRef: ComponentRef<ModalTrelloLikeComponent>;
-  modalEdit: BsModalRef;
 
   constructor(
     private componentFactory: ComponentFactoryResolver,
-    private modalTrelloService: ModalTrelloLikeService) {
+    private modalTrelloLikeService: ModalTrelloLikeService) {
   }
 
   ngOnInit() {
@@ -45,13 +47,9 @@ export class ProjectInfoComponent implements OnInit {
     this.isUpdateActivated = false;
   }
 
-  hideRequiredProjects() {
-    this.componentRef.destroy();
-  }
-
   showEditModal(project) {
-    this.modalTrelloService.setOpenModalSource(true);
-    this.modalTrelloService.setProjectEdition(project);
+    this.modalTrelloLikeService.setOpenModalSource(true);
+    this.modalTrelloLikeService.setProjectEdition(project);
   }
 
 }
