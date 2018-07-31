@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Subject } from 'rxjs/Subject';
 import { Project } from '../models/project';
 import { Observable } from 'rxjs/Observable';
@@ -9,6 +8,7 @@ export class ModalTrelloLikeService {
 
   private projectEditionSource = new Subject<Project>();
   private openModalSource = new Subject<boolean>();
+  private projectEditionSaveSource = new Subject<boolean>();
 
   constructor() { }
 
@@ -26,6 +26,14 @@ export class ModalTrelloLikeService {
 
   getOpenModalSource(): Observable<boolean> {
     return this.openModalSource.asObservable();
+  }
+
+  setProjectEditionSaveSource(save: boolean) {
+    this.projectEditionSaveSource.next(save);
+  }
+
+  getProjectEditionSaveSource(): Observable<boolean> {
+    return this.projectEditionSaveSource.asObservable();
   }
 
 }

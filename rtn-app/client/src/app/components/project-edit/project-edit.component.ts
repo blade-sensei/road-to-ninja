@@ -1,6 +1,6 @@
-import { Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-project-edit',
@@ -8,31 +8,27 @@ import { ModalTrelloLikeService } from '../../services/modal-trello-like.service
   styleUrls: ['./project-edit.component.css']
 })
 export class ProjectEditComponent implements OnInit, OnChanges {
-  private _project: any = {};
+  @Input() project: any = {};
   projectUpdated: any = {};
+  projectEditionSaveSubscription: Subscription;
 
-  constructor(private trelloModalService: ModalTrelloLikeService) { }
+  constructor(private modelTrelloLikeService: ModalTrelloLikeService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.projectEditionSaveSubscription = this.modelTrelloLikeService
+      .getProjectEditionSaveSource().subscribe(save => this.saveProject());
+  }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     this.copyProjectObject();
-    console.log('prev value: ', changes);
   }
 
   saveProject() {
-    Object.assign(this._project, this.projectUpdated);
-    this.trelloModalService.setOpenModalSource(false);
+    Object.assign(this.project, this.projectUpdated);
+    this.modelTrelloLikeService.setOpenModalSource(false);
   }
 
   copyProjectObject() {
-    this.projectUpdated = JSON.parse(JSON.stringify(this._project));
+    this.projectUpdated = JSON.parse(JSON.stringify(this.project));
   }
-
-  @Input()
-  set project(project: any) {
-    console.log('test');
-    this._project = project;
-  }
-
 }
