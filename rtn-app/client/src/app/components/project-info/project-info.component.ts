@@ -6,8 +6,8 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { RequiredProjectsComponent } from '../../required-projects/required-projects.component';
-import { ModalTrelloLikeService } from '../../../services/modal-trello-like.service';
+import { RequiredProjectsComponent } from '../required-projects/required-projects.component';
+import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-trello-like.service';
 
 @Component({
   selector: 'app-project-info',
