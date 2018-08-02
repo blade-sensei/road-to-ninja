@@ -1,6 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, ComponentRef, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-trello-like.service';
 import { Subscription } from 'rxjs/Subscription';
+import { RequiredProjectsComponent } from '../required-projects/required-projects.component';
+import { RequiresEditionContainerComponent } from '../requires-edition-container/requires-edition-container.component';
 
 @Component({
   selector: 'app-modal-trello-like',
@@ -10,11 +12,16 @@ import { Subscription } from 'rxjs/Subscription';
 export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   isModalOpen = false;
   projectEdition: any = {};
+  @ViewChild(
+    'editionContainerRequires',
+    { read: ViewContainerRef }) editionContainerRequires;
+  componentRef: ComponentRef<RequiresEditionContainerComponent>;
 
   isOpenSubscription: Subscription;
   projectSubscription: Subscription;
   constructor(
     private modalTrelloLikeService: ModalTrelloLikeService,
+    private componentFactory: ComponentFactoryResolver,
   ) { }
 
 
@@ -33,6 +40,15 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
     this.projectSubscription.unsubscribe();
   }
 
+  showEditionContainerRequires() {
+    this.editionContainerRequires.clear();
+    const factory = this.componentFactory.resolveComponentFactory(RequiresEditionContainerComponent);
+    this.componentRef = this.editionContainerRequires.createComponent(factory);
+    const requiresEditionContainer =
+      <RequiresEditionContainerComponent>this.componentRef.instance;
+    requiresEditionContainer.requiredProjects = this.projectEdition.requires;
+  }
+
   getDisplayStyle() {
     return this.isModalOpen ? 'block' : 'none';
   }
@@ -40,6 +56,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   closeModal() {
     this.projectEdition = {};
     this.isModalOpen = false;
+    this.editionContainerRequires.clear();
   }
 
   setDropBackClickEvent() {
@@ -57,4 +74,9 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   onSaveProject() {
     this.modalTrelloLikeService.setProjectEditionSaveSource(true);
   }
+
+  onShowEditionRequires() {
+    this.showEditionContainerRequires();
+  }
+
 }
