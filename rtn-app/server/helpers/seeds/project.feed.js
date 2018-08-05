@@ -43,10 +43,16 @@ const data = [
     status: 'in progress',
     data: 'https://',
     uid: '1',
-    requires: [{
-      title: 'project 1',
-      status: 'finished',
-    }],
+    requires: [
+      {
+        title: 'project 1',
+        status: 'finished',
+      },
+      {
+        title: 'project 3',
+        status: 'started',
+      },
+    ],
   },
 ];
 
