@@ -8,11 +8,42 @@ import { Component, Input, OnInit } from '@angular/core';
 export class RequiresEditionContainerComponent implements OnInit {
 
   @Input()
-  requiredProjects: any;
+  requiredProjects = [];
+  requiredProjectsEdition = [];
+  requiredProjectSearch = [];
+  userSearch = [];
   constructor() { }
 
   ngOnInit() {
-    console.log(this.requiredProjects);
+    this.requiredProjectsEdition = this.requiredProjects.slice();
+    this.getSearchProjects();
+  }
+
+  getSearchProjects() {
+    if (this.userSearch.length < 1) {
+      this.requiredProjectSearch = this.requiredProjectsEdition.slice();
+    } else {
+      Object.assign(this.requiredProjectSearch, this.requiredProjectsEdition);
+    }
+
+  }
+
+  getProjectStatusIcone(editionProject) {
+    if (this.requiredProjects.includes(editionProject)) {
+      return '✓';
+    }
+    return 'x';
+  }
+
+  onPickProject(project) {
+    if (this.requiredProjectsEdition.includes(project)) {
+      this.requiredProjectsEdition = this.requiredProjectsEdition
+        .filter(editionProject => editionProject !== project);
+    } else {
+      this.requiredProjectsEdition.push(project);
+    }
+
+    this.getSearchProjects();
   }
 
 }
