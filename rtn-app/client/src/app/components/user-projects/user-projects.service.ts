@@ -10,4 +10,9 @@ export class UserProjectsService {
   getAllProjects(uid): Observable<Project[]> {
     return this.http.get<Project[]>(`http://localhost:3000/api/users/${uid}/projects`);
   }
+
+  updateProject(uid, id, project): Observable<any> {
+    return this.http.patch<Project>(`http://localhost:3000/api/users/${uid}/projects/${id}`, project);
+  }
+
 }
