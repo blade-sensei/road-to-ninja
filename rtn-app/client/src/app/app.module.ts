@@ -21,6 +21,7 @@ import { ProjectEditComponent } from './components/project-edit/project-edit.com
 import { ModalTrelloLikeComponent } from './components/modal-trello-like/modal-trello-like.component';
 import { ModalTrelloLikeService } from './services/modal-trello-like/modal-trello-like.service';
 import { RequiresEditionContainerComponent } from './components/requires-edition-container/requires-edition-container.component';
+import { RequiresEditService } from './services/requires-edit/requires-edit.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,6 @@ import { RequiresEditionContainerComponent } from './components/requires-edition
   entryComponents: [
     ProjectAddComponent,
     RequiredProjectsComponent,
-    ProjectEditComponent,
     RequiresEditionContainerComponent,
   ],
   providers: [
@@ -59,7 +59,8 @@ import { RequiresEditionContainerComponent } from './components/requires-edition
       useClass: AuthInterceptorService,
       multi: true,
     },
-    ModalTrelloLikeService
+    ModalTrelloLikeService,
+    RequiresEditService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RequiresEditService } from '../../services/requires-edit/requires-edit.service';
 
 @Component({
   selector: 'app-requires-edition-container',
@@ -9,23 +10,11 @@ export class RequiresEditionContainerComponent implements OnInit {
 
   @Input()
   requiredProjects = [];
-  requiredProjectsEdition = [];
-  requiredProjectSearch = [];
-  userSearch = [];
-  constructor() { }
+  constructor(
+    private requiresEditService: RequiresEditService,
+    ) { }
 
   ngOnInit() {
-    this.requiredProjectsEdition = this.requiredProjects.slice();
-    this.getSearchProjects();
-  }
-
-  getSearchProjects() {
-    if (this.userSearch.length < 1) {
-      this.requiredProjectSearch = this.requiredProjectsEdition.slice();
-    } else {
-      Object.assign(this.requiredProjectSearch, this.requiredProjectsEdition);
-    }
-
   }
 
   getProjectStatusIcone(editionProject) {
@@ -36,14 +25,9 @@ export class RequiresEditionContainerComponent implements OnInit {
   }
 
   onPickProject(project) {
-    if (this.requiredProjectsEdition.includes(project)) {
-      this.requiredProjectsEdition = this.requiredProjectsEdition
+    this.requiredProjects = this.requiredProjects
         .filter(editionProject => editionProject !== project);
-    } else {
-      this.requiredProjectsEdition.push(project);
-    }
-
-    this.getSearchProjects();
+    this.requiresEditService.setRequireProject(this.requiredProjects);
   }
 
 }
