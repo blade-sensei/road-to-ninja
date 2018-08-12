@@ -75,8 +75,8 @@ router.patch(
       { uid: req.params.uid, _id: req.params.id },
       project,
       { new: true },
-      (updatedProject) => {
-        if (project) {
+      (err, updatedProject) => {
+        if (updatedProject) {
           res.status(200);
           res.send(updatedProject);
         } else {
