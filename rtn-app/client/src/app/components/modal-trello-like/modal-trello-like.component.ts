@@ -1,7 +1,6 @@
 import { Component, ComponentFactoryResolver, ComponentRef, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-trello-like.service';
 import { Subscription } from 'rxjs/Subscription';
-import { RequiredProjectsComponent } from '../required-projects/required-projects.component';
 import { RequiresEditionContainerComponent } from '../requires-edition-container/requires-edition-container.component';
 
 @Component({
@@ -73,10 +72,9 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
 
   onSaveProject() {
     this.modalTrelloLikeService.setProjectEditionSaveSource(true);
+    this.editionContainerRequires.clear();
   }
 
   onShowEditionRequires() {
     this.showEditionContainerRequires();
   }
-
-}

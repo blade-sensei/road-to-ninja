@@ -4,7 +4,7 @@
     <p *ngIf="!requiredProjects.length > 0">
       There no required projects yet
     </p>
-    <ul *ngFor="let project of requiredProjectSearch">
+    <ul *ngFor="let project of requiredProjects">
       <li (click)="onPickProject(project)"> {{ project.title }} - {{ project.status }}: {{ getProjectStatusIcone(project) }} </li>
     </ul>
   </div>
