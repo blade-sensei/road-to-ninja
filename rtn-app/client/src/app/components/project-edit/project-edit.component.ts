@@ -2,6 +2,10 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-trello-like.service';
 import { Subscription } from 'rxjs/Subscription';
 import { RequiresEditService } from '../../services/requires-edit/requires-edit.service';
+import { UserService } from '../user/user.service';
+import { AuthenticationService } from '../auth/authentication.service';
+import { ProfileService } from '../../services/profile/profile.service';
+import { UserProjectsService } from '../user-projects/user-projects.service';
 
 @Component({
   selector: 'app-project-edit',
@@ -15,7 +19,8 @@ export class ProjectEditComponent implements OnInit, OnChanges {
   requireProjectSubscription: Subscription;
   constructor(
     private modelTrelloLikeService: ModalTrelloLikeService,
-    private requiresEditionService: RequiresEditService
+    private requiresEditionService: RequiresEditService,
+    private projectService: UserProjectsService,
   ) { }
 
   ngOnInit() {
@@ -24,7 +29,6 @@ export class ProjectEditComponent implements OnInit, OnChanges {
 
     this.requireProjectSubscription = this.requiresEditionService
       .getRequireProject().subscribe(requires => {
-        console.log(requires);
         this.projectUpdated.requires = requires.slice();
       });
   }
@@ -34,8 +38,10 @@ export class ProjectEditComponent implements OnInit, OnChanges {
   }
 
   saveProject() {
-    Object.assign(this.project, this.projectUpdated);
-    this.modelTrelloLikeService.setOpenModalSource(false);
+    this.projectService.updateProject(this.projectUpdated.uid, this.projectUpdated._id, this.projectUpdated).subscribe(editedProject => {
+      Object.assign(this.project, editedProject);
+      this.modelTrelloLikeService.setOpenModalSource(false);
+    });
   }
 
   copyProjectObject() {

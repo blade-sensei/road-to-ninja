@@ -18,6 +18,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
 
   isOpenSubscription: Subscription;
   projectSubscription: Subscription;
+
   constructor(
     private modalTrelloLikeService: ModalTrelloLikeService,
     private componentFactory: ComponentFactoryResolver,
@@ -27,7 +28,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isOpenSubscription = this.modalTrelloLikeService.getOpenModalSource()
       .subscribe(openModal => this.isModalOpen = openModal);
-    this.projectSubscription =  this.modalTrelloLikeService.getProjectEdition()
+    this.projectSubscription = this.modalTrelloLikeService.getProjectEdition()
       .subscribe(project => {
         this.projectEdition = project;
       });
@@ -78,3 +79,5 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   onShowEditionRequires() {
     this.showEditionContainerRequires();
   }
+
+}
