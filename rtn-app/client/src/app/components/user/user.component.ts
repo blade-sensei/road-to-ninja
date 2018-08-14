@@ -11,7 +11,11 @@ import { ActivatedRoute } from '@angular/router';
 export class UserComponent implements OnInit {
   user: any;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private profileService: ProfileService
+  ) { }
 
   ngOnInit() {
     const userName = this.route.snapshot.paramMap.get('username');
@@ -21,6 +25,7 @@ export class UserComponent implements OnInit {
   setupUser(name) {
     this.userService.getUserByName(name).subscribe(user => {
       this.user = user;
+      this.profileService.setCurrentUser(this.user);
     });
   }
 }
