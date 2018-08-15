@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RequiresEditService } from '../../services/requires-edit/requires-edit.service';
 import { UserProjectsService } from '../user-projects/user-projects.service';
 import { ProfileService } from '../../services/profile/profile.service';
-import { UserComponent } from '../user/user.component';
 import { User } from '../../models/user';
 
 @Component({
@@ -24,16 +23,17 @@ export class RequiresEditionContainerComponent implements OnInit {
 
   ngOnInit() {
     this.requiredProjectsSearch = this.requiredProjects.slice();
-    console.log(this.requiredProjectsSearch);
   }
 
   getProjectStatusIcone(editionProject) {
-    if (this.requiredProjects.includes(editionProject)) {
+
+    const isProjectIncluded =  this.requiredProjects.some(project => {
+      return project.title === editionProject.title;
+    });
+
+    if (isProjectIncluded) {
       return '✓';
     }
-    console.log(this.requiredProjects);
-    console.log(editionProject);
-    console.log('x')
     return 'x';
   }
 
