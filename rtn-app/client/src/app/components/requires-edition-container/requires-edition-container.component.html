@@ -1,0 +1,12 @@
+<div class="requires-container-edition">
+  <label for="project-name"> project name: </label>
+  <input (keyup)="searchProject($event)" type="search" id="project-name"> <BR>
+  <div class="requires-list-edition">
+    <p *ngIf="!requiredProjectsSearch.length > 0">
+      There no required projects yet
+    </p>
+    <ul *ngFor="let project of requiredProjectsSearch">
+      <li (click)="onPickProject(project)"> {{ project.title }} - {{ project.status }}: {{ getProjectStatusIcone(project) }} </li>
+    </ul>
+  </div>
+</div>

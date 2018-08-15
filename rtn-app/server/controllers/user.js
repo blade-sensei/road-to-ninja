@@ -12,28 +12,20 @@ router.get('', (req, res) => {
 
 // user projects
 router.get('/:uid/projects', (req, res) => {
-  if (req.query.title) {
-    ProjectModel.find(
-      { uid: req.params.uid, title: req.query.title },
-      (error, docs) => {
-        if (error) {
-          res.send('Bad request or database problem.');
-        } else {
-          res.status(200);
-          res.send(docs);
-        }
-      },
-    );
-  } else {
-    ProjectModel.find({ uid: req.params.uid }, (error, docs) => {
-      if (error) {
-        res.send('Bad request or database problem.');
-      } else {
-        res.status(200);
-        res.send(docs);
-      }
-    });
-  }
+  ProjectModel.find({ uid: req.params.uid }, (error, docs) => {
+    if (error) {
+      return res.send('Bad request or database problem.');
+    }
+    if (req.query.title) {
+      const projects = docs
+        .filter(project => project.title.toLowerCase()
+          .includes(req.query.title.toLowerCase()));
+      res.status(200);
+      return res.send(projects);
+    }
+    res.status(200);
+    return res.send(docs);
+  });
 });
 
 router.post(
@@ -75,8 +67,8 @@ router.patch(
       { uid: req.params.uid, _id: req.params.id },
       project,
       { new: true },
-      (updatedProject) => {
-        if (project) {
+      (err, updatedProject) => {
+        if (updatedProject) {
           res.status(200);
           res.send(updatedProject);
         } else {

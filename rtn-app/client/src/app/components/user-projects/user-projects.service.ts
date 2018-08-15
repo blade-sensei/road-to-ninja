@@ -7,7 +7,14 @@ import {Project} from '../../models/project';
 export class UserProjectsService {
 
   constructor(private http: HttpClient) {}
-  getAllProjects(uid): Observable<Project[]> {
+  getAllProjects(uid, searchText?: string): Observable<Project[]> {
+    if (searchText) {
+      return this.http.get<Project[]>(`http://localhost:3000/api/users/${uid}/projects?title=${searchText}`);
+    }
     return this.http.get<Project[]>(`http://localhost:3000/api/users/${uid}/projects`);
+  }
+
+  updateProject(uid, id, project): Observable<any> {
+    return this.http.patch<Project>(`http://localhost:3000/api/users/${uid}/projects/${id}`, project);
   }
 }
