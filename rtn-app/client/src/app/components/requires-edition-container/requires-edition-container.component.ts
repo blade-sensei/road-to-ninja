@@ -27,23 +27,19 @@ export class RequiresEditionContainerComponent implements OnInit {
 
   getProjectStatusIcone(editionProject) {
 
-    const isProjectIncluded =  this.requiredProjects.some(project => {
-      return project.title === editionProject.title;
-    });
-
-    if (isProjectIncluded) {
+    if (this.isIncludeInRequires(editionProject)) {
       return '✓';
     }
     return 'x';
   }
 
   onPickProject(project) {
-    const isProjectIncluded = this.requiredProjects.includes(project);
-    if (!isProjectIncluded) {
+    console.log(!this.isIncludeInRequires(project));
+    if (!this.isIncludeInRequires(project)) {
       this.requiredProjects.push(project);
     } else {
       this.requiredProjects = this.requiredProjects
-        .filter(editionProject => editionProject !== project);
+        .filter(editionProject => editionProject.title !== project.title);
     }
     this.requiresEditService.setRequireProject(this.requiredProjects);
   }
@@ -62,6 +58,12 @@ export class RequiresEditionContainerComponent implements OnInit {
     } else {
       this.requiredProjectsSearch = this.requiredProjects.slice();
     }
+  }
+
+  isIncludeInRequires(editionProject) {
+    return this.requiredProjects.some(project => {
+      return project.title === editionProject.title;
+    });
   }
 
 }
