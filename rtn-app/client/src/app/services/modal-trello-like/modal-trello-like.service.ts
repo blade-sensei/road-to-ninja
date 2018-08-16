@@ -6,34 +6,34 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ModalTrelloLikeService {
 
-  private projectEditionSource = new Subject<Project>();
-  private openModalSource = new Subject<boolean>();
-  private projectEditionSaveSource = new Subject<boolean>();
+  private projectToEdit$ = new Subject<Project>();
+  private isOpenModal$ = new Subject<boolean>();
+  private projectToEditSaved$ = new Subject<boolean>();
 
   constructor() { }
 
-  setProjectEdition(project: any) {
-    this.projectEditionSource.next(project);
+  setProjectToEdit(project: any) {
+    this.projectToEdit$.next(project);
   }
 
-  getProjectEdition(): Observable<any> {
-    return this.projectEditionSource.asObservable();
+  getProjectToEdit(): Observable<any> {
+    return this.projectToEdit$.asObservable();
   }
 
-  setOpenModalSource(isOpen: boolean) {
-    this.openModalSource.next(isOpen);
+  setIsOpenModal(isOpen: boolean) {
+    this.isOpenModal$.next(isOpen);
   }
 
-  getOpenModalSource(): Observable<boolean> {
-    return this.openModalSource.asObservable();
+  getIsOpenModal(): Observable<boolean> {
+    return this.isOpenModal$.asObservable();
   }
 
-  setProjectEditionSaveSource(save: boolean) {
-    this.projectEditionSaveSource.next(save);
+  setProjectToEditSaved(save: boolean) {
+    this.projectToEditSaved$.next(save);
   }
 
-  getProjectEditionSaveSource(): Observable<boolean> {
-    return this.projectEditionSaveSource.asObservable();
+  getProjectToEditSaved(): Observable<boolean> {
+    return this.projectToEditSaved$.asObservable();
   }
 
 }
