@@ -2,11 +2,11 @@
   <div class="modal-content">
     <span class="close" (click)="closeModal()">&times;</span>
     <app-project-edit
-      [project]="projectEdition">
+      [project]="projectToEdit">
     </app-project-edit>
   </div> <BR>
   <button (click)="onSaveProject()"> save </button>
-  <button (click)="onShowEditionRequires()"> edit requires </button>
-  <template #editionContainerRequires>
+  <button (click)="showRequiredProjectsEditor()"> edit requires </button>
+  <template #requiredProjectsEditorContainer>
   </template>
 </div>
