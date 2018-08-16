@@ -3,7 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class RequiresEditService {
+export class RequiredProjectsEditorService {
 
   private requireProjectSource  = new Subject<any>();
 

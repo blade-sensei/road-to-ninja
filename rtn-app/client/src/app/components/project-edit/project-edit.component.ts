@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-trello-like.service';
 import { Subscription } from 'rxjs/Subscription';
-import { RequiresEditService } from '../../services/requires-edit/requires-edit.service';
+import { RequiredProjectsEditorService } from '../../services/required-projects-editor/required-projects-editor.service';
 import { UserService } from '../user/user.service';
 import { AuthenticationService } from '../auth/authentication.service';
 import { ProfileService } from '../../services/profile/profile.service';
@@ -19,7 +19,7 @@ export class ProjectEditComponent implements OnInit, OnChanges {
   requireProjectSubscription: Subscription;
   constructor(
     private modelTrelloLikeService: ModalTrelloLikeService,
-    private requiresEditionService: RequiresEditService,
+    private requiresEditionService: RequiredProjectsEditorService,
     private projectService: UserProjectsService,
   ) { }
 
