@@ -76,7 +76,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   }
 
   onSaveProject() {
-    this.modalTrelloLikeService.setProjectEditionSaveSource(true);
+    this.modalTrelloLikeService.setProjectToEditSaved(true);
     this.requiredProjectsEditorContainer.clear();
   }
 
@@ -85,11 +85,11 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   }
 
   subscribeForIsModalOpen() {
-    this.isOpenSubscription = this.modalTrelloLikeService.getOpenModalSource()
+    this.isOpenSubscription = this.modalTrelloLikeService.getIsOpenModal()
       .subscribe(openModal => this.isModalOpen = openModal);
   }
   subscribeForProjectToEdit() {
-    this.projectSubscription = this.modalTrelloLikeService.getProjectEdition()
+    this.projectSubscription = this.modalTrelloLikeService.getProjectToEdit()
       .subscribe(project => {
         this.projectToEdit = project;
       });
