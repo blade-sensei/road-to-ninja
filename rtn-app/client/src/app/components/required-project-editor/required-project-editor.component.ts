@@ -1,22 +1,22 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RequiresEditService } from '../../services/requires-edit/requires-edit.service';
+import { RequiredProjectsEditorService } from '../../services/required-projects-editor/required-projects-editor.service';
 import { UserProjectsService } from '../user-projects/user-projects.service';
 import { ProfileService } from '../../services/profile/profile.service';
 import { User } from '../../models/user';
 
 @Component({
   selector: 'app-requires-edition-container',
-  templateUrl: './requires-edition-container.component.html',
-  styleUrls: ['./requires-edition-container.component.css']
+  templateUrl: './required-project-editor.component.html',
+  styleUrls: ['./required-project-editor.component.css']
 })
-export class RequiresEditionContainerComponent implements OnInit {
+export class RequiredProjectsEditorComponent implements OnInit {
 
   @Input()
   requiredProjects = [];
   requiredProjectsSearch: any = {};
 
   constructor(
-    private requiresEditService: RequiresEditService,
+    private requiresEditService: RequiredProjectsEditorService,
     private userProjectService: UserProjectsService,
     private profileService: ProfileService,
   ) { }

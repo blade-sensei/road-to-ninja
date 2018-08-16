@@ -20,8 +20,8 @@ import { RequiredProjectsComponent } from './components/required-projects/requir
 import { ProjectEditComponent } from './components/project-edit/project-edit.component';
 import { ModalTrelloLikeComponent } from './components/modal-trello-like/modal-trello-like.component';
 import { ModalTrelloLikeService } from './services/modal-trello-like/modal-trello-like.service';
-import { RequiresEditionContainerComponent } from './components/requires-edition-container/requires-edition-container.component';
-import { RequiresEditService } from './services/requires-edit/requires-edit.service';
+import { RequiredProjectsEditorComponent } from './components/required-project-editor/required-project-editor.component';
+import { RequiredProjectsEditorService } from './services/required-projects-editor/required-projects-editor.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { RequiresEditService } from './services/requires-edit/requires-edit.serv
     RequiredProjectsComponent,
     ProjectEditComponent,
     ModalTrelloLikeComponent,
-    RequiresEditionContainerComponent,
+    RequiredProjectsEditorComponent,
   ],
   imports: [
     HttpClientModule,
@@ -47,7 +47,7 @@ import { RequiresEditService } from './services/requires-edit/requires-edit.serv
   entryComponents: [
     ProjectAddComponent,
     RequiredProjectsComponent,
-    RequiresEditionContainerComponent,
+    RequiredProjectsEditorComponent,
   ],
   providers: [
     UserService,
@@ -60,7 +60,7 @@ import { RequiresEditService } from './services/requires-edit/requires-edit.serv
       multi: true,
     },
     ModalTrelloLikeService,
-    RequiresEditService
+    RequiredProjectsEditorService
   ],
   bootstrap: [AppComponent]
 })
