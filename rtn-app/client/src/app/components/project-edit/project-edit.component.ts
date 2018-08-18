@@ -32,7 +32,7 @@ export class ProjectEditComponent implements OnInit, OnChanges {
   }
 
   saveProject() {
-    this.userProjectsService.updateProject(
+    this.userProjectsService.updateUserProject(
       this.projectBeingUpdated.uid,
       this.projectBeingUpdated._id,
       this.projectBeingUpdated
@@ -60,7 +60,7 @@ export class ProjectEditComponent implements OnInit, OnChanges {
 
   subscribeToRequiredProjectsToEditSaved() {
     this.requiredProjectsToEditSavedSubscription = this.requiredProjectsEditorService
-      .getRequireProject()
+      .getRequiredProjectsToEdit()
       .subscribe(savedRequiredProject => {
         this.projectBeingUpdated.requires = savedRequiredProject.slice();
       });
