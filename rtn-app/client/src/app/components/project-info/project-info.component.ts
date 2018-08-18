@@ -15,16 +15,19 @@ import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-t
   styleUrls: ['./project-info.component.css']
 })
 export class ProjectInfoComponent implements OnInit {
+  private isUpdateActivated = false;
   @Input() project: any;
   @Input() isUserLogged: boolean;
-  @ViewChild('requiredProjects', { read: ViewContainerRef }) requiredProjectsTemplate;
-  @ViewChild('trello', { read: ViewContainerRef }) trello;
-  private isUpdateActivated = false;
-  componentRef: ComponentRef<RequiredProjectsComponent>;
+  @ViewChild(
+    'currentUserRequiredProjects',
+    { read: ViewContainerRef }
+  ) requiredProjectsTemplate;
+  RequiredProjectsComponentRef: ComponentRef<RequiredProjectsComponent>;
 
   constructor(
     private componentFactory: ComponentFactoryResolver,
-    private modalTrelloLikeService: ModalTrelloLikeService) {
+    private modalTrelloLikeService: ModalTrelloLikeService,
+  ) {
   }
 
   ngOnInit() {
@@ -34,8 +37,8 @@ export class ProjectInfoComponent implements OnInit {
     this.requiredProjectsTemplate.clear();
     const factory = this.componentFactory
       .resolveComponentFactory(RequiredProjectsComponent);
-    this.componentRef = this.requiredProjectsTemplate.createComponent(factory);
-    const requiredProjects = <RequiredProjectsComponent>this.componentRef.instance;
+    this.RequiredProjectsComponentRef = this.requiredProjectsTemplate.createComponent(factory);
+    const requiredProjects = <RequiredProjectsComponent>this.RequiredProjectsComponentRef.instance;
     requiredProjects.requiredProjects = this.project.requires;
   }
 
