@@ -19,7 +19,7 @@ export class ProjectInfoComponent implements OnInit {
   @Input() project: any;
   @Input() isUserLogged: boolean;
   @ViewChild(
-    'currentUserRequiredProjects',
+    'currentUserRequiredProjectsTemplate',
     { read: ViewContainerRef }
   ) requiredProjectsTemplate;
   RequiredProjectsComponentRef: ComponentRef<RequiredProjectsComponent>;
