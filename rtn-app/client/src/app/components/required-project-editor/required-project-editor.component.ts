@@ -12,56 +12,51 @@ import { User } from '../../models/user';
 export class RequiredProjectsEditorComponent implements OnInit {
 
   @Input()
-  requiredProjects = [];
-  requiredProjectsSearch: any = {};
+  currentUserRequiredProjects = [];
+  requiredProjectsSearchResult: any = {};
 
   constructor(
-    private requiresEditService: RequiredProjectsEditorService,
+    private requiredProjectsEditorService: RequiredProjectsEditorService,
     private userProjectService: UserProjectsService,
     private profileService: ProfileService,
   ) { }
 
   ngOnInit() {
-    this.requiredProjectsSearch = this.requiredProjects.slice();
+    this.requiredProjectsSearchResult = this.currentUserRequiredProjects.slice();
   }
 
   getProjectStatusIcone(editionProject) {
-
-    if (this.isIncludeInRequires(editionProject)) {
-      return '✓';
-    }
-    return 'x';
+    return this.isIncludeInCurrentRequiredProjects(editionProject) ? '✓' : 'x';
   }
 
   onPickProject(project) {
-    console.log(!this.isIncludeInRequires(project));
-    if (!this.isIncludeInRequires(project)) {
-      this.requiredProjects.push(project);
+    if (!this.isIncludeInCurrentRequiredProjects(project)) {
+      this.currentUserRequiredProjects.push(project);
     } else {
-      this.requiredProjects = this.requiredProjects
-        .filter(editionProject => editionProject.title !== project.title);
+      this.removeFromCurrentUserRequiredProjects(project);
     }
-    this.requiresEditService.setRequireProject(this.requiredProjects);
+    this.requiredProjectsEditorService
+      .setRequiredProjectsToEdit(this.currentUserRequiredProjects);
+  }
+
+  removeFromCurrentUserRequiredProjects(project) {
+    this.currentUserRequiredProjects = this.currentUserRequiredProjects
+      .filter(editionProject => editionProject.title !== project.title);
   }
 
   searchProject(event: any) {
     const currentUser: User = this.profileService.getCurrentUser();
     const searchText = event.target.value;
     if (searchText) {
-      this.userProjectService.getAllProjects(currentUser.uid, searchText)
-        .subscribe(projects => {
-
-          this.requiredProjectsSearch = projects.map(project => {
-            return { title: project.title, status: project.status };
-          });
-        });
+      this.userProjectService.getUserProjects(currentUser.uid, searchText)
+        .subscribe(projects => this.requiredProjectsSearchResult = projects);
     } else {
-      this.requiredProjectsSearch = this.requiredProjects.slice();
+      this.requiredProjectsSearchResult = this.currentUserRequiredProjects.slice();
     }
   }
 
-  isIncludeInRequires(editionProject) {
-    return this.requiredProjects.some(project => {
+  isIncludeInCurrentRequiredProjects(editionProject) {
+    return this.currentUserRequiredProjects.some(project => {
       return project.title === editionProject.title;
     });
   }

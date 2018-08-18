@@ -5,15 +5,15 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class RequiredProjectsEditorService {
 
-  private requireProjectSource  = new Subject<any>();
+  private requiredProjectsToEdit$  = new Subject<any>();
 
   constructor() { }
 
-  setRequireProject(requires: any) {
-    this.requireProjectSource.next(requires);
+  setRequiredProjectsToEdit(requires: any) {
+    this.requiredProjectsToEdit$.next(requires);
   }
 
-  getRequireProject(): Observable<any> {
-    return this.requireProjectSource.asObservable();
+  getRequiredProjectsToEdit(): Observable<any> {
+    return this.requiredProjectsToEdit$.asObservable();
   }
 }

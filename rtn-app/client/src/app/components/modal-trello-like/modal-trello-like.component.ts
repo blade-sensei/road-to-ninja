@@ -46,7 +46,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
       .createComponent(RequiredProjectsEditorComponentFactory);
     const requiresEditionContainer =
       <RequiredProjectsEditorComponent>this.requiredProjectsEditorRef.instance;
-    requiresEditionContainer.requiredProjects = this.projectToEdit.requires;
+    requiresEditionContainer.currentUserRequiredProjects = this.projectToEdit.requires;
   }
 
   getDisplayStyle() {

@@ -15,9 +15,8 @@ export class UserProjectsComponent implements OnInit {
   constructor(private userProjectService: UserProjectsService) { }
 
   ngOnInit() {
-    this.userProjectService.getAllProjects(this.user.uid).subscribe(projects => {
-      this.projects = projects;
-    });
+    this.userProjectService.getUserProjects(this.user.uid)
+      .subscribe(projects => this.projects = projects);
     this.isUserLogged = this.isUserLoggedIn();
   }
 
