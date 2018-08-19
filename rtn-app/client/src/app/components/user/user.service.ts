@@ -9,4 +9,8 @@ export class UserService {
   getUserByName(name) {
     return this.http.get(`http://localhost:3000/api/users/${name}`);
   }
+
+  getCurrentUser() {
+    return this.http.get(`http://localhost:3000/api/users/current-user`);
+  }
 }
