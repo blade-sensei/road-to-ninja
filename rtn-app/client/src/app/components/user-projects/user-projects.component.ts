@@ -21,7 +21,11 @@ export class UserProjectsComponent implements OnInit {
   }
 
   isUserLoggedIn(): boolean {
-    return (ProfileService.getCurrentUser().username === this.user.username);
+    const token = ProfileService.getCurrentUserToken();
+    if (token) {
+      return ProfileService.getCurrentUserToken().username === this.user.username;
+    }
+    return false;
   }
 
 }
