@@ -7,7 +7,7 @@ export class ProfileService {
   currentUser: User = new User();
   constructor() { }
 
-  static getCurrentUser() {
+  static getCurrentUserToken() {
     return JSON.parse(localStorage.getItem('currentUser'));
   }
   static logout() {
@@ -22,11 +22,4 @@ export class ProfileService {
     return false;
   }
 
-  setCurrentUser(user: any) {
-    this.currentUser = user;
-  }
-
-  getCurrentUser(): User {
-    return this.currentUser;
-  }
 }
