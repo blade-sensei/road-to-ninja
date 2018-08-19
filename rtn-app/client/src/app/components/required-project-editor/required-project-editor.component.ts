@@ -3,6 +3,7 @@ import { RequiredProjectsEditorService } from '../../services/required-projects-
 import { UserProjectsService } from '../user-projects/user-projects.service';
 import { ProfileService } from '../../services/profile/profile.service';
 import { User } from '../../models/user';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-requires-edition-container',
@@ -19,6 +20,7 @@ export class RequiredProjectsEditorComponent implements OnInit {
     private requiredProjectsEditorService: RequiredProjectsEditorService,
     private userProjectService: UserProjectsService,
     private profileService: ProfileService,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
@@ -45,14 +47,16 @@ export class RequiredProjectsEditorComponent implements OnInit {
   }
 
   searchProject(event: any) {
-    const currentUser: User = this.profileService.getCurrentUser();
-    const searchText = event.target.value;
-    if (searchText) {
-      this.userProjectService.getUserProjects(currentUser.uid, searchText)
-        .subscribe(projects => this.requiredProjectsSearchResult = projects);
-    } else {
-      this.requiredProjectsSearchResult = this.currentUserRequiredProjects.slice();
-    }
+    this.userService.getCurrentUser()
+      .subscribe((currentUser: User) => {
+        const searchText = event.target.value;
+        if (searchText) {
+          this.userProjectService.getUserProjects(currentUser.uid, searchText)
+            .subscribe(projects => this.requiredProjectsSearchResult = projects);
+        } else {
+          this.requiredProjectsSearchResult = this.currentUserRequiredProjects.slice();
+        }
+      });
   }
 
   isIncludeInCurrentRequiredProjects(editionProject) {
