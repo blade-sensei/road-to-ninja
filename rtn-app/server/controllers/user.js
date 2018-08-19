@@ -10,6 +10,15 @@ router.get('', (req, res) => {
   userModel.find((err, docs) => res.send(docs));
 });
 
+router.get('/current-user', token.verifyToken, (req, res) => {
+  userModel.findOne({ uid: req.auth.id }, (err, user) => {
+    if (user) {
+      return res.send(user);
+    }
+    return res.status(404).send('not found');
+  });
+});
+
 // user projects
 router.get('/:uid/projects', (req, res) => {
   ProjectModel.find({ uid: req.params.uid }, (error, docs) => {
