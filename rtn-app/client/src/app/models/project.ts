@@ -6,7 +6,7 @@ export class Project {
   uid: string;
   requires: Project[];
 
-  constructor(title, uid) {
+  constructor(title = '', uid = '') {
     this.title = title;
     this.description = '';
     this.status = 'not started';
