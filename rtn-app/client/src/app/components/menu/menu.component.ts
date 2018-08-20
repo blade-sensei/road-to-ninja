@@ -25,7 +25,6 @@ export class MenuComponent implements OnInit {
   onLogout() {
     ProfileService.logout();
     this.router.navigate(['/']);
-
   }
 
 }

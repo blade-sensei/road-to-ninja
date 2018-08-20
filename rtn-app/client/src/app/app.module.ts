@@ -22,6 +22,7 @@ import { ModalTrelloLikeComponent } from './components/modal-trello-like/modal-t
 import { ModalTrelloLikeService } from './services/modal-trello-like/modal-trello-like.service';
 import { RequiredProjectsEditorComponent } from './components/required-project-editor/required-project-editor.component';
 import { RequiredProjectsEditorService } from './services/required-projects-editor/required-projects-editor.service';
+import { ButtonProjectAddComponent } from './components/button-project-add/button-project-add.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { RequiredProjectsEditorService } from './services/required-projects-edit
     ProjectEditComponent,
     ModalTrelloLikeComponent,
     RequiredProjectsEditorComponent,
+    ButtonProjectAddComponent,
   ],
   imports: [
     HttpClientModule,
