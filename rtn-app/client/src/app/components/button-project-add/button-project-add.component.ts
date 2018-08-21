@@ -20,5 +20,6 @@ export class ButtonProjectAddComponent implements OnInit {
     const project = new Project();
     this.modalTrelloLikeService.setProjectToEdit(project);
     this.modalTrelloLikeService.setIsOpenModal(true);
+    this.modalTrelloLikeService.setIsCreationMode(true);
   }
 }

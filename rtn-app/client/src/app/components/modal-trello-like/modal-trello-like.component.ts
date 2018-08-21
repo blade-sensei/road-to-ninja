@@ -10,6 +10,7 @@ import { RequiredProjectsEditorComponent } from '../required-project-editor/requ
 })
 export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   isModalOpen = false;
+  isCreationMode = false;
   projectToEdit: any = {};
   @ViewChild(
     'requiredProjectsEditorContainer',
@@ -18,6 +19,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   requiredProjectsEditorRef: ComponentRef<RequiredProjectsEditorComponent>;
 
   isOpenSubscription: Subscription;
+  isCreationModeSubscription: Subscription;
   projectSubscription: Subscription;
 
   constructor(
@@ -31,6 +33,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
     this.subscribeForIsModalOpen();
     this.subscribeForProjectToEdit();
     this.setDropBackClickEvent();
+    this.subscribeForIsCreationMode();
   }
 
   ngOnDestroy() {
@@ -60,6 +63,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   resetStatus() {
     this.projectToEdit = {};
     this.isModalOpen = false;
+    this.isCreationMode = false;
     this.requiredProjectsEditorContainer.clear();
   }
 
@@ -92,6 +96,13 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
     this.projectSubscription = this.modalTrelloLikeService.getProjectToEdit()
       .subscribe(project => {
         this.projectToEdit = project;
+      });
+  }
+
+  subscribeForIsCreationMode() {
+    this.isCreationModeSubscription = this.modalTrelloLikeService
+      .getIsCreationMode().subscribe(isCreationMode => {
+        this.isCreationMode = isCreationMode;
       });
   }
 
