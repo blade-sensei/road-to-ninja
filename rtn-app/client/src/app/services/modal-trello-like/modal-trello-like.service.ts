@@ -6,9 +6,12 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ModalTrelloLikeService {
 
+
   private projectToEdit$ = new Subject<Project>();
-  private isOpenModal$ = new Subject<boolean>();
   private projectToEditSaved$ = new Subject<boolean>();
+  private isOpenModal$ = new Subject<boolean>();
+  private isCreationMode$ = new Subject<boolean>();
+  private projectToAddSaved$ = new Subject<Project>();
 
   constructor() { }
 
@@ -18,6 +21,14 @@ export class ModalTrelloLikeService {
 
   getProjectToEdit(): Observable<any> {
     return this.projectToEdit$.asObservable();
+  }
+
+  setProjectToAddSaved(project: any) {
+    this.projectToAddSaved$.next(project);
+  }
+
+  getProjectToAddSaved(): Observable<any> {
+    return this.projectToAddSaved$.asObservable();
   }
 
   setIsOpenModal(isOpen: boolean) {
@@ -34,6 +45,14 @@ export class ModalTrelloLikeService {
 
   getProjectToEditSaved(): Observable<boolean> {
     return this.projectToEditSaved$.asObservable();
+  }
+
+  getIsCreationMode(): Observable<boolean> {
+    return this.isCreationMode$.asObservable();
+  }
+
+  setIsCreationMode(creationModel: boolean) {
+    this.isCreationMode$.next(creationModel);
   }
 
 }

@@ -3,6 +3,8 @@ import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-t
 import { Subscription } from 'rxjs/Subscription';
 import { RequiredProjectsEditorService } from '../../services/required-projects-editor/required-projects-editor.service';
 import { UserProjectsService } from '../user-projects/user-projects.service';
+import { UserService } from '../user/user.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-project-edit',
@@ -12,19 +14,23 @@ import { UserProjectsService } from '../user-projects/user-projects.service';
 export class ProjectEditComponent implements OnInit, OnChanges {
   @Input() project: any = {};
   projectBeingUpdated: any = {};
+  isCreationMode = false;
   projectToEditSavedSubscription: Subscription;
   requiredProjectsToEditSavedSubscription: Subscription;
+  isCreationModeSubscription: Subscription;
 
   constructor(
     private modalTrelloLikeService: ModalTrelloLikeService,
     private requiredProjectsEditorService: RequiredProjectsEditorService,
     private userProjectsService: UserProjectsService,
+    private userService: UserService,
     ) {
   }
 
   ngOnInit() {
     this.subscribeToProjectToEditSaved();
     this.subscribeToRequiredProjectsToEditSaved();
+    this.subscribeForIsCreationMode();
   }
 
   ngOnChanges() {
@@ -32,12 +38,22 @@ export class ProjectEditComponent implements OnInit, OnChanges {
   }
 
   saveProject() {
-    this.userProjectsService.updateUserProject(
-      this.projectBeingUpdated.uid,
-      this.projectBeingUpdated._id,
-      this.projectBeingUpdated
-    ).subscribe(editedProject => {
-      Object.assign(this.project, editedProject);
+    this.userService.getCurrentUser().subscribe((user: User) => {
+      if (this.isCreationMode) {
+        console.log(user);
+        this.userProjectsService.addUserProject(user.uid, this.projectBeingUpdated)
+          .subscribe(project => {
+            this.modalTrelloLikeService.setProjectToAddSaved(project);
+          });
+      } else {
+        this.userProjectsService.updateUserProject(
+          this.projectBeingUpdated.uid,
+          this.projectBeingUpdated._id,
+          this.projectBeingUpdated
+        ).subscribe(editedProject => {
+          Object.assign(this.project, editedProject);
+        });
+      }
       this.modalTrelloLikeService.setIsOpenModal(false);
     });
   }
@@ -63,6 +79,13 @@ export class ProjectEditComponent implements OnInit, OnChanges {
       .getRequiredProjectsToEdit()
       .subscribe(savedRequiredProject => {
         this.projectBeingUpdated.requires = savedRequiredProject.slice();
+      });
+  }
+
+  subscribeForIsCreationMode() {
+    this.isCreationModeSubscription = this.modalTrelloLikeService
+      .getIsCreationMode().subscribe(isCreationMode => {
+        this.isCreationMode = isCreationMode;
       });
   }
 
