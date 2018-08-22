@@ -8,10 +8,11 @@ export class ModalTrelloLikeService {
 
 
   private projectToEdit$ = new Subject<Project>();
-  private projectToEditSaved$ = new Subject<boolean>();
+  private isSaveActionDemanded$ = new Subject<boolean>();
   private isOpenModal$ = new Subject<boolean>();
   private isCreationMode$ = new Subject<boolean>();
   private projectToAddSaved$ = new Subject<Project>();
+  private projectToEditSaved$ = new Subject<Project>();
 
   constructor() { }
 
@@ -31,6 +32,16 @@ export class ModalTrelloLikeService {
     return this.projectToAddSaved$.asObservable();
   }
 
+  setProjectToEditSaved(project: any) {
+    this.projectToAddSaved$.next(project);
+  }
+
+  getProjectToEditSaved(): Observable<any> {
+    return this.projectToAddSaved$.asObservable();
+  }
+
+
+
   setIsOpenModal(isOpen: boolean) {
     this.isOpenModal$.next(isOpen);
   }
@@ -39,12 +50,12 @@ export class ModalTrelloLikeService {
     return this.isOpenModal$.asObservable();
   }
 
-  setProjectToEditSaved(save: boolean) {
-    this.projectToEditSaved$.next(save);
+  setIsSaveActionDemanded(save: boolean) {
+    this.isSaveActionDemanded$.next(save);
   }
 
-  getProjectToEditSaved(): Observable<boolean> {
-    return this.projectToEditSaved$.asObservable();
+  getIsSaveActionDemanded(): Observable<boolean> {
+    return this.isSaveActionDemanded$.asObservable();
   }
 
   getIsCreationMode(): Observable<boolean> {

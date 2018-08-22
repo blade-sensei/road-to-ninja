@@ -23,6 +23,7 @@ export class UserProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.subscribeToProjectAddSaved();
+    this.subscribeToProjectEditSaved();
     this.userProjectService.getUserProjects(this.user.uid)
       .subscribe(projects => this.projects = projects);
     this.isUserLogged = this.isUserLoggedIn();
@@ -38,8 +39,23 @@ export class UserProjectsComponent implements OnInit {
 
   subscribeToProjectAddSaved() {
     this.projectToAddSavedSubscription = this.modalTrelloLikeService
-      .getProjectToAddSaved().subscribe(project => {
-        this.projects.push(project);
+      .getProjectToAddSaved().subscribe( projectSaved => {
+        console.log(projectSaved);
+          this.projects.push(projectSaved);
+      });
+  }
+
+  subscribeToProjectEditSaved() {
+    this.projectToAddSavedSubscription = this.modalTrelloLikeService
+      .getProjectToEditSaved().subscribe( projectSaved => {
+        const projectsUpdated = this.projects.map(project => {
+          if (project._id === projectSaved._id) {
+            Object.assign(project, projectSaved);
+          }
+          console.log(project);
+          return project;
+        });
+        this.projects = projectsUpdated.slice();
       });
   }
 
