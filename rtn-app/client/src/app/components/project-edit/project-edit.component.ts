@@ -40,7 +40,6 @@ export class ProjectEditComponent implements OnInit, OnChanges {
   saveProject() {
     this.userService.getCurrentUser().subscribe((user: User) => {
       if (this.isCreationMode) {
-        console.log(user);
         this.userProjectsService.addUserProject(user.uid, this.projectBeingUpdated)
           .subscribe(project => {
             this.modalTrelloLikeService.setProjectToAddSaved(project);
@@ -51,7 +50,7 @@ export class ProjectEditComponent implements OnInit, OnChanges {
           this.projectBeingUpdated._id,
           this.projectBeingUpdated
         ).subscribe(editedProject => {
-          Object.assign(this.project, editedProject);
+          this.modalTrelloLikeService.setProjectToEditSaved(editedProject);
         });
       }
       this.modalTrelloLikeService.setIsOpenModal(false);
@@ -71,7 +70,7 @@ export class ProjectEditComponent implements OnInit, OnChanges {
 
   subscribeToProjectToEditSaved() {
     this.projectToEditSavedSubscription = this.modalTrelloLikeService
-      .getProjectToEditSaved().subscribe(() => this.saveProject());
+      .getIsSaveActionDemanded().subscribe(() => this.saveProject());
   }
 
   subscribeToRequiredProjectsToEditSaved() {

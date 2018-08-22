@@ -80,7 +80,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   }
 
   onSaveProject() {
-    this.modalTrelloLikeService.setProjectToEditSaved(true);
+    this.modalTrelloLikeService.setIsSaveActionDemanded(true);
     this.requiredProjectsEditorContainer.clear();
   }
 
