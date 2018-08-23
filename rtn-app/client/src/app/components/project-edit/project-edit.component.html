@@ -1,8 +1,21 @@
-<label for="project-name"> project name:  </label> <input type="text" id="project-name" [(ngModel)]="projectBeingUpdated.title"> <BR>
-<label for="description"> description: </label> <BR> <textarea id="description" [(ngModel)]="projectBeingUpdated.description"></textarea> <BR>
-<label for="sources"> sources:  </label> <input type="text" id="sources" [(ngModel)]="projectBeingUpdated.data" >
-
+<div [formGroup]="projectForm" class="form-group">
+<label for="title"> project name:  </label>
+<input [(ngModel)]="projectBeingUpdated.title" class="form-control" formControlName="title" type="text" id="title" required> <BR>
+</div>
+<label for="description"> description: </label> <BR>
+<textarea id="description" [(ngModel)]="projectBeingUpdated.description"></textarea> <BR>
+<label for="sources"> sources:  </label>
+<input type="text" id="sources" [(ngModel)]="projectBeingUpdated.data" > <BR>
 <label for="sources"> required projects:  </label>
+
+<div *ngIf="title.invalid && (title.dirty || title.touched)"
+     class="alert alert-danger">
+
+  <div *ngIf="title.errors.required">
+    title is required.
+  </div>
+</div>
+
 <p *ngIf="!hasRequiredProjects(projectBeingUpdated); else requiresList">
   There's no required projects yet
 </p>
