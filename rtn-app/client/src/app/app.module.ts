@@ -11,7 +11,7 @@ import { UserProjectsService } from './components/user-projects/user-projects.se
 import { MenuComponent } from './components/menu/menu.component';
 import { ModalModule } from 'ngx-bootstrap';
 import { ProjectAddComponent } from './components/project-add/project-add.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthFormComponent } from './components/auth/auth-form/auth-form.component';
 import { AuthenticationService } from './components/auth/authentication.service';
 import { AuthInterceptorService } from './services/authentication/auth-interceptor.service';
@@ -43,6 +43,7 @@ import { ButtonProjectAddComponent } from './components/button-project-add/butto
     HttpClientModule,
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     ModalModule.forRoot()
   ],

@@ -5,6 +5,7 @@ import { RequiredProjectsEditorService } from '../../services/required-projects-
 import { UserProjectsService } from '../user-projects/user-projects.service';
 import { UserService } from '../user/user.service';
 import { User } from '../../models/user';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-project-edit',
@@ -18,6 +19,7 @@ export class ProjectEditComponent implements OnInit, OnChanges {
   projectToEditSavedSubscription: Subscription;
   requiredProjectsToEditSavedSubscription: Subscription;
   isCreationModeSubscription: Subscription;
+  projectForm: FormGroup;
 
   constructor(
     private modalTrelloLikeService: ModalTrelloLikeService,
@@ -31,6 +33,7 @@ export class ProjectEditComponent implements OnInit, OnChanges {
     this.subscribeToProjectToEditSaved();
     this.subscribeToRequiredProjectsToEditSaved();
     this.subscribeForIsCreationMode();
+    this.createFormValidator();
   }
 
   ngOnChanges() {
@@ -86,6 +89,18 @@ export class ProjectEditComponent implements OnInit, OnChanges {
       .getIsCreationMode().subscribe(isCreationMode => {
         this.isCreationMode = isCreationMode;
       });
+  }
+
+  createFormValidator() {
+    this.projectForm = new FormGroup({
+      title: new FormControl(this.projectBeingUpdated.title, [
+        Validators.required,
+      ]),
+    });
+  }
+
+  get title() {
+    return this.projectForm.get('title');
   }
 
 }
