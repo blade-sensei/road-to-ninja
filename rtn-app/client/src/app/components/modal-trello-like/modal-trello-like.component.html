@@ -1,9 +1,7 @@
 <div id="modal" class="modal-trello-edition"  [style.display]="getDisplayStyle()">
   <div class="modal-content">
     <span class="close" (click)="closeModal()">&times;</span>
-    <app-project-edit
-      [project]="projectToEdit">
-    </app-project-edit>
+    <template #projectEditorContainer> </template>
   </div> <BR>
   <button [disabled]="hasFormErrors" (click)="onSaveProject()"> save </button>
   <button (click)="showRequiredProjectsEditor()"> edit requires </button>

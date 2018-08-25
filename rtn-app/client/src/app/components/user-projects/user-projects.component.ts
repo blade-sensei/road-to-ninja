@@ -40,7 +40,6 @@ export class UserProjectsComponent implements OnInit {
   subscribeToProjectAddSaved() {
     this.projectToAddSavedSubscription = this.modalTrelloLikeService
       .getProjectToAddSaved().subscribe( projectSaved => {
-        console.log(projectSaved);
           this.projects.push(projectSaved);
       });
   }
