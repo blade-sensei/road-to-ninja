@@ -34,6 +34,7 @@ export class ProjectEditComponent implements OnInit, OnChanges {
     this.subscribeToRequiredProjectsToEditSaved();
     this.subscribeForIsCreationMode();
     this.createFormValidator();
+    this.onChanges();
   }
 
   ngOnChanges() {
@@ -101,6 +102,13 @@ export class ProjectEditComponent implements OnInit, OnChanges {
 
   get title() {
     return this.projectForm.get('title');
+  }
+
+  onChanges(): void {
+    this.projectForm.get('title').valueChanges.subscribe(() => {
+      this.modalTrelloLikeService
+        .setHasFormEditorErrors(!!this.projectForm.get('title').errors);
+    });
   }
 
 }
