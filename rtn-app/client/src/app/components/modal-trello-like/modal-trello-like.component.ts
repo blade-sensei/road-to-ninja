@@ -9,17 +9,20 @@ import { RequiredProjectsEditorComponent } from '../required-project-editor/requ
   styleUrls: ['./modal-trello-like.component.css']
 })
 export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
-  isModalOpen = false;
-  isCreationMode = false;
-  projectToEdit: any = {};
   @ViewChild(
     'requiredProjectsEditorContainer',
     { read: ViewContainerRef },
   ) requiredProjectsEditorContainer;
   requiredProjectsEditorRef: ComponentRef<RequiredProjectsEditorComponent>;
 
+  isModalOpen = false;
+  isCreationMode = false;
+  hasFormErrors = false;
+  projectToEdit: any = {};
+
   isOpenSubscription: Subscription;
   isCreationModeSubscription: Subscription;
+  hasFormErrorsSubscription: Subscription;
   projectSubscription: Subscription;
 
   constructor(
@@ -34,6 +37,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
     this.subscribeForProjectToEdit();
     this.setDropBackClickEvent();
     this.subscribeForIsCreationMode();
+    this.subscribeForHasFormErrors();
   }
 
   ngOnDestroy() {
@@ -106,4 +110,9 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
       });
   }
 
+  subscribeForHasFormErrors() {
+    this.hasFormErrorsSubscription = this.modalTrelloLikeService
+      .getHasFormEditorErrors()
+      .subscribe(hasErrors => this.hasFormErrors = hasErrors);
+  }
 }

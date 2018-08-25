@@ -5,7 +5,7 @@
       [project]="projectToEdit">
     </app-project-edit>
   </div> <BR>
-  <button (click)="onSaveProject()"> save </button>
+  <button [disabled]="hasFormErrors" (click)="onSaveProject()"> save </button>
   <button (click)="showRequiredProjectsEditor()"> edit requires </button>
   <template #requiredProjectsEditorContainer>
   </template>
