@@ -1,7 +1,11 @@
-import { Component, ComponentFactoryResolver, ComponentRef, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component, ComponentFactoryResolver, ComponentRef, OnChanges, OnDestroy, OnInit, ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-trello-like.service';
 import { Subscription } from 'rxjs/Subscription';
 import { RequiredProjectsEditorComponent } from '../required-project-editor/required-project-editor.component';
+import { ProjectEditComponent } from '../project-edit/project-edit.component';
 
 @Component({
   selector: 'app-modal-trello-like',
@@ -14,6 +18,10 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
     { read: ViewContainerRef },
   ) requiredProjectsEditorContainer;
   requiredProjectsEditorRef: ComponentRef<RequiredProjectsEditorComponent>;
+  @ViewChild('projectEditorContainer',
+    { read: ViewContainerRef },
+  ) projectEditorContainer;
+  projectsEditorRef: ComponentRef<ProjectEditComponent>;
 
   isModalOpen = false;
   isCreationMode = false;
@@ -33,10 +41,10 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+    this.subscribeForIsCreationMode();
     this.subscribeForIsModalOpen();
     this.subscribeForProjectToEdit();
     this.setDropBackClickEvent();
-    this.subscribeForIsCreationMode();
     this.subscribeForHasFormErrors();
   }
 
@@ -100,12 +108,14 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
     this.projectSubscription = this.modalTrelloLikeService.getProjectToEdit()
       .subscribe(project => {
         this.projectToEdit = project;
+        this.showprojectEditorContainer();
       });
   }
 
   subscribeForIsCreationMode() {
     this.isCreationModeSubscription = this.modalTrelloLikeService
       .getIsCreationMode().subscribe(isCreationMode => {
+        console.log(this.isCreationMode);
         this.isCreationMode = isCreationMode;
       });
   }
@@ -114,5 +124,17 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
     this.hasFormErrorsSubscription = this.modalTrelloLikeService
       .getHasFormEditorErrors()
       .subscribe(hasErrors => this.hasFormErrors = hasErrors);
+  }
+
+  showprojectEditorContainer() {
+    const ProjectEditorComponentFactory = this.componentFactory
+      .resolveComponentFactory(ProjectEditComponent);
+    this.projectsEditorRef = this.projectEditorContainer
+      .createComponent(ProjectEditorComponentFactory);
+    const editionContainer =
+      <ProjectEditComponent>this.projectsEditorRef.instance;
+    console.log(this.isCreationMode);
+    editionContainer.project = this.projectToEdit;
+    editionContainer.isCreationMode = this.isCreationMode;
   }
 }

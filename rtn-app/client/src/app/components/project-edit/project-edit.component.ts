@@ -15,7 +15,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ProjectEditComponent implements OnInit, OnChanges {
   @Input() project: any = {};
   projectBeingUpdated: any = {};
-  isCreationMode = false;
+  @Input() isCreationMode = false;
   projectToEditSavedSubscription: Subscription;
   requiredProjectsToEditSavedSubscription: Subscription;
   isCreationModeSubscription: Subscription;
@@ -32,13 +32,12 @@ export class ProjectEditComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.subscribeToProjectToEditSaved();
     this.subscribeToRequiredProjectsToEditSaved();
-    this.subscribeForIsCreationMode();
     this.createFormValidator();
     this.onChanges();
+    this.copyProjectObject();
   }
 
   ngOnChanges() {
-    this.copyProjectObject();
   }
 
   saveProject() {
@@ -89,6 +88,7 @@ export class ProjectEditComponent implements OnInit, OnChanges {
     this.isCreationModeSubscription = this.modalTrelloLikeService
       .getIsCreationMode().subscribe(isCreationMode => {
         this.isCreationMode = isCreationMode;
+        console.log(this.isCreationMode);
       });
   }
 

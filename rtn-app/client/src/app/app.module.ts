@@ -51,6 +51,7 @@ import { ButtonProjectAddComponent } from './components/button-project-add/butto
     ProjectAddComponent,
     RequiredProjectsComponent,
     RequiredProjectsEditorComponent,
+    ProjectEditComponent,
   ],
   providers: [
     UserService,
