@@ -115,7 +115,6 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   subscribeForIsCreationMode() {
     this.isCreationModeSubscription = this.modalTrelloLikeService
       .getIsCreationMode().subscribe(isCreationMode => {
-        console.log(this.isCreationMode);
         this.isCreationMode = isCreationMode;
       });
   }
@@ -133,7 +132,6 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
       .createComponent(ProjectEditorComponentFactory);
     const editionContainer =
       <ProjectEditComponent>this.projectsEditorRef.instance;
-    console.log(this.isCreationMode);
     editionContainer.project = this.projectToEdit;
     editionContainer.isCreationMode = this.isCreationMode;
   }
