@@ -1,7 +1,11 @@
-import { Component, ComponentFactoryResolver, ComponentRef, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component, ComponentFactoryResolver, ComponentRef, OnChanges, OnDestroy, OnInit, ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-trello-like.service';
 import { Subscription } from 'rxjs/Subscription';
 import { RequiredProjectsEditorComponent } from '../required-project-editor/required-project-editor.component';
+import { ProjectEditComponent } from '../project-edit/project-edit.component';
 
 @Component({
   selector: 'app-modal-trello-like',
@@ -9,15 +13,24 @@ import { RequiredProjectsEditorComponent } from '../required-project-editor/requ
   styleUrls: ['./modal-trello-like.component.css']
 })
 export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
-  isModalOpen = false;
-  projectToEdit: any = {};
   @ViewChild(
     'requiredProjectsEditorContainer',
     { read: ViewContainerRef },
   ) requiredProjectsEditorContainer;
   requiredProjectsEditorRef: ComponentRef<RequiredProjectsEditorComponent>;
+  @ViewChild('projectEditorContainer',
+    { read: ViewContainerRef },
+  ) projectEditorContainer;
+  projectsEditorRef: ComponentRef<ProjectEditComponent>;
+
+  isModalOpen = false;
+  isCreationMode = false;
+  hasFormErrors = false;
+  projectToEdit: any = {};
 
   isOpenSubscription: Subscription;
+  isCreationModeSubscription: Subscription;
+  hasFormErrorsSubscription: Subscription;
   projectSubscription: Subscription;
 
   constructor(
@@ -28,9 +41,11 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+    this.subscribeForIsCreationMode();
     this.subscribeForIsModalOpen();
     this.subscribeForProjectToEdit();
     this.setDropBackClickEvent();
+    this.subscribeForHasFormErrors();
   }
 
   ngOnDestroy() {
@@ -60,6 +75,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   resetStatus() {
     this.projectToEdit = {};
     this.isModalOpen = false;
+    this.isCreationMode = false;
     this.requiredProjectsEditorContainer.clear();
   }
 
@@ -76,7 +92,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   }
 
   onSaveProject() {
-    this.modalTrelloLikeService.setProjectToEditSaved(true);
+    this.modalTrelloLikeService.setIsSaveActionDemanded(true);
     this.requiredProjectsEditorContainer.clear();
   }
 
@@ -92,7 +108,31 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
     this.projectSubscription = this.modalTrelloLikeService.getProjectToEdit()
       .subscribe(project => {
         this.projectToEdit = project;
+        this.showprojectEditorContainer();
       });
   }
 
+  subscribeForIsCreationMode() {
+    this.isCreationModeSubscription = this.modalTrelloLikeService
+      .getIsCreationMode().subscribe(isCreationMode => {
+        this.isCreationMode = isCreationMode;
+      });
+  }
+
+  subscribeForHasFormErrors() {
+    this.hasFormErrorsSubscription = this.modalTrelloLikeService
+      .getHasFormEditorErrors()
+      .subscribe(hasErrors => this.hasFormErrors = hasErrors);
+  }
+
+  showprojectEditorContainer() {
+    const ProjectEditorComponentFactory = this.componentFactory
+      .resolveComponentFactory(ProjectEditComponent);
+    this.projectsEditorRef = this.projectEditorContainer
+      .createComponent(ProjectEditorComponentFactory);
+    const editionContainer =
+      <ProjectEditComponent>this.projectsEditorRef.instance;
+    editionContainer.project = this.projectToEdit;
+    editionContainer.isCreationMode = this.isCreationMode;
+  }
 }

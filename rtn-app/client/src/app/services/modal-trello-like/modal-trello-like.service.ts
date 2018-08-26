@@ -5,10 +5,13 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ModalTrelloLikeService {
-
   private projectToEdit$ = new Subject<Project>();
+  private isSaveActionDemanded$ = new Subject<boolean>();
   private isOpenModal$ = new Subject<boolean>();
-  private projectToEditSaved$ = new Subject<boolean>();
+  private isCreationMode$ = new Subject<boolean>();
+  private projectToAddSaved$ = new Subject<Project>();
+  private projectToEditSaved$ = new Subject<Project>();
+  private hasFormEditorErrors$ = new Subject<boolean>();
 
   constructor() { }
 
@@ -20,6 +23,22 @@ export class ModalTrelloLikeService {
     return this.projectToEdit$.asObservable();
   }
 
+  setProjectToAddSaved(project: any) {
+    this.projectToAddSaved$.next(project);
+  }
+
+  getProjectToAddSaved(): Observable<any> {
+    return this.projectToAddSaved$.asObservable();
+  }
+
+  setProjectToEditSaved(project: any) {
+    this.projectToAddSaved$.next(project);
+  }
+
+  getProjectToEditSaved(): Observable<any> {
+    return this.projectToAddSaved$.asObservable();
+  }
+
   setIsOpenModal(isOpen: boolean) {
     this.isOpenModal$.next(isOpen);
   }
@@ -28,12 +47,27 @@ export class ModalTrelloLikeService {
     return this.isOpenModal$.asObservable();
   }
 
-  setProjectToEditSaved(save: boolean) {
-    this.projectToEditSaved$.next(save);
+  setIsSaveActionDemanded(save: boolean) {
+    this.isSaveActionDemanded$.next(save);
   }
 
-  getProjectToEditSaved(): Observable<boolean> {
-    return this.projectToEditSaved$.asObservable();
+  getIsSaveActionDemanded(): Observable<boolean> {
+    return this.isSaveActionDemanded$.asObservable();
   }
 
+  getIsCreationMode(): Observable<boolean> {
+    return this.isCreationMode$.asObservable();
+  }
+
+  setIsCreationMode(creationModel: boolean) {
+    this.isCreationMode$.next(creationModel);
+  }
+
+  getHasFormEditorErrors(): Observable<boolean> {
+    return this.hasFormEditorErrors$.asObservable();
+  }
+
+  setHasFormEditorErrors(hasErrors: boolean) {
+    this.hasFormEditorErrors$.next(hasErrors);
+  }
 }

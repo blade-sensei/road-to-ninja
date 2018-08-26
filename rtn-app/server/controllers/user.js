@@ -51,6 +51,7 @@ router.post(
     }
   },
   (req, res) => {
+    req.body.uid = req.params.uid;
     new ProjectModel(req.body).save()
       .then(project => res.send(project))
       .catch(err => res.status(500).send(`database error ${err}`));

@@ -52,6 +52,7 @@ export class ProjectInfoComponent implements OnInit {
 
   showEditModal(project) {
     this.modalTrelloLikeService.setIsOpenModal(true);
+    this.modalTrelloLikeService.setIsCreationMode(false);
     this.modalTrelloLikeService.setProjectToEdit(project);
   }
 
