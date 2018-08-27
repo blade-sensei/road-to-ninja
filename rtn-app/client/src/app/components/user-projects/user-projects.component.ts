@@ -51,7 +51,6 @@ export class UserProjectsComponent implements OnInit {
           if (project._id === projectSaved._id) {
             Object.assign(project, projectSaved);
           }
-          console.log(project);
           return project;
         });
         this.projects = projectsUpdated.slice();

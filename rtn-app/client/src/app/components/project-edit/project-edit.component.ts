@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-trello-like.service';
 import { Subscription } from 'rxjs/Subscription';
 import { RequiredProjectsEditorService } from '../../services/required-projects-editor/required-projects-editor.service';
@@ -12,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './project-edit.component.html',
   styleUrls: ['./project-edit.component.css']
 })
-export class ProjectEditComponent implements OnInit, OnChanges {
+export class ProjectEditComponent implements OnInit, OnDestroy {
   @Input() project: any = {};
   projectBeingUpdated: any = {};
   @Input() isCreationMode = false;
@@ -37,7 +37,10 @@ export class ProjectEditComponent implements OnInit, OnChanges {
     this.copyProjectObject();
   }
 
-  ngOnChanges() {
+  ngOnDestroy() {
+    this.projectToEditSavedSubscription.unsubscribe();
+    this.requiredProjectsToEditSavedSubscription.unsubscribe();
+    this.isCreationModeSubscription.unsubscribe();
   }
 
   saveProject() {
@@ -81,14 +84,6 @@ export class ProjectEditComponent implements OnInit, OnChanges {
       .getRequiredProjectsToEdit()
       .subscribe(savedRequiredProject => {
         this.projectBeingUpdated.requires = savedRequiredProject.slice();
-      });
-  }
-
-  subscribeForIsCreationMode() {
-    this.isCreationModeSubscription = this.modalTrelloLikeService
-      .getIsCreationMode().subscribe(isCreationMode => {
-        this.isCreationMode = isCreationMode;
-        console.log(this.isCreationMode);
       });
   }
 

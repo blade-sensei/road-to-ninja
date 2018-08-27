@@ -32,11 +32,11 @@ export class ModalTrelloLikeService {
   }
 
   setProjectToEditSaved(project: any) {
-    this.projectToAddSaved$.next(project);
+    this.projectToEditSaved$.next(project);
   }
 
   getProjectToEditSaved(): Observable<any> {
-    return this.projectToAddSaved$.asObservable();
+    return this.projectToEditSaved$.asObservable();
   }
 
   setIsOpenModal(isOpen: boolean) {
