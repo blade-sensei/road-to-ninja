@@ -8,7 +8,7 @@
     <p class="card-text">{{ project.description }}</p>
     <p class="card-text"> status: {{ project.status }}</p>
     <div>
-      <a href="{{ project.data }}"> sources </a>
+      <a target="_blank" rel="noopener" href="{{ project.data }}"> sources </a>
     </div>
     <button (mouseenter)="showRequiredProjects()"> Required projects </button>
   </div>
