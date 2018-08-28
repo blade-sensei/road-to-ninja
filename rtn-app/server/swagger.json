@@ -169,6 +169,28 @@
         ]
       }
     },
+    "/users/current-user": {
+      "get": {
+        "tags": ["Users"],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Get current user through provided token",
+        "responses": {
+          "200": {
+            "description": "Current user",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/auth/login": {
       "post": {
         "summary": "Get token",

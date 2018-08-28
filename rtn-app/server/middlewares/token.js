@@ -6,7 +6,8 @@ const verifyToken = (req, res, next) => {
   if (token) {
     return jwt.verify(token, req.app.get('secret_key'), (err, decoded) => {
       if (err) {
-        res.json({ success: false, message: 'Failed to authenticate token.' });
+        return res
+          .json({ success: false, message: 'Failed to authenticate token.' });
       }
       req.auth = decoded;
       return next();
