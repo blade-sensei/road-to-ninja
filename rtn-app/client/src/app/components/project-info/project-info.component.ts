@@ -56,6 +56,22 @@ export class ProjectInfoComponent implements OnInit {
     this.modalTrelloLikeService.setProjectToEdit(project);
   }
 
+  isProjectInProgressStatus(project) {
+    return project.status === 'in progress';
+  }
+
+  isProjectNotStartedStatus(project) {
+    return project.status === 'not started';
+  }
+
+  isProjectFinishedStatus(project) {
+    return project.status === 'finished';
+  };
+
+  startProjectWork(project) {}
+
+  finishProjectWork(project) {}
+
 }
 
 

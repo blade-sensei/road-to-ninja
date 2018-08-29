@@ -27,9 +27,20 @@ const data = [
     }],
   },
   {
+    title: 'project 2',
+    description: 'This is the description for project 2',
+    status: 'not started',
+    data: 'https://',
+    uid: '1',
+    requires: [{
+      title: 'project 1',
+      status: 'finished',
+    }],
+  },
+  {
     title: 'project 3',
     description: 'This is the description for project 3',
-    status: 'started',
+    status: 'in progress',
     data: 'https://',
     uid: '1',
     requires: [{
