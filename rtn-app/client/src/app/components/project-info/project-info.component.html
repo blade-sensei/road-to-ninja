@@ -12,8 +12,8 @@
     </div>
     <button (mouseenter)="showRequiredProjects()"> Required projects </button>
     <div *ngIf="isUserLogged">
-      <button *ngIf="isProjectInProgressStatus(project)" class="float-right" (click)="startProjectWork(project)"> I finish !</button>
-      <button *ngIf="isProjectNotStartedStatus(project)" class="float-right" (click)="finishProjectWork(project)"> Start work </button>
+      <button *ngIf="isProjectInProgressStatus(project)" class="float-right" (click)="finishProjectWork(project)"> I finish !</button>
+      <button *ngIf="isProjectNotStartedStatus(project)" class="float-right" (click)="startProjectWork(project)"> Start work </button>
       <label *ngIf="isProjectFinishedStatus(project)" class="float-right"> well done !</label>
     </div>
   </div>

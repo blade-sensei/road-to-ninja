@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { RequiredProjectsComponent } from '../required-projects/required-projects.component';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-trello-like.service';
+import { UserProjectsService } from '../user-projects/user-projects.service';
 
 @Component({
   selector: 'app-project-info',
@@ -27,6 +28,7 @@ export class ProjectInfoComponent implements OnInit {
   constructor(
     private componentFactory: ComponentFactoryResolver,
     private modalTrelloLikeService: ModalTrelloLikeService,
+    private userProjectService: UserProjectsService,
   ) {
   }
 
@@ -66,11 +68,25 @@ export class ProjectInfoComponent implements OnInit {
 
   isProjectFinishedStatus(project) {
     return project.status === 'finished';
-  };
+  }
 
-  startProjectWork(project) {}
+  startProjectWork(project) {
+    this.changeStatus('in progress', project);
+  }
 
-  finishProjectWork(project) {}
+  finishProjectWork(project) {
+    this.changeStatus('finished', project);
+  }
+
+  changeStatus(status: string, project) {
+    const projectToEdit = Object.assign({}, project);
+    projectToEdit.status = status;
+    this.userProjectService
+      .updateUserProject(projectToEdit.uid, projectToEdit._id, projectToEdit)
+      .subscribe(updatedProject => {
+        this.project = Object.assign({}, updatedProject);
+      });
+  }
 
 }
 
