@@ -15,6 +15,7 @@ export class UserProjectsComponent implements OnInit {
   isUserLogged: boolean;
   @Input() user: any;
   projectToAddSavedSubscription: Subscription;
+  projectToFilteredSubscription: Subscription;
 
   constructor(
     private userProjectService: UserProjectsService,
@@ -24,6 +25,7 @@ export class UserProjectsComponent implements OnInit {
   ngOnInit() {
     this.subscribeToProjectAddSaved();
     this.subscribeToProjectEditSaved();
+    this.subscribeToFilteredProjects();
     this.userProjectService.getUserProjects(this.user.uid)
       .subscribe(projects => this.projects = projects);
     this.isUserLogged = this.isUserLoggedIn();
