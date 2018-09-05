@@ -24,6 +24,7 @@ import { RequiredProjectsEditorComponent } from './components/required-project-e
 import { RequiredProjectsEditorService } from './services/required-projects-editor/required-projects-editor.service';
 import { ButtonProjectAddComponent } from './components/button-project-add/button-project-add.component';
 import { FilterProjectsComponent } from './components/filter-projects/filter-projects.component';
+import { FilterProjectsService } from './services/filter/filter-projects.service';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { FilterProjectsComponent } from './components/filter-projects/filter-pro
     UserProjectsService,
     AuthenticationService,
     ProfileService,
+    FilterProjectsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
