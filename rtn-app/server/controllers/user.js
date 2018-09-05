@@ -21,19 +21,24 @@ router.get('/current-user', token.verifyToken, (req, res) => {
 
 // user projects
 router.get('/:uid/projects', (req, res) => {
-  ProjectModel.find({ uid: req.params.uid }, (error, docs) => {
+  const filterProperties = Object.keys(req.query);
+  let whereConditionRequest = { uid: req.params.uid };
+  if (filterProperties.length > 0) {
+    whereConditionRequest = Object.assign(whereConditionRequest, req.query);
+  }
+  Reflect.deleteProperty(whereConditionRequest, 'search');
+  ProjectModel.find(whereConditionRequest, (error, docs) => {
     if (error) {
       return res.send('Bad request or database problem.');
     }
-    if (req.query.title) {
-      const projects = docs
+    let projects = [...docs];
+    if (Reflect.has(req.query, 'search')) {
+      projects = docs
         .filter(project => project.title.toLowerCase()
-          .includes(req.query.title.toLowerCase()));
-      res.status(200);
-      return res.send(projects);
+          .includes(req.query.search.toLowerCase()));
     }
     res.status(200);
-    return res.send(docs);
+    return res.send(projects);
   });
 });
 
