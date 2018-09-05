@@ -18,7 +18,6 @@ export class ProjectEditComponent implements OnInit, OnDestroy {
   @Input() isCreationMode = false;
   projectToEditSavedSubscription: Subscription;
   requiredProjectsToEditSavedSubscription: Subscription;
-  isCreationModeSubscription: Subscription;
   projectForm: FormGroup;
 
   constructor(
@@ -40,7 +39,6 @@ export class ProjectEditComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.projectToEditSavedSubscription.unsubscribe();
     this.requiredProjectsToEditSavedSubscription.unsubscribe();
-    this.isCreationModeSubscription.unsubscribe();
   }
 
   saveProject() {
