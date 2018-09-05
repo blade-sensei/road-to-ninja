@@ -9,11 +9,23 @@ export class UserProjectsService {
   constructor(private http: HttpClient) {
   }
 
-  getUserProjects(uid, searchText?: string): Observable<Project[]> {
-    if (searchText) {
-      return this.http.get<Project[]>(`http://localhost:3000/api/users/${uid}/projects?title=${searchText}`);
+  getUserProjects(uid, options?: object): Observable<Project[]> {
+    const basicApiUrl = `http://localhost:3000/api/users/${uid}/projects`;
+    let queryParameters = '';
+    if (options) {
+      if (Reflect.has(options, 'filter')) {
+        const filterParameters = Object.entries(Reflect.get(options, 'filter'));
+        filterParameters.forEach((property) => {
+          queryParameters = queryParameters.concat(`&${property[0]}=${property[1]}`);
+        });
+      }
+      if (Reflect.has(options, 'search')) {
+        queryParameters = queryParameters
+          .concat(`&search=${Reflect.get(options, 'search')}`);
+      }
+      return this.http.get<Project[]>(`${basicApiUrl}?${queryParameters}`);
     }
-    return this.http.get<Project[]>(`http://localhost:3000/api/users/${uid}/projects`);
+    return this.http.get<Project[]>(`${basicApiUrl}`);
   }
 
   updateUserProject(uid, id, project): Observable<any> {
