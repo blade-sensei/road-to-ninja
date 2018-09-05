@@ -3,7 +3,7 @@ import { UserProjectsService } from './user-projects.service';
 import { ProfileService } from '../../services/profile/profile.service';
 import { Subscription } from 'rxjs/Subscription';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-trello-like.service';
-import { Project } from '../../models/project';
+import { FilterProjectsService } from '../../services/filter/filter-projects.service';
 
 @Component({
   selector: 'app-user-projects',
@@ -19,7 +19,8 @@ export class UserProjectsComponent implements OnInit {
 
   constructor(
     private userProjectService: UserProjectsService,
-    private modalTrelloLikeService: ModalTrelloLikeService
+    private modalTrelloLikeService: ModalTrelloLikeService,
+    private filterService: FilterProjectsService,
   ) { }
 
   ngOnInit() {
@@ -58,5 +59,14 @@ export class UserProjectsComponent implements OnInit {
         this.projects = projectsUpdated.slice();
       });
   }
+
+  subscribeToFilteredProjects() {
+    this.projectToFilteredSubscription = this.filterService.getFilteredProjects()
+      .subscribe(projects => {
+        this.projects = [...projects];
+      });
+  }
+
+
 
 }

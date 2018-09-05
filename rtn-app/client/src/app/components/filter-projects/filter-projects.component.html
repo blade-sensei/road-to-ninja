@@ -1,8 +1,8 @@
 <label> filter: </label>
-<select name="status" id="status-id" title="">
+<select name="status" id="status-id" title="" (change)="onFilterProjects()" [(ngModel)]="statusFilter">
   <option value="">status</option>
   <option value="in progress">in progress</option>
-  <option value="started">started</option>
+  <option value="not started">not started</option>
   <option value="finished">finished</option>
 </select>
-<input type="search" title="">
+<input [(ngModel)]="searchUserInput" (keyup)="onFilterProjects()" type="search" title="">
