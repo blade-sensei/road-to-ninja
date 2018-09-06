@@ -27,16 +27,23 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   isCreationMode = false;
   hasFormErrors = false;
   projectToEdit: any = {};
+  editorPosition: any;
 
   isOpenSubscription: Subscription;
   isCreationModeSubscription: Subscription;
   hasFormErrorsSubscription: Subscription;
   projectSubscription: Subscription;
+  projectEditorPositionSubscription: Subscription;
 
   constructor(
     private modalTrelloLikeService: ModalTrelloLikeService,
     private componentFactory: ComponentFactoryResolver,
     ) {
+    this.editorPosition = {
+      top: 0,
+      left: 0,
+      width: 0,
+    };
   }
 
 
@@ -46,6 +53,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
     this.subscribeForProjectToEdit();
     this.setDropBackClickEvent();
     this.subscribeForHasFormErrors();
+    this.subscribeForProjectEditorPosition();
   }
 
   ngOnDestroy() {
@@ -53,6 +61,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
     this.projectSubscription.unsubscribe();
     this.isCreationModeSubscription.unsubscribe();
     this.hasFormErrorsSubscription.unsubscribe();
+    this.projectEditorPositionSubscription.unsubscribe();
   }
 
   showRequiredProjectEditorContainer() {
@@ -86,14 +95,18 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
 
   setDropBackClickEvent() {
     window.addEventListener('click', (event: any) => {
-      if (this.isClickedTargetModal(event)) {
+      if (
+        this.isClickedTargetModal(event)
+        || event.target.className.includes('modal-content-row')
+        || event.target.className.includes('edit-requires-button')) {
         this.closeModal();
       }
     });
   }
 
   isClickedTargetModal(event) {
-    return (event.target.className === 'modal-trello-edition');
+    console.log(event.target.className);
+    return (event.target.className.includes('modal-trello-edition'));
   }
 
   onSaveProject() {
@@ -136,6 +149,12 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
       .subscribe(hasErrors => this.hasFormErrors = hasErrors);
   }
 
+  subscribeForProjectEditorPosition() {
+    this.projectEditorPositionSubscription = this.modalTrelloLikeService
+      .getProjectToEditContainerPosition()
+      .subscribe(containerPosition => this.editorPosition = containerPosition);
+  }
+
   showprojectEditorContainer() {
     this.projectEditorContainer.clear();
     const ProjectEditorComponentFactory = this.componentFactory
@@ -147,4 +166,27 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
     editionContainer.project = this.projectToEdit;
     editionContainer.isCreationMode = this.isCreationMode;
   }
+
+  editorPositionStyle() {
+    return {
+      'margin-left': `${this.editorPosition.left}px`,
+      'margin-top': `${this.editorPosition.top}px`,
+      'width': `${this.editorPosition.width}px`,
+    };
+  }
+
+  requiredProjectsPositionStyle() {
+    return {
+      'margin-top': `${this.editorPosition.top - 15 }px`,
+      'margin-left': `${-15}px`,
+    };
+  }
+
+  saveButtonPosition() {
+    return {
+      'margin-left': `${this.editorPosition.left - 15}px`,
+      'margin-top': `${10}px`,
+    };
+  }
+
 }

@@ -1,12 +1,12 @@
 <div [formGroup]="projectForm" class="form-group">
-<label for="title"> project name:  </label>
-<input [(ngModel)]="projectBeingUpdated.title" class="form-control" formControlName="title" type="text" id="title" required> <BR>
+  <input [(ngModel)]="projectBeingUpdated.title" class="form-control" formControlName="title" type="text" id="title"
+         required>
 </div>
 <label for="description"> description: </label> <BR>
 <textarea id="description" [(ngModel)]="projectBeingUpdated.description"></textarea> <BR>
-<label for="sources"> sources:  </label>
-<input type="text" id="sources" [(ngModel)]="projectBeingUpdated.data" > <BR>
-<label for="sources"> required projects:  </label>
+<label for="sources"> sources: </label>
+<input type="text" id="sources" [(ngModel)]="projectBeingUpdated.data"> <BR>
+<label for="sources"> required projects: </label>
 
 <div *ngIf="title.invalid && (title.dirty || title.touched)"
      class="alert alert-danger">
@@ -22,7 +22,7 @@
 
 <ng-template #requiresList>
   <ul *ngFor="let project of projectBeingUpdated.requires">
-    <li> {{ project.title }}  --- {{ project.status }}</li>
+    <li> {{ project.title }} --- {{ project.status }}</li>
   </ul>
 </ng-template>
 
