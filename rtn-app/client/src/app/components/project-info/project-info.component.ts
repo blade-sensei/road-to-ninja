@@ -52,7 +52,18 @@ export class ProjectInfoComponent implements OnInit {
     this.isUpdateActivated = false;
   }
 
-  showEditModal(project) {
+  showEditModal(project, target) {
+    const top = target.parentElement.parentElement.parentElement.parentElement.offsetTop;
+    const left =  target.parentElement.parentElement.parentElement.parentElement.offsetLeft + 15;
+    const width = target.parentElement.parentElement.parentElement.offsetWidth;
+
+    const cardinalContainerPosition = {
+      top,
+      left,
+      width,
+    };
+
+    this.modalTrelloLikeService.setProjectToEditContainerPosition(cardinalContainerPosition);
     this.modalTrelloLikeService.setIsCreationMode(false);
     this.modalTrelloLikeService.setIsOpenModal(true);
     this.modalTrelloLikeService.setProjectToEdit(project);
