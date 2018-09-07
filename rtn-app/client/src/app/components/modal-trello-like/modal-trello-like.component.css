@@ -15,16 +15,15 @@
 .modal-content {
   margin-top: 96px; /* 15% from the top and centered */
   margin-left: 12px;
-  padding: 20px;
-  border: 1px solid #888;
   position: absolute;
   width: 290px; /* Could be more or less, depending on screen size */
+  background-color: transparent;
 }
 .modal-content-editor {
   background-color: #fff;
+  padding: 20px;
 }
 
-/* The Close Button */
 .close {
   color: #aaa;
   float: right;
@@ -40,13 +39,12 @@
 }
 
 .body.modal-trello-edition {
-  /* body overflow is hidden to hide main scrollbar when modal window is open */
   overflow: hidden;
 }
 
 .edit-requires-button {
   margin-top: 96px; /* 15% from the top and centered */
-  padding: 20px;
+  padding: 15px 20px;
   width: 400px;
   clear: left;
   z-index: 10;
