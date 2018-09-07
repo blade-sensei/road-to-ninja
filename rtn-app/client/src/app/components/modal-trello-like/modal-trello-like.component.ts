@@ -188,10 +188,8 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   }
 
   saveButtonPosition() {
-    console.log(this.editorPosition.top + 310);
     return {
-      'margin-left': `${this.editorPosition.left - 15}px`,
-      'margin-top': `${ 10 }px`,
+      'margin-top': '10px',
     };
   }
 

@@ -1,7 +1,7 @@
 <div #modalContainer id="modal" class="modal-trello-edition container-fluid"  [style.display]="getDisplayStyle()">
   <div class="row modal-content-row">
-    <div class="modal-content card border-primary" [ngStyle]="editorPositionStyle()">
-      <div class="modal-content-editor">
+    <div class="modal-content" [ngStyle]="editorPositionStyle()">
+      <div class="modal-content-editor card border-primary">
         <template class="project-editor-container col-sm-3" #projectEditorContainer> </template>
       </div>
       <div class="modal-content-save">
