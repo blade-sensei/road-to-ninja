@@ -1,5 +1,4 @@
-.requires-container-edition {
-  background-color: whitesmoke;
-  padding:20px;
-  width: 300px;
+.editor-container {
+  background-color: #fefefe;
+  padding:10px;
 }
