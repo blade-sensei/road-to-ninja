@@ -28,7 +28,7 @@ export class RequiredProjectsEditorComponent implements OnInit {
   }
 
   getProjectStatusIcone(editionProject) {
-    return this.isIncludeInCurrentRequiredProjects(editionProject) ? '✅' : '❌';
+    return this.isIncludeInCurrentRequiredProjects(editionProject) ? '✓' : '';
   }
 
   onPickProject(project) {
