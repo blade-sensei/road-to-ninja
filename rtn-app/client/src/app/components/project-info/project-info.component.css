@@ -1,3 +1,11 @@
 .float-right {
   float: right !important;
 }
+
+.toggle-requires-btn {
+  margin-bottom: 20px;
+}
+
+.status-action {
+  margin-bottom: 30px;
+}
