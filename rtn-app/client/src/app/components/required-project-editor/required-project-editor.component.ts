@@ -28,7 +28,7 @@ export class RequiredProjectsEditorComponent implements OnInit {
   }
 
   getProjectStatusIcone(editionProject) {
-    return this.isIncludeInCurrentRequiredProjects(editionProject) ? '✓' : 'x';
+    return this.isIncludeInCurrentRequiredProjects(editionProject) ? '✓' : '';
   }
 
   onPickProject(project) {
@@ -51,7 +51,8 @@ export class RequiredProjectsEditorComponent implements OnInit {
       .subscribe((currentUser: User) => {
         const searchText = event.target.value;
         if (searchText) {
-          this.userProjectService.getUserProjects(currentUser.uid, searchText)
+          this.userProjectService
+            .getUserProjects(currentUser.uid, { search: searchText })
             .subscribe(projects => this.requiredProjectsSearchResult = projects);
         } else {
           this.requiredProjectsSearchResult = this.currentUserRequiredProjects.slice();

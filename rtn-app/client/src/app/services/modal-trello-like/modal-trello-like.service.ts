@@ -12,6 +12,7 @@ export class ModalTrelloLikeService {
   private projectToAddSaved$ = new Subject<Project>();
   private projectToEditSaved$ = new Subject<Project>();
   private hasFormEditorErrors$ = new Subject<boolean>();
+  private projectToEditContainerPosition$ = new Subject<object>();
 
   constructor() { }
 
@@ -69,5 +70,13 @@ export class ModalTrelloLikeService {
 
   setHasFormEditorErrors(hasErrors: boolean) {
     this.hasFormEditorErrors$.next(hasErrors);
+  }
+
+  setProjectToEditContainerPosition(position) {
+    this.projectToEditContainerPosition$.next(position);
+  }
+
+  getProjectToEditContainerPosition() {
+    return this.projectToEditContainerPosition$.asObservable();
   }
 }

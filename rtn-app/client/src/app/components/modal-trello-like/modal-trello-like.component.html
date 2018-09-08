@@ -1,10 +1,22 @@
-<div id="modal" class="modal-trello-edition"  [style.display]="getDisplayStyle()">
-  <div class="modal-content">
-    <span class="close" (click)="closeModal()">&times;</span>
-    <template #projectEditorContainer> </template>
-  </div> <BR>
-  <button [disabled]="hasFormErrors" (click)="onSaveProject()"> save </button>
-  <button (click)="showRequiredProjectsEditor()"> edit requires </button>
-  <template #requiredProjectsEditorContainer>
-  </template>
+<div #modalContainer id="modal" class="modal-trello-edition container-fluid"  [style.display]="getDisplayStyle()">
+  <div class="row modal-content-row">
+    <div class="modal-content" [ngStyle]="editorPositionStyle()">
+      <div class="modal-content-editor card border-primary">
+        <template class="project-editor-container col-sm-3" #projectEditorContainer> </template>
+      </div>
+      <div class="modal-content-save">
+        <button class="btn btn-success btn-lg" [ngStyle]="saveButtonPosition()" [disabled]="hasFormErrors" (click)="onSaveProject()"> save </button>
+      </div>
+    </div>
+    <div class="edit-requires-button" [ngStyle]="requiredProjectsPositionStyle()">
+      <div class="pull-right" [ngClass]="{ 'float-right': hasContainerEnoughPlace() }" >
+        <button [ngClass]="{ 'selected-margin': hasContainerEnoughPlace() }"
+                class="btn btn-lg edit-required-btn" (click)="showRequiredProjectsEditor()"> edit required projects </button>
+      </div>
+      <div class="requires-container-edition" [ngClass]="{ 'float-right': hasContainerEnoughPlace() }">
+        <template #requiredProjectsEditorContainer>
+        </template>
+      </div>
+    </div>
+  </div>
 </div>

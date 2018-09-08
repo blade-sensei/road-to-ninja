@@ -7,19 +7,24 @@
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: aqua; /* Fallback color */
-  background-color: rgba(95, 116, 135, 0.69); /* Black w/ opacity */
+  /* Fallback color */
+  /* Black w/ opacity */
+  background: rgba(0, 0, 0, .6);
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin-top: 96px; /* 15% from the top and centered */
+  margin-left: 12px;
+  position: absolute;
+  width: 290px; /* Could be more or less, depending on screen size */
+  background-color: transparent;
+  border: none;
+}
+.modal-content-editor {
+  background-color: #fff;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
 }
 
-/* The Close Button */
 .close {
   color: #aaa;
   float: right;
@@ -35,6 +40,36 @@
 }
 
 .body.modal-trello-edition {
-  /* body overflow is hidden to hide main scrollbar when modal window is open */
   overflow: hidden;
+}
+
+.edit-requires-button {
+  margin-top: 96px; /* 15% from the top and centered */
+  padding: 15px 20px;
+  width: 400px;
+  clear: left;
+  z-index: 10;
+  position: absolute;
+}
+
+.edit-required-btn {
+  background: #17258c;
+  color: #e6e6e6;
+}
+.edit-required-btn:hover {
+  margin-left: 8px;
+}
+
+.edit-requires-container {
+  background-color: #fefefe;
+  border: 1px solid #888;
+  width: 200px;
+}
+.requires-container-edition {
+  padding-top: 10px;
+  width: 300px;
+}
+
+.selected-margin:hover {
+  margin-right: 8px;
 }
