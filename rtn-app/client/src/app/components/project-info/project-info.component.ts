@@ -17,6 +17,7 @@ import { UserProjectsService } from '../user-projects/user-projects.service';
 })
 export class ProjectInfoComponent implements OnInit {
   private isUpdateActivated = false;
+  private requiredListIsOpen = false;
   @Input() project: any;
   @Input() isUserLogged: boolean;
   @ViewChild(
@@ -36,12 +37,18 @@ export class ProjectInfoComponent implements OnInit {
   }
 
   showRequiredProjects() {
-    this.requiredProjectsTemplate.clear();
-    const factory = this.componentFactory
-      .resolveComponentFactory(RequiredProjectsComponent);
-    this.RequiredProjectsComponentRef = this.requiredProjectsTemplate.createComponent(factory);
-    const requiredProjects = <RequiredProjectsComponent>this.RequiredProjectsComponentRef.instance;
-    requiredProjects.requiredProjects = this.project.requires;
+    if (this.requiredListIsOpen) {
+      this.requiredProjectsTemplate.clear();
+      this.RequiredProjectsComponentRef.destroy();
+    } else {
+      this.requiredProjectsTemplate.clear();
+      const factory = this.componentFactory
+        .resolveComponentFactory(RequiredProjectsComponent);
+      this.RequiredProjectsComponentRef = this.requiredProjectsTemplate.createComponent(factory);
+      const requiredProjects = <RequiredProjectsComponent>this.RequiredProjectsComponentRef.instance;
+      requiredProjects.requiredProjects = this.project.requires;
+    }
+    this.requiredListIsOpen = !this.requiredListIsOpen;
   }
 
   showUpdateButton() {
