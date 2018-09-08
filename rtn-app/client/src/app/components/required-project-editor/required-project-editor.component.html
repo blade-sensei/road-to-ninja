@@ -1,12 +1,15 @@
-<div class="editor-container">
-<input placeholder="search by name..." (keyup)="searchProject($event)" type="search" id="project-name"> <BR>
+<div class="editor-container card">
+  <div class="form-group">
+    <input class="form-control" placeholder="search by name..." (keyup)="searchProject($event)" type="search" id="project-name">
+  </div>
 <div class="requires-list-edition">
   <p *ngIf="!requiredProjectsSearchResult.length > 0">
     There no required projects yet
   </p>
   <ul *ngFor="let project of requiredProjectsSearchResult">
-    <li (click)="onPickProject(project)">
-      <h6> {{ project.title }} </h6> - {{ project.status }}: {{ getProjectStatusIcone(project) }}
+    <li class="select-project" (click)="onPickProject(project)">
+      <h6> {{ project.title }} (<i>{{ project.status }}</i>) </h6>
+      <span class="check-icon"> {{ getProjectStatusIcone(project) }} </span>
     </li>
   </ul>
 </div>
