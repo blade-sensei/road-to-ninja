@@ -9,3 +9,11 @@
 .status-action {
   margin-bottom: 30px;
 }
+
+.badge {
+  font-size: 100%;
+}
+
+.required-list {
+  margin-top: 10px;
+}

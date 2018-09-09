@@ -1,15 +1,23 @@
 <div class="card border-primary" (mouseenter)="showUpdateButton()"
      (mouseleave)="hiddeUpdateButton()">
   <div class="card-body">
-    <div *ngIf="isUpdateActivated && isUserLogged">
-      <button class="float-right" (click)="showEditModal(project, $event.target)"> modifier</button>
+    <div class="edit-btn" *ngIf="isUpdateActivated && isUserLogged">
+      <button class="float-right btn btn-outline-success" (click)="showEditModal(project, $event.target)"> edit</button>
     </div>
     <h5 class="card-title">{{ project.title }}</h5>
     <p class="card-text">{{ project.description }}</p>
-    <p class="card-text"> status: {{ project.status }}</p>
     <div class="form-group">
-      <a target="_blank" rel="noopener" href="{{ project.data }}"> sources </a>
+      <a title="{{ project.data }}" target="_blank" rel="noopener" href="{{ project.data }}">go to sources</a>
     </div>
+    <label class="card-text">status: </label>
+    <span class="badge"
+          [ngClass]="{
+          'badge-danger': isProjectInProgressStatus(project),
+          'badge-success': isProjectFinishedStatus(project),
+          'badge-light': isProjectNotStartedStatus(project)
+          }">
+      {{ project.status }}
+    </span>
     <div class="form-group required-list">
       <button class="btn btn-light toggle-requires-btn" type="submit"
               (click)="showRequiredProjects()">
