@@ -178,7 +178,7 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
 
   requiredProjectsPositionStyle() {
     let left = this.editorPosition.left + this.editorPosition.width - 15;
-    if (this.hasContainerEnoughPlace()) {
+    if (!this.hasContainerEnoughPlace()) {
       left = (this.editorPosition.left - (360 + 25));
     }
     return {
@@ -194,6 +194,6 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   }
 
   hasContainerEnoughPlace() {
-    return window.innerWidth - (this.editorPosition.left + this.editorPosition.width ) < 300;
+    return (window.innerWidth - (this.editorPosition.left + this.editorPosition.width ) > 300);
   }
 }
