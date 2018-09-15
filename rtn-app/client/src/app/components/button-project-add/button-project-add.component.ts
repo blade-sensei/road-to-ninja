@@ -21,10 +21,12 @@ export class ButtonProjectAddComponent implements OnInit {
     this.modalTrelloLikeService.setIsCreationMode(true);
     this.modalTrelloLikeService.setIsOpenModal(true);
     this.modalTrelloLikeService.setProjectToEdit(project);
+
+    const left = window.innerWidth / 2;
     this.modalTrelloLikeService.setProjectToEditContainerPosition({
       top: 200,
-      left: 384,
-      width: 290,
+      left: left - 200,
+      width: 390,
     });
 
   }
