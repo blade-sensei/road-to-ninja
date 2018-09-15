@@ -1,8 +1,16 @@
-<label> filter: </label>
-<select name="status" id="status-id" title="" (change)="onFilterProjects()" [(ngModel)]="statusFilter">
-  <option value="">status</option>
-  <option value="in progress">in progress</option>
-  <option value="not started">not started</option>
-  <option value="finished">finished</option>
-</select>
-<input [(ngModel)]="searchUserInput" (keyup)="onFilterProjects()" type="search" title="">
+<div class="form-inline my-2 mt-3 ml-5">
+  <div class="form-group">
+  <select name="status" id="status-id" title="" (change)="onFilterProjects()" [(ngModel)]="statusFilter"
+          class="form-control mr-sm-2 form-control-lg">
+    <option value="">status</option>
+    <option value="in progress">in progress</option>
+    <option value="not started">not started</option>
+    <option value="finished">finished</option>
+  </select>
+  </div>
+  <div class="form-group">
+  <input [(ngModel)]="searchUserInput" (keyup)="onFilterProjects()"
+         type="search" title="" placeholder="search by name..."
+         class="form-control form-control-lg mr-sm-2" aria-label="Search">
+  </div>
+</div>
