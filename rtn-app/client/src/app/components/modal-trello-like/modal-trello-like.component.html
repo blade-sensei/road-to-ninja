@@ -9,11 +9,19 @@
       </div>
     </div>
     <div class="edit-requires-button" [ngStyle]="requiredProjectsPositionStyle()">
-      <div class="pull-right" [ngClass]="{ 'float-right': hasContainerEnoughPlace() }" >
+      <div
+        [ngClass]="{
+        'float-left': hasContainerEnoughPlace(),
+        'float-right': !hasContainerEnoughPlace()
+        }" >
         <button [ngClass]="{ 'selected-margin': hasContainerEnoughPlace() }"
                 class="btn btn-lg edit-required-btn" (click)="showRequiredProjectsEditor()"> edit required projects </button>
       </div>
-      <div class="requires-container-edition" [ngClass]="{ 'float-right': hasContainerEnoughPlace() }">
+      <div class="requires-container-edition"
+           [ngClass]="{
+           'float-right': !hasContainerEnoughPlace(),
+           'float-left': hasContainerEnoughPlace()
+           }">
         <template #requiredProjectsEditorContainer>
         </template>
       </div>
