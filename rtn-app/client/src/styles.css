@@ -1,22 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
-/**
-body {
-
-  padding-top: 10px;
-
+[class*="btn-primary"] {
+  background-color: #af1944;
+  border-color: #af1944;
 }
 
-[class*="col-"], footer, header {
-
-  background-color: lightgreen;
-
-  border: 2px solid black;
-
-  border-radius: 6px;
-
-  line-height: 40px;
-
-  text-align: center;
-
+.btn-primary:hover {
+  background-color: #a3153d;
+  border-color: #f9ccd9;
 }
-**/
+
+.border-primary {
+  border-color: #af1944 !important;
+}

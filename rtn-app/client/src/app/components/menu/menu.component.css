@@ -1,0 +1,22 @@
+.nav-bar-container {
+  background-color: #008b89;
+}
+
+.menu-title-rtn {
+  margin-left: 21%;
+}
+
+.menu-right-side {
+  margin-left: auto;
+  margin-right: 16px;
+}
+
+.menu-title-link {
+  cursor: pointer;
+  color: #fff;
+}
+
+.menu-title-link:hover {
+  color: #8fc1c0;
+}
+
