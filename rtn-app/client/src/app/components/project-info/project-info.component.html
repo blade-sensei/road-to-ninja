@@ -14,7 +14,7 @@
           [ngClass]="{
           'badge-danger': isProjectInProgressStatus(project),
           'badge-success': isProjectFinishedStatus(project),
-          'badge-light': isProjectNotStartedStatus(project)
+          'badge-warning': isProjectNotStartedStatus(project)
           }">
       {{ project.status }}
     </span>
