@@ -3,6 +3,7 @@ import { UserProjectsService } from '../user-projects/user-projects.service';
 import { UserService } from '../user/user.service';
 import { User } from '../../models/user';
 import { FilterProjectsService } from '../../services/filter/filter-projects.service';
+import { ProfileService } from '../../services/profile/profile.service';
 
 @Component({
   selector: 'app-filter-projects',
@@ -12,13 +13,17 @@ import { FilterProjectsService } from '../../services/filter/filter-projects.ser
 export class FilterProjectsComponent implements OnInit {
   searchUserInput = '';
   statusFilter = '';
+  profileUsername = '';
+
   constructor(
     private userProjectsService: UserProjectsService,
     private userService: UserService,
     private filterService: FilterProjectsService,
+    private profileService: ProfileService
   ) { }
 
   ngOnInit() {
+    this.subscribeForCurrentProfile();
   }
 
   onFilterProjects() {
@@ -31,13 +36,18 @@ export class FilterProjectsComponent implements OnInit {
     if (this.searchUserInput) {
       Reflect.set(options, 'search', this.searchUserInput);
     }
-
-    this.userService.getCurrentUser().subscribe((user: User) => {
+    this.userService.getUserByName(this.profileUsername).subscribe((user: User) => {
       this.userProjectsService
         .getUserProjects(user.uid, options)
         .subscribe(projects => {
           this.filterService.setFilteredProjects(projects);
         });
+    });
+  }
+
+  subscribeForCurrentProfile() {
+    this.profileService.getCurrentProfil().subscribe((profile: string) => {
+      this.profileUsername = profile;
     });
   }
 
