@@ -15,11 +15,13 @@ export class UserComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
+    private profileService: ProfileService,
   ) { }
 
   ngOnInit() {
     const userName = this.route.snapshot.paramMap.get('username');
     this.setupUser(userName);
+    this.profileService.setCurrentProfil(userName);
   }
 
   setupUser(name) {
