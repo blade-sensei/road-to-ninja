@@ -18,7 +18,7 @@ const data = [
   {
     title: 'project 2b',
     description: 'This is the description for project 2b',
-    status: 'no started',
+    status: 'not started',
     data: 'https://',
     uid: '2',
     requires: [{

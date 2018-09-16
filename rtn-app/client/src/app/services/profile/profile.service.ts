@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models/user';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ProfileService {
-
+  private currentProfile$ = new Subject<string>();
   currentUser: User = new User();
   constructor() { }
 
@@ -20,6 +21,14 @@ export class ProfileService {
       return currentUser.logged;
     }
     return false;
+  }
+
+  getCurrentProfil() {
+    return this.currentProfile$.asObservable();
+  }
+
+  setCurrentProfil(profil: string) {
+    this.currentProfile$.next(profil);
   }
 
 }
