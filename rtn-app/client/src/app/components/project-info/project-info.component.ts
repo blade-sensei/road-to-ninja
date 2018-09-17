@@ -73,7 +73,7 @@ export class ProjectInfoComponent implements OnInit {
     this.modalTrelloLikeService.setProjectToEditContainerPosition(cardinalContainerPosition);
     this.modalTrelloLikeService.setIsCreationMode(false);
     this.modalTrelloLikeService.setIsOpenModal(true);
-    this.modalTrelloLikeService.setProjectToEdit(project);
+    this.modalTrelloLikeService.setProjectToEdit(JSON.parse(JSON.stringify(project)));
   }
 
   isProjectInProgressStatus(project) {
