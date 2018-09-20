@@ -103,18 +103,21 @@ router.patch(
   },
   (req, res) => {
     const project = Object.assign({}, req.body);
-    const requiresId = project.requires.map((requiredProject) => {
-      return Reflect.get(requiredProject, '_id');
-    });
+    const requiresId = project.requires
+      .map(requiredProject => Reflect.get(requiredProject, '_id'));
     Reflect.set(project, 'requires', requiresId);
     ProjectModel.findOneAndUpdate(
       { uid: req.params.uid, _id: req.params.id },
       project,
       { new: true },
-      (err, updatedProject) => {
+      async (err, updatedProject) => {
         if (updatedProject) {
+          let projectWithRequires = Object.assign({}, updatedProject);
+          if (hasRequiredProjects(updatedProject)) {
+            projectWithRequires = await getRequiredProjects(updatedProject);
+          }
           res.status(200);
-          res.send(updatedProject);
+          res.send(projectWithRequires);
         } else {
           res.status(500);
           res.send('Project not found or couldn\'t save.');
