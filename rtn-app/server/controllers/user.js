@@ -112,7 +112,7 @@ router.patch(
       { new: true },
       async (err, updatedProject) => {
         if (updatedProject) {
-          let projectWithRequires = Object.assign({}, updatedProject);
+          let projectWithRequires = JSON.parse(JSON.stringify(updatedProject));
           if (hasRequiredProjects(updatedProject)) {
             projectWithRequires = await getRequiredProjects(updatedProject);
           }
