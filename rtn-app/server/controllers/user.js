@@ -6,6 +6,24 @@ const verifyReq = require('../helpers/request');
 
 const router = express.Router();
 
+function getRequiredProjects(project) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const projectRequiresInformation = await Promise
+        .all(project.requires
+          .map(requireProjectId => ProjectModel.findById(requireProjectId)));
+      Reflect.set(project, 'requires', projectRequiresInformation);
+      resolve(project);
+    } catch (e) {
+      reject(e);
+    }
+  });
+}
+
+function hasRequiredProjects(project) {
+  return project.requires.length > 0;
+}
+
 router.get('', (req, res) => {
   userModel.find((err, docs) => res.send(docs));
 });
@@ -27,7 +45,7 @@ router.get('/:uid/projects', (req, res) => {
     whereConditionRequest = Object.assign(whereConditionRequest, req.query);
   }
   Reflect.deleteProperty(whereConditionRequest, 'search');
-  ProjectModel.find(whereConditionRequest, (error, docs) => {
+  ProjectModel.find(whereConditionRequest, async (error, docs) => {
     if (error) {
       return res.send('Bad request or database problem.');
     }
@@ -37,8 +55,15 @@ router.get('/:uid/projects', (req, res) => {
         .filter(project => project.title.toLowerCase()
           .includes(req.query.search.toLowerCase()));
     }
+    const projectsWithRequires = await Promise.all(projects
+      .map(async (userProject) => {
+        if (hasRequiredProjects(userProject)) {
+          return getRequiredProjects(userProject);
+        }
+        return userProject;
+      }));
     res.status(200);
-    return res.send(projects);
+    return res.send(projectsWithRequires);
   });
 });
 
@@ -78,6 +103,10 @@ router.patch(
   },
   (req, res) => {
     const project = Object.assign({}, req.body);
+    const requiresId = project.requires.map((requiredProject) => {
+      return Reflect.get(requiredProject, '_id');
+    });
+    Reflect.set(project, 'requires', requiresId);
     ProjectModel.findOneAndUpdate(
       { uid: req.params.uid, _id: req.params.id },
       project,
