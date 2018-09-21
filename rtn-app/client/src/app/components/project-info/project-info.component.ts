@@ -9,6 +9,8 @@ import {
 import { RequiredProjectsComponent } from '../required-projects/required-projects.component';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-trello-like.service';
 import { UserProjectsService } from '../user-projects/user-projects.service';
+import { ProjectService } from '../../services/project/project.service';
+import { Project } from '../../models/project';
 
 @Component({
   selector: 'app-project-info',
@@ -30,6 +32,7 @@ export class ProjectInfoComponent implements OnInit {
     private componentFactory: ComponentFactoryResolver,
     private modalTrelloLikeService: ModalTrelloLikeService,
     private userProjectService: UserProjectsService,
+    private projectService: ProjectService,
   ) {
   }
 
@@ -44,9 +47,11 @@ export class ProjectInfoComponent implements OnInit {
       this.requiredProjectsTemplate.clear();
       const factory = this.componentFactory
         .resolveComponentFactory(RequiredProjectsComponent);
-      this.RequiredProjectsComponentRef = this.requiredProjectsTemplate.createComponent(factory);
-      const requiredProjects = <RequiredProjectsComponent>this.RequiredProjectsComponentRef.instance;
-      requiredProjects.requiredProjects = this.project.requires;
+      this.projectService.getProjectById(this.project._id).subscribe((project: Project) => {
+        this.RequiredProjectsComponentRef = this.requiredProjectsTemplate.createComponent(factory);
+        const requiredProjects = <RequiredProjectsComponent>this.RequiredProjectsComponentRef.instance;
+        requiredProjects.requiredProjects = project.requires;
+      });
     }
     this.requiredListIsOpen = !this.requiredListIsOpen;
   }
