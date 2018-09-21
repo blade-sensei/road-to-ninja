@@ -96,8 +96,9 @@ router.patch(
       async (err, updatedProject) => {
         if (updatedProject) {
           let projectWithRequires = JSON.parse(JSON.stringify(updatedProject));
-          if (hasRequiredProjects(updatedProject)) {
-            projectWithRequires = await getRequiredProjects(updatedProject);
+          if (projectHelper.hasRequiredProjects(updatedProject)) {
+            projectWithRequires = await projectHelper
+              .getRequiredProjects(updatedProject);
           }
           res.status(200);
           res.send(projectWithRequires);
