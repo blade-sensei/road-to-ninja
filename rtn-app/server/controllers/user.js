@@ -3,26 +3,9 @@ const token = require('../middlewares/token');
 const userModel = require('../models/user.model');
 const ProjectModel = require('../models/project.model');
 const verifyReq = require('../helpers/request');
+const projectHelper = require('../helpers/project');
 
 const router = express.Router();
-
-function getRequiredProjects(project) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const projectRequiresInformation = await Promise
-        .all(project.requires
-          .map(requireProjectId => ProjectModel.findById(requireProjectId)));
-      Reflect.set(project, 'requires', projectRequiresInformation);
-      resolve(project);
-    } catch (e) {
-      reject(e);
-    }
-  });
-}
-
-function hasRequiredProjects(project) {
-  return project.requires.length > 0;
-}
 
 router.get('', (req, res) => {
   userModel.find((err, docs) => res.send(docs));
@@ -57,8 +40,8 @@ router.get('/:uid/projects', (req, res) => {
     }
     const projectsWithRequires = await Promise.all(projects
       .map(async (userProject) => {
-        if (hasRequiredProjects(userProject)) {
-          return getRequiredProjects(userProject);
+        if (projectHelper.hasRequiredProjects(userProject)) {
+          return projectHelper.getRequiredProjects(userProject);
         }
         return userProject;
       }));
