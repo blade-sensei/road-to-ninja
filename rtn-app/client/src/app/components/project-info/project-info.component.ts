@@ -13,6 +13,7 @@ import { ProjectService } from '../../services/project/project.service';
 import { Project } from '../../models/project';
 import { UserService } from '../user/user.service';
 import { User } from '../../models/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-project-info',
@@ -36,6 +37,7 @@ export class ProjectInfoComponent implements OnInit {
     private userProjectService: UserProjectsService,
     private projectService: ProjectService,
     private userService: UserService,
+    private toaster: ToastrService,
   ) {
   }
 
@@ -100,6 +102,9 @@ export class ProjectInfoComponent implements OnInit {
     const userHasProjectInProgress =  await this.hasUserProjectInProgress();
     if (!userHasProjectInProgress) {
       this.changeStatus('in progress', project);
+    } else {
+      this.toaster
+        .info('Information', 'You have already an in progress project');
     }
   }
 
