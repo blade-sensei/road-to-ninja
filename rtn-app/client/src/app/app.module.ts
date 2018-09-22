@@ -26,6 +26,8 @@ import { ButtonProjectAddComponent } from './components/button-project-add/butto
 import { FilterProjectsComponent } from './components/filter-projects/filter-projects.component';
 import { FilterProjectsService } from './services/filter/filter-projects.service';
 import { ProjectService } from './services/project/project.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { ProjectService } from './services/project/project.service';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    ModalModule.forRoot()
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   entryComponents: [
     ProjectAddComponent,
@@ -70,7 +74,8 @@ import { ProjectService } from './services/project/project.service';
       multi: true,
     },
     ModalTrelloLikeService,
-    RequiredProjectsEditorService
+    RequiredProjectsEditorService,
+    ToastrService,
   ],
   bootstrap: [AppComponent]
 })
