@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../../models/user';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
@@ -11,7 +13,7 @@ export class UserService {
     return this.http.get(`http://localhost:3000/api/users/${name}`);
   }
 
-  getCurrentUser() {
-    return this.http.get(`http://localhost:3000/api/users/current-user`);
+  getCurrentUser(): Observable<User> {
+    return this.http.get<User>(`http://localhost:3000/api/users/current-user`);
   }
 }

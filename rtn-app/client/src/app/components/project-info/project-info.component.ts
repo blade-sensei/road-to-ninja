@@ -11,6 +11,8 @@ import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-t
 import { UserProjectsService } from '../user-projects/user-projects.service';
 import { ProjectService } from '../../services/project/project.service';
 import { Project } from '../../models/project';
+import { UserService } from '../user/user.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-project-info',
@@ -33,6 +35,7 @@ export class ProjectInfoComponent implements OnInit {
     private modalTrelloLikeService: ModalTrelloLikeService,
     private userProjectService: UserProjectsService,
     private projectService: ProjectService,
+    private userService: UserService,
   ) {
   }
 
@@ -93,8 +96,11 @@ export class ProjectInfoComponent implements OnInit {
     return project.status === 'finished';
   }
 
-  startProjectWork(project) {
-    this.changeStatus('in progress', project);
+  async startProjectWork(project) {
+    const userHasProjectInProgress =  await this.hasUserProjectInProgress();
+    if (!userHasProjectInProgress) {
+      this.changeStatus('in progress', project);
+    }
   }
 
   finishProjectWork(project) {
@@ -109,6 +115,14 @@ export class ProjectInfoComponent implements OnInit {
       .subscribe(updatedProject => {
         this.project = Object.assign({}, updatedProject);
       });
+  }
+
+  async hasUserProjectInProgress() {
+    const currentUser: User = await this.userService.getCurrentUser().toPromise();
+    const userProjects = await this.userProjectService.getUserProjects(currentUser.uid).toPromise();
+    return userProjects.some((userProject) => {
+      return userProject.status === 'in progress';
+    });
   }
 
 }
