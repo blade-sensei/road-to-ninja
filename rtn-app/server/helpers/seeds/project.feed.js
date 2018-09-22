@@ -58,7 +58,7 @@ const data = [
     _id: ObjectId('5ba0f2a2b41162092b59d903'),
     title: 'project 4',
     description: 'This is the description for project 4',
-    status: 'in progress',
+    status: 'finished',
     data: 'https://',
     uid: '1',
     requires: [
