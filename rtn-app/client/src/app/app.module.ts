@@ -28,6 +28,7 @@ import { FilterProjectsService } from './services/filter/filter-projects.service
 import { ProjectService } from './services/project/project.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
     RequiredProjectsEditorComponent,
     ButtonProjectAddComponent,
     FilterProjectsComponent,
+    HomeComponent,
   ],
   imports: [
     HttpClientModule,
