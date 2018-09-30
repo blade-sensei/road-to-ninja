@@ -19,20 +19,11 @@
       <app-button-project-add *ngIf="isUserLoggedIn()"></app-button-project-add>
     </li>
     <li class="nav-item">
-      <div class="profile-actions">
-        <button type="button" class="btn btn-default navbar-btn"
-                (click)="onRedirectToLogin()" *ngIf="!isUserLoggedIn(); else logout">Login
+      <div class="nav-link" *ngIf="isUserLoggedIn()">
+        <button type="button" class="btn btn-primary btn-lg navbar-btn"
+                (click)="onLogout()"> logout
         </button>
       </div>
-    </li>
-    <li class="nav-item">
-      <ng-template #logout>
-        <div class="nav-link">
-          <button type="button" class="btn btn-primary btn-lg navbar-btn"
-                  (click)="onLogout()"> logout
-          </button>
-        </div>
-      </ng-template>
     </li>
   </ul>
 </nav>
