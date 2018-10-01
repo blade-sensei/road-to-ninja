@@ -1,9 +1,5 @@
-.nav-bar-container {
-  background-color: #008b89;
-}
-
 .menu-title-rtn {
-  margin-left: 21%;
+  margin-left: 10em;
 }
 
 .menu-right-side {
@@ -13,10 +9,25 @@
 
 .menu-title-link {
   cursor: pointer;
-  color: #fff;
+  color: #AF1944;
+}
+
+.navbar {
+  height: 50px;
+}
+
+.navbar-brand {
+  padding: 0 15px;
+  height: 30px;
+  line-height: 30px;
 }
 
 .menu-title-link:hover {
-  color: #8fc1c0;
+  color: #FF195B;
+}
+
+.menu-title-font {
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  font-size: 14px;
 }
 
