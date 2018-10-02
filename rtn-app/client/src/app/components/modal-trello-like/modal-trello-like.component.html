@@ -5,7 +5,7 @@
         <template class="project-editor-container col-sm-3" #projectEditorContainer> </template>
       </div>
       <div class="modal-content-save">
-        <button class="btn btn-success btn-lg" [ngStyle]="saveButtonPosition()" [disabled]="hasFormErrors" (click)="onSaveProject()"> save </button>
+        <button class="btn btn-success btn-sm" [ngStyle]="saveButtonPosition()" [disabled]="hasFormErrors" (click)="onSaveProject()"> save </button>
       </div>
     </div>
     <div class="edit-requires-button" [ngStyle]="requiredProjectsPositionStyle()">
@@ -15,7 +15,7 @@
         'float-right': !hasContainerEnoughPlace()
         }" >
         <button [ngClass]="{ 'selected-margin': hasContainerEnoughPlace() }"
-                class="btn btn-lg edit-required-btn" (click)="showRequiredProjectsEditor()"> edit required projects </button>
+                class="btn btn-sm btn-primary" (click)="showRequiredProjectsEditor()"> edit required projects </button>
       </div>
       <div class="requires-container-edition"
            [ngClass]="{

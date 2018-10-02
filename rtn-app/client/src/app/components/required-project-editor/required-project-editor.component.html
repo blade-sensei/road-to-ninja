@@ -7,8 +7,8 @@
     There no required projects yet
   </p>
   <ul *ngFor="let project of requiredProjectsSearchResult">
-    <li class="select-project" (click)="onPickProject(project)">
-      <h6> {{ project.title }} (<i>{{ project.status }}</i>) </h6>
+    <li class="select-project btn-primary" (click)="onPickProject(project)">
+      <h6 > {{ project.title }} (<i>{{ project.status }}</i>) </h6>
       <span class="check-icon"> {{ getProjectStatusIcone(project) }} </span>
     </li>
   </ul>
