@@ -2,14 +2,15 @@
      (mouseleave)="hiddeUpdateButton()">
   <div class="card-body">
     <div class="edit-btn" *ngIf="isUpdateActivated && isUserLogged">
-      <button class="float-right btn btn-outline-success" (click)="showEditModal(project, $event.target)"> edit</button>
+      <button class="float-right btn btn-sm btn-outline-success" (click)="showEditModal(project, $event.target)"> edit</button>
     </div>
-    <h5 class="card-title">{{ project.title }}</h5>
-    <p class="card-text">{{ project.description }}</p>
+    <h3 class="card-title">{{ project.title | titlecase }}</h3>
+    <span class="card-text project-description-font">
+      {{ project.description }}
+    </span>
     <div class="form-group">
       <a title="{{ project.data }}" target="_blank" rel="noopener" href="{{ project.data }}">go to sources</a>
     </div>
-    <label class="card-text">status: </label>
     <span class="badge"
           [ngClass]="{
           'badge-danger': isProjectInProgressStatus(project),
@@ -19,7 +20,7 @@
       {{ project.status }}
     </span>
     <div class="form-group required-list">
-      <button class="btn btn-light toggle-requires-btn" type="submit"
+      <button class="btn btn-third toggle-requires-btn" type="submit"
               (click)="showRequiredProjects()">
         Required projects
       </button>
@@ -29,12 +30,12 @@
     <div class="status-action" *ngIf="isUserLogged">
       <button *ngIf="isProjectInProgressStatus(project)"
               type="button"
-              class="float-right btn btn-outline-success"  (click)="finishProjectWork(project)">
+              class="float-right btn btn-sm btn-outline-success"  (click)="finishProjectWork(project)">
         finish this !
       </button>
       <button *ngIf="isProjectNotStartedStatus(project)"
               type="button"
-              class="float-right btn btn-outline-secondary" (click)="startProjectWork(project)">
+              class="float-right btn btn-sm btn-outline-secondary" (click)="startProjectWork(project)">
         Start work
       </button>
     </div>
