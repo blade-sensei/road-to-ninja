@@ -1,9 +1,6 @@
 .input-title {
- font-size: 1.25rem;
-  font-family: inherit;
-  font-weight: 500;
-  line-height: 1.2;
-  color: black;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  font-size: 18px;
 }
 
 ul {
@@ -12,4 +9,8 @@ ul {
 
 .required-list {
   margin-bottom: 8px;
+}
+
+.textarea-description-font {
+
 }

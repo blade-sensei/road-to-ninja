@@ -1,3 +1,18 @@
+h2 {
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  font-size: 24px;
+}
+
+h3 {
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  font-size: 18px;
+}
+
+body {
+  background-color: #2d1c44;
+  color: #fff;
+}
+
 [class*="btn-primary"] {
   background-color: #af1944;
   border-color: #af1944;
@@ -8,6 +23,68 @@
   border-color: #FF195B;
 }
 
+.btn-primary:active {
+  background-color: #a3153d;
+  border-color: #FF195B;
+}
+
 .border-primary {
-  border-color: #ff0049 !important;
+  border-color: transparent!important;
+}
+
+.btn-outline-success {
+  color: #a3153d;
+  background-color: transparent;
+  border-color: #ff195b;
+}
+
+.btn-outline-success:hover {
+  color: #ffffff;
+  background-color: #A3153D;
+  border-color: #ff195b;
+}
+
+.badge {
+  font-size: 80%!important;
+}
+
+.badge-success {
+  background-color: #1AC400;
+}
+
+.list-group-item-info {
+  background-color: #ACEFB5;
+}
+
+.list-group-item {
+  padding: 5px 20px;
+}
+
+.btn-third {
+  color: #212529;
+  background-color: #ACEFB5;
+}
+
+.btn-third:hover {
+  color: #212529;
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
+}
+
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+.card {
+ color: #000000;
+}
+
+.project-description-font {
+  font-family: Helvetica Neue,Arial,Helvetica,sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
 }
