@@ -53,9 +53,10 @@ export class ProjectInfoComponent implements OnInit {
       const factory = this.componentFactory
         .resolveComponentFactory(RequiredProjectsComponent);
       this.projectService.getProjectById(this.project._id).subscribe((project: Project) => {
+        this.project.requires = project.requires;
         this.RequiredProjectsComponentRef = this.requiredProjectsTemplate.createComponent(factory);
         const requiredProjects = <RequiredProjectsComponent>this.RequiredProjectsComponentRef.instance;
-        requiredProjects.requiredProjects = project.requires;
+        requiredProjects.requiredProjects = this.project.requires;
       });
     }
     this.requiredListIsOpen = !this.requiredListIsOpen;
