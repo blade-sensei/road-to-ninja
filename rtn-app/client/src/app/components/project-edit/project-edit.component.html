@@ -1,7 +1,7 @@
 <div [formGroup]="projectForm" class="form-group">
   <input [required]="true" placeholder="* title" [(ngModel)]="projectBeingUpdated.title" class="form-control input-title"
          formControlName="title" type="text" id="title"
-         required>
+         required value="{{ projectBeingUpdated.title | titlecase }}">
 
 </div>
 <div class="form-group">
