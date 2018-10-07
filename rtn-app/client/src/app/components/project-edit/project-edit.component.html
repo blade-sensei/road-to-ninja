@@ -30,7 +30,15 @@
   <ng-template #requiresList>
     <ul class="list-group" *ngFor="let project of projectBeingUpdated.requires">
       <li class="list-group-item list-group-item-info required-list">
-        {{ project.title }}(<i>{{ project.status }}</i>)
+        {{ project.title }}
+        <span class="badge float-right"
+              [ngClass]="{
+          'badge-danger': project.status === 'in progress',
+          'badge-success': project.status === 'finished',
+          'badge-warning': project.status === 'not started'
+          }">
+          {{ project.status }}
+        </span>
       </li>
     </ul>
   </ng-template>

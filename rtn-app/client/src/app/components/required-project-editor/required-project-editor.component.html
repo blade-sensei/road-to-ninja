@@ -8,7 +8,17 @@
   </p>
   <ul *ngFor="let project of requiredProjectsSearchResult">
     <li class="select-project btn-primary" (click)="onPickProject(project)">
-      <h6 > {{ project.title }} (<i>{{ project.status }}</i>) </h6>
+
+      <span> {{ project.title }}
+        <span class="badge"
+              [ngClass]="{
+          'badge-danger': project.status === 'in progress',
+          'badge-success': project.status === 'finished',
+          'badge-warning': project.status === 'not started'
+          }">
+        {{ project.status }}
+        </span>
+      </span>
       <span class="check-icon"> {{ getProjectStatusIcone(project) }} </span>
     </li>
   </ul>
