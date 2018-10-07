@@ -11,6 +11,8 @@ h3 {
 body {
   background-color: #2d1c44;
   color: #fff;
+  margin-bottom: 100px;
+  overflow: hidden;
 }
 
 [class*="btn-primary"] {
@@ -79,7 +81,7 @@ textarea:focus {
 }
 
 .card {
- color: #000000;
+  color: #000000;
 }
 
 .project-description-font {

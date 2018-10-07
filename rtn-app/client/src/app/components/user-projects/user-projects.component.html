@@ -3,7 +3,7 @@
     <h3 class="user-projects-name-color"> Projects owner: {{ user.name | titlecase }} </h3>
   </div>
 </div>
-<div class="row">
+<div class="row user-projects-scrolling">
   <app-project-info class="col-lg-3 col-md-12 info-project" *ngFor="let project of projects"
                     [project] = "project" [isUserLogged]="isUserLogged">
   </app-project-info>
