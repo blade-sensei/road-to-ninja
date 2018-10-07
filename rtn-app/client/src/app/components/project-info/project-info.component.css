@@ -3,7 +3,11 @@
 }
 
 .toggle-requires-btn {
-  margin-bottom: 20px;
+  margin-bottom: 8px;
+}
+
+.toggle-requires-btn-size {
+  font-size: 12px;
 }
 
 .status-action {
