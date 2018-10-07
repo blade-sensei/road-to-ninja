@@ -23,13 +23,14 @@ import { ToastrService } from 'ngx-toastr';
 export class ProjectInfoComponent implements OnInit {
   private isUpdateActivated = false;
   private requiredListIsOpen = false;
+  requiredListToggleArrow = '▶';
   @Input() project: any;
   @Input() isUserLogged: boolean;
   @ViewChild(
     'currentUserRequiredProjectsTemplate',
     { read: ViewContainerRef }
   ) requiredProjectsTemplate;
-  RequiredProjectsComponentRef: ComponentRef<RequiredProjectsComponent>;
+  requiredProjectsComponentRef: ComponentRef<RequiredProjectsComponent>;
 
   constructor(
     private componentFactory: ComponentFactoryResolver,
@@ -47,19 +48,21 @@ export class ProjectInfoComponent implements OnInit {
   showRequiredProjects() {
     if (this.requiredListIsOpen) {
       this.requiredProjectsTemplate.clear();
-      this.RequiredProjectsComponentRef.destroy();
+      this.requiredProjectsComponentRef.destroy();
     } else {
       this.requiredProjectsTemplate.clear();
       const factory = this.componentFactory
         .resolveComponentFactory(RequiredProjectsComponent);
       this.projectService.getProjectById(this.project._id).subscribe((project: Project) => {
         this.project.requires = project.requires;
-        this.RequiredProjectsComponentRef = this.requiredProjectsTemplate.createComponent(factory);
-        const requiredProjects = <RequiredProjectsComponent>this.RequiredProjectsComponentRef.instance;
+        this.requiredProjectsComponentRef = this.requiredProjectsTemplate.createComponent(factory);
+        const requiredProjects = <RequiredProjectsComponent>this.requiredProjectsComponentRef.instance;
         requiredProjects.requiredProjects = this.project.requires;
       });
     }
     this.requiredListIsOpen = !this.requiredListIsOpen;
+    this.changeRequiredListArrow();
+
   }
 
   showUpdateButton() {
@@ -137,6 +140,10 @@ export class ProjectInfoComponent implements OnInit {
     return userProjects.some((userProject) => {
       return userProject.status === 'in progress';
     });
+  }
+
+  changeRequiredListArrow() {
+    this.requiredListToggleArrow = this.requiredListIsOpen ? '▼' : '▶';
   }
 
 }
