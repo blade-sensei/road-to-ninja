@@ -20,9 +20,10 @@
       {{ project.status }}
     </span>
     <div class="form-group required-list">
-      <button class="btn btn-third toggle-requires-btn" type="submit"
+      <button class="btn btn-third toggle-requires-btn toggle-requires-btn-size" type="submit"
               (click)="showRequiredProjects()">
-        Required projects
+        <span> {{ requiredListToggleArrow }} </span>
+        <span>Required projects</span>
       </button>
       <template #currentUserRequiredProjectsTemplate>
       </template>
