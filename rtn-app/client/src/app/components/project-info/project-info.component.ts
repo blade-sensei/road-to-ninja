@@ -71,10 +71,13 @@ export class ProjectInfoComponent implements OnInit {
   }
 
   showEditModal(project, target) {
-    const top = target.parentElement.parentElement.parentElement.parentElement.offsetTop;
+    let top = target.parentElement.parentElement.parentElement.parentElement.offsetTop;
     const left =  target.parentElement.parentElement.parentElement.parentElement.offsetLeft + 15;
     const width = target.parentElement.parentElement.parentElement.offsetWidth;
 
+    if (target.parentElement.parentElement.parentElement.parentElement.offsetTop > 400) {
+      top = 310;
+    }
     const cardinalContainerPosition = {
       top,
       left,
