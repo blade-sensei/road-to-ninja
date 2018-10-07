@@ -70,13 +70,18 @@ export class ProjectInfoComponent implements OnInit {
     this.isUpdateActivated = false;
   }
 
-  showEditModal(project, target) {
-    let top = target.parentElement.parentElement.parentElement.parentElement.offsetTop;
-    const left =  target.parentElement.parentElement.parentElement.parentElement.offsetLeft + 15;
-    const width = target.parentElement.parentElement.parentElement.offsetWidth;
+  hasEnoughVerticalPlace(top) {
+    return top <= 275;
+  }
 
-    if (target.parentElement.parentElement.parentElement.parentElement.offsetTop > 400) {
-      top = 310;
+  showEditModal(project, target) {
+    const infoProjectDOMElement = target.parentElement.parentElement.parentElement.parentElement;
+    let top = infoProjectDOMElement.getBoundingClientRect().top;
+    const left =  infoProjectDOMElement.offsetLeft + 15;
+    const width = infoProjectDOMElement.offsetWidth - 30;
+
+    if (!this.hasEnoughVerticalPlace(top)) {
+      top = 127;
     }
     const cardinalContainerPosition = {
       top,
