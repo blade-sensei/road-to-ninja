@@ -1,11 +1,11 @@
 h2 {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: 24px;
+  font-size: 21px;
 }
 
 h3 {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 body {
@@ -13,6 +13,7 @@ body {
   color: #fff;
   margin-bottom: 100px;
   overflow: hidden;
+  font-size: 13px;
 }
 
 [class*="btn-primary"] {
@@ -47,11 +48,13 @@ body {
 }
 
 .badge {
-  font-size: 80%!important;
+  font-size: 87%!important;
+  margin-top: 3px;
 }
 
 .badge-success {
   background-color: #1AC400;
+  color: #212529;
 }
 
 .list-group-item-info {
