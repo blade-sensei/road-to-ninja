@@ -18,7 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-project-info',
   templateUrl: './project-info.component.html',
-  styleUrls: ['./project-info.component.css']
+  styleUrls: ['./project-info.component.css'],
 })
 export class ProjectInfoComponent implements OnInit {
   private isUpdateActivated = false;
@@ -28,7 +28,7 @@ export class ProjectInfoComponent implements OnInit {
   @Input() isUserLogged: boolean;
   @ViewChild(
     'currentUserRequiredProjectsTemplate',
-    { read: ViewContainerRef }
+    { read: ViewContainerRef },
   ) requiredProjectsTemplate;
   requiredProjectsComponentRef: ComponentRef<RequiredProjectsComponent>;
 
@@ -39,8 +39,7 @@ export class ProjectInfoComponent implements OnInit {
     private projectService: ProjectService,
     private userService: UserService,
     private toaster: ToastrService,
-  ) {
-  }
+  ) { }
 
   ngOnInit() {
   }
@@ -56,7 +55,8 @@ export class ProjectInfoComponent implements OnInit {
       this.projectService.getProjectById(this.project._id).subscribe((project: Project) => {
         this.project.requires = project.requires;
         this.requiredProjectsComponentRef = this.requiredProjectsTemplate.createComponent(factory);
-        const requiredProjects = <RequiredProjectsComponent>this.requiredProjectsComponentRef.instance;
+        const requiredProjects = <RequiredProjectsComponent>this.requiredProjectsComponentRef
+          .instance;
         requiredProjects.requiredProjects = this.project.requires;
       });
     }
@@ -80,7 +80,7 @@ export class ProjectInfoComponent implements OnInit {
   showEditModal(project, target) {
     const infoProjectDOMElement = target.parentElement.parentElement.parentElement.parentElement;
     let top = infoProjectDOMElement.getBoundingClientRect().top;
-    const left =  infoProjectDOMElement.offsetLeft + 15;
+    const left = infoProjectDOMElement.offsetLeft + 15;
     const width = infoProjectDOMElement.offsetWidth - 30;
 
     if (!this.hasEnoughVerticalPlace(top)) {
@@ -111,7 +111,7 @@ export class ProjectInfoComponent implements OnInit {
   }
 
   async startProjectWork(project) {
-    const userHasProjectInProgress =  await this.hasUserProjectInProgress();
+    const userHasProjectInProgress = await this.hasUserProjectInProgress();
     if (!userHasProjectInProgress) {
       this.changeStatus('in progress', project);
     } else {
@@ -137,9 +137,7 @@ export class ProjectInfoComponent implements OnInit {
   async hasUserProjectInProgress() {
     const currentUser: User = await this.userService.getCurrentUser().toPromise();
     const userProjects = await this.userProjectService.getUserProjects(currentUser.uid).toPromise();
-    return userProjects.some((userProject) => {
-      return userProject.status === 'in progress';
-    });
+    return userProjects.some((userProject) => userProject.status === 'in progress');
   }
 
   changeRequiredListArrow() {
@@ -147,5 +145,3 @@ export class ProjectInfoComponent implements OnInit {
   }
 
 }
-
-

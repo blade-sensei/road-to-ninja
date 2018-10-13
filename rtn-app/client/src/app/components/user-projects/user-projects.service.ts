@@ -29,10 +29,12 @@ export class UserProjectsService {
   }
 
   updateUserProject(uid, id, project): Observable<any> {
-    return this.http.patch<Project>(`http://localhost:3000/api/users/${uid}/projects/${id}`, project);
+    return this.http
+      .patch<Project>(`http://localhost:3000/api/users/${uid}/projects/${id}`, project);
   }
 
   addUserProject(uid, project): Observable<any> {
-    return this.http.post<Project>(`http://localhost:3000/api/users/${uid}/projects`, project);
+    return this.http
+      .post<Project>(`http://localhost:3000/api/users/${uid}/projects`, project);
   }
 }

@@ -79,7 +79,7 @@ import { HomeComponent } from './components/home/home.component';
     RequiredProjectsEditorService,
     ToastrService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

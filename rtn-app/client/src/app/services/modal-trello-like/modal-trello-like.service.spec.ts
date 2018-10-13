@@ -5,7 +5,7 @@ import { ModalTrelloLikeService } from './modal-trello-like.service';
 describe('ModalTrelloLikeService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ModalTrelloLikeService]
+      providers: [ModalTrelloLikeService],
     });
   });
 

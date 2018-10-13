@@ -1,14 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RequiredProjectsEditorService } from '../../services/required-projects-editor/required-projects-editor.service';
 import { UserProjectsService } from '../user-projects/user-projects.service';
-import { ProfileService } from '../../services/profile/profile.service';
 import { User } from '../../models/user';
 import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-requires-edition-container',
   templateUrl: './required-project-editor.component.html',
-  styleUrls: ['./required-project-editor.component.css']
+  styleUrls: ['./required-project-editor.component.css'],
 })
 export class RequiredProjectsEditorComponent implements OnInit {
 
@@ -19,7 +18,6 @@ export class RequiredProjectsEditorComponent implements OnInit {
   constructor(
     private requiredProjectsEditorService: RequiredProjectsEditorService,
     private userProjectService: UserProjectsService,
-    private profileService: ProfileService,
     private userService: UserService,
   ) { }
 
@@ -61,9 +59,8 @@ export class RequiredProjectsEditorComponent implements OnInit {
   }
 
   isIncludeInCurrentRequiredProjects(editionProject) {
-    return this.currentUserRequiredProjects.some(project => {
-      return project.title === editionProject.title;
-    });
+    return this.currentUserRequiredProjects
+      .some(project => project.title === editionProject.title);
   }
 
 }

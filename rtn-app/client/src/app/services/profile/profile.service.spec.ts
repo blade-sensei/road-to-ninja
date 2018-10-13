@@ -5,7 +5,7 @@ import { ProfileService } from './profile.service';
 describe('ProfileService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ProfileService]
+      providers: [ProfileService],
     });
   });
 
