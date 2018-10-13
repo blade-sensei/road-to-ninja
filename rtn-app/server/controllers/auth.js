@@ -23,11 +23,21 @@ router.post('/login', (req, res, next) => {
       res.status(401).send('Login fail');
     } else {
       const token = jwt.sign(
-        { iss: 'rtn-token', id: user.uid, admin: user.admin },
+        {
+          iss: 'rtn-token',
+          id: user.uid,
+          admin: user.admin,
+        },
         req.app.get('secret_key'),
-        { expiresIn: tokenExpirationTime },
+        {
+          expiresIn: tokenExpirationTime,
+        }
       );
-      res.json({ username: user.username, logged: true, token });
+      res.json({
+        username: user.username,
+        logged: true,
+        token,
+      });
     }
   });
 });
