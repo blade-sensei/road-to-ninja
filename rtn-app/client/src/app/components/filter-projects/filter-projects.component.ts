@@ -8,7 +8,7 @@ import { ProfileService } from '../../services/profile/profile.service';
 @Component({
   selector: 'app-filter-projects',
   templateUrl: './filter-projects.component.html',
-  styleUrls: ['./filter-projects.component.css']
+  styleUrls: ['./filter-projects.component.css'],
 })
 export class FilterProjectsComponent implements OnInit {
   searchUserInput = '';
@@ -19,7 +19,7 @@ export class FilterProjectsComponent implements OnInit {
     private userProjectsService: UserProjectsService,
     private userService: UserService,
     private filterService: FilterProjectsService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
   ) { }
 
   ngOnInit() {

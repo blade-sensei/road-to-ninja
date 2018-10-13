@@ -5,11 +5,16 @@ import { RequiredProjectsEditorService } from './required-projects-editor.servic
 describe('RequiredProjectsEditorService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [RequiredProjectsEditorService]
+      providers: [RequiredProjectsEditorService],
     });
   });
 
-  it('should be created', inject([RequiredProjectsEditorService], (service: RequiredProjectsEditorService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject(
+      [RequiredProjectsEditorService],
+      (service: RequiredProjectsEditorService) => {
+        expect(service).toBeTruthy();
+      }),
+  );
 });

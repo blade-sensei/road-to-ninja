@@ -5,9 +5,10 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class RequiredProjectsEditorService {
 
-  private requiredProjectsToEdit$  = new Subject<any>();
+  private requiredProjectsToEdit$ = new Subject<any>();
 
-  constructor() { }
+  constructor() {
+  }
 
   setRequiredProjectsToEdit(requires: any) {
     this.requiredProjectsToEdit$.next(requires);

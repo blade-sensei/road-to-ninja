@@ -8,9 +8,9 @@ describe('FilterProjectsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FilterProjectsComponent ]
+      declarations: [FilterProjectsComponent],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

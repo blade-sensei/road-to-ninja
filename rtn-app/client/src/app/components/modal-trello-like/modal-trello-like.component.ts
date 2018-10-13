@@ -10,7 +10,7 @@ import { ProjectEditComponent } from '../project-edit/project-edit.component';
 @Component({
   selector: 'app-modal-trello-like',
   templateUrl: './modal-trello-like.component.html',
-  styleUrls: ['./modal-trello-like.component.css']
+  styleUrls: ['./modal-trello-like.component.css'],
 })
 export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   @ViewChild(
@@ -40,14 +40,13 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   constructor(
     private modalTrelloLikeService: ModalTrelloLikeService,
     private componentFactory: ComponentFactoryResolver,
-    ) {
+  ) {
     this.editorPosition = {
       top: 0,
       left: 0,
       width: 0,
     };
   }
-
 
   ngOnInit() {
     this.subscribeForIsCreationMode();
@@ -170,9 +169,9 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
 
   editorPositionStyle() {
     return {
+      width: `${this.editorPosition.width}px`,
       'margin-left': `${this.editorPosition.left}px`,
       'margin-top': `${this.editorPosition.top}px`,
-      'width': `${this.editorPosition.width}px`,
     };
   }
 

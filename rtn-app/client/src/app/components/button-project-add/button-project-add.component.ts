@@ -5,7 +5,7 @@ import { Project } from '../../models/project';
 @Component({
   selector: 'app-button-project-add',
   templateUrl: './button-project-add.component.html',
-  styleUrls: ['./button-project-add.component.css']
+  styleUrls: ['./button-project-add.component.css'],
 })
 export class ButtonProjectAddComponent implements OnInit {
 
