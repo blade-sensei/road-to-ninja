@@ -20,18 +20,25 @@ const dropCollection = model => new Promise((resolve) => {
   });
 });
 
-router.get('/users', (req, res) => {
-  const users = userData;
-  dropCollection(userModel).then(() => {
-    createCollection(userModel, users).then(documents => res.send(documents));
-  });
+router.get('/users', async (req, res) => {
+  try {
+    await dropCollection(userModel);
+    const createdUsers = await createCollection(userModel, userData);
+    res.send(createdUsers);
+  } catch (e) {
+    throw new Error('fail to seed users');
+  }
 });
 
-router.get('/projects', (req, res) => {
-  const projects = projectData;
-  return dropCollection(projectModel).then(() =>
-    createCollection(projectModel, projects).then(documents =>
-      res.send(documents)));
+router.get('/projects', async (req, res) => {
+  try {
+    const projects = projectData;
+    await dropCollection(projectModel);
+    const createdProjects = await createCollection(projectModel, projects);
+    res.send(createdProjects);
+  } catch (e) {
+    throw new Error('fail to seed projects');
+  }
 });
 
 module.exports = router;

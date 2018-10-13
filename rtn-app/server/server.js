@@ -46,10 +46,14 @@ app.listen(port, () => {
   logger.info(`server api is running on : ${port} port ...`);
 });
 
-mongoose.connect(`mongodb://${config.db.host}/${config.db.name}`).then(() => {
-  mongoose.set('debug', true);
-  logger.info(`database connection on ${mongoose.connection.port}\
-  port with success!`);
-});
+mongoose.connect(`mongodb://${config.db.host}/${config.db.name}`)
+  .then(() => {
+    mongoose.set('debug', true);
+    return logger.info(`database connection on ${mongoose.connection.port} port with success!`);
+  })
+  .catch((error) => {
+    logger.info('fail to connect to database');
+    logger.error(error.message);
+  });
 
 module.exports = app;

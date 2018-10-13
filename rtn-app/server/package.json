@@ -1,6 +1,9 @@
 {
   "name": "server-app",
   "version": "0.1.0",
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
