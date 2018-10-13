@@ -21,33 +21,28 @@ router.get('/current-user', token.verifyToken, (req, res) => {
 });
 
 // user projects
-router.get('/:uid/projects', (req, res) => {
+router.get('/:uid/projects', async (req, res) => {
   const filterProperties = Object.keys(req.query);
   let whereConditionRequest = { uid: req.params.uid };
   if (filterProperties.length > 0) {
     whereConditionRequest = Object.assign(whereConditionRequest, req.query);
   }
   Reflect.deleteProperty(whereConditionRequest, 'search');
-  ProjectModel.find(whereConditionRequest, async (error, docs) => {
-    if (error) {
-      return res.send('Bad request or database problem.');
-    }
-    let projects = [...docs];
-    if (Reflect.has(req.query, 'search')) {
-      projects = docs
-        .filter(project => project.title.toLowerCase()
-          .includes(req.query.search.toLowerCase()));
-    }
-    const projectsWithRequires = await Promise.all(projects
-      .map(async (userProject) => {
-        if (projectHelper.hasRequiredProjects(userProject)) {
-          return projectHelper.getRequiredProjects(userProject);
-        }
-        return userProject;
-      }));
-    res.status(200);
-    return res.send(projectsWithRequires);
-  });
+  let projects = await ProjectModel.find(whereConditionRequest);
+  if (Reflect.has(req.query, 'search')) {
+    projects = projects
+      .filter(project => project.title.toLowerCase()
+        .includes(req.query.search.toLowerCase()));
+  }
+  const projectsWithRequires = await Promise.all(projects
+    .map((userProject) => {
+      if (projectHelper.hasRequiredProjects(userProject)) {
+        return projectHelper.getRequiredProjects(userProject);
+      }
+      return userProject;
+    }));
+  res.status(200);
+  return res.send(projectsWithRequires);
 });
 
 router.post(
@@ -90,7 +85,10 @@ router.patch(
       .map(requiredProject => Reflect.get(requiredProject, '_id'));
     Reflect.set(project, 'requires', requiresId);
     ProjectModel.findOneAndUpdate(
-      { uid: req.params.uid, _id: req.params.id },
+      {
+        uid: req.params.uid,
+        _id: req.params.id,
+      },
       project,
       { new: true },
       async (err, updatedProject) => {
