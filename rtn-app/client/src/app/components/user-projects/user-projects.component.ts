@@ -8,7 +8,7 @@ import { FilterProjectsService } from '../../services/filter/filter-projects.ser
 @Component({
   selector: 'app-user-projects',
   templateUrl: './user-projects.component.html',
-  styleUrls: ['./user-projects.component.css']
+  styleUrls: ['./user-projects.component.css'],
 })
 export class UserProjectsComponent implements OnInit {
   projects: any = [];
@@ -21,7 +21,7 @@ export class UserProjectsComponent implements OnInit {
     private userProjectService: UserProjectsService,
     private modalTrelloLikeService: ModalTrelloLikeService,
     private filterService: FilterProjectsService,
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.subscribeToProjectAddSaved();
@@ -42,14 +42,14 @@ export class UserProjectsComponent implements OnInit {
 
   subscribeToProjectAddSaved() {
     this.projectToAddSavedSubscription = this.modalTrelloLikeService
-      .getProjectToAddSaved().subscribe( projectSaved => {
-          this.projects.push(projectSaved);
+      .getProjectToAddSaved().subscribe(projectSaved => {
+        this.projects.push(projectSaved);
       });
   }
 
   subscribeToProjectEditSaved() {
     this.projectToAddSavedSubscription = this.modalTrelloLikeService
-      .getProjectToEditSaved().subscribe( projectSaved => {
+      .getProjectToEditSaved().subscribe(projectSaved => {
         const projectsUpdated = this.projects.map(project => {
           if (project._id === projectSaved._id) {
             Object.assign(project, projectSaved);
@@ -66,7 +66,4 @@ export class UserProjectsComponent implements OnInit {
         this.projects = [...projects];
       });
   }
-
-
-
 }

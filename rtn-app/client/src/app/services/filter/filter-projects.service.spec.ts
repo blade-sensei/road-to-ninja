@@ -5,7 +5,7 @@ import { FilterProjectsService } from './filter-projects.service';
 describe('FilterProjectsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [FilterProjectsService]
+      providers: [FilterProjectsService],
     });
   });
 

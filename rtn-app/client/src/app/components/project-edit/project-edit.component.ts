@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-trello-like.service';
 import { Subscription } from 'rxjs/Subscription';
 import { RequiredProjectsEditorService } from '../../services/required-projects-editor/required-projects-editor.service';
@@ -10,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-project-edit',
   templateUrl: './project-edit.component.html',
-  styleUrls: ['./project-edit.component.css']
+  styleUrls: ['./project-edit.component.css'],
 })
 export class ProjectEditComponent implements OnInit, OnDestroy {
   @Input() project: any = {};
@@ -25,8 +25,7 @@ export class ProjectEditComponent implements OnInit, OnDestroy {
     private requiredProjectsEditorService: RequiredProjectsEditorService,
     private userProjectsService: UserProjectsService,
     private userService: UserService,
-    ) {
-  }
+  ) { }
 
   ngOnInit() {
     this.subscribeToProjectToEditSaved();
@@ -52,7 +51,7 @@ export class ProjectEditComponent implements OnInit, OnDestroy {
         this.userProjectsService.updateUserProject(
           this.projectBeingUpdated.uid,
           this.projectBeingUpdated._id,
-          this.projectBeingUpdated
+          this.projectBeingUpdated,
         ).subscribe(editedProject => {
           this.modalTrelloLikeService.setProjectToEditSaved(editedProject);
         });
