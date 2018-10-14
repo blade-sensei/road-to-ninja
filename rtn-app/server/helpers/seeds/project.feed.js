@@ -28,9 +28,7 @@ const data = [
     status: 'not started',
     data: 'https://',
     uid: '2',
-    requires: [
-      '5ba0f22cb0ad9d0908ece391',
-    ],
+    requires: ['5ba0f22cb0ad9d0908ece391'],
   },
   {
     _id: ObjectId('5ba0f2a2b41162092b59d901'),
@@ -39,9 +37,7 @@ const data = [
     status: 'not started',
     data: 'https://',
     uid: '1',
-    requires: [
-      '5b9e1794a626cddcb03a6df5',
-    ],
+    requires: ['5b9e1794a626cddcb03a6df5'],
   },
   {
     _id: ObjectId('5ba0f2a2b41162092b59d902'),
@@ -50,9 +46,7 @@ const data = [
     status: 'in progress',
     data: 'https://',
     uid: '1',
-    requires: [
-      '5b9e1794a626cddcb03a6df5',
-    ],
+    requires: ['5b9e1794a626cddcb03a6df5'],
   },
   {
     _id: ObjectId('5ba0f2a2b41162092b59d903'),
@@ -61,10 +55,7 @@ const data = [
     status: 'finished',
     data: 'https://',
     uid: '1',
-    requires: [
-      '5b9e1794a626cddcb03a6df5',
-      '5ba0f2a2b41162092b59d902',
-    ],
+    requires: ['5b9e1794a626cddcb03a6df5', '5ba0f2a2b41162092b59d902'],
   },
 ];
 

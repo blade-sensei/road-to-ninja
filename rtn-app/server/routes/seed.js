@@ -7,18 +7,25 @@ const router = express.Router();
 const userModel = require('../models/user.model');
 const projectModel = require('../models/project.model');
 
-const createCollection = (model, documents) => new Promise(resolve => model
-  .insertMany(documents).then(() => model.find((err, docs) => {
-    logger.debug(docs);
-    return resolve(docs);
-  })));
-
-const dropCollection = model => new Promise((resolve) => {
-  model.remove(() => {
-    logger.debug('remove');
-    resolve();
+const createCollection = (model, documents) => {
+  return new Promise((resolve) => {
+    return model.insertMany(documents).then(() => {
+      return model.find((err, docs) => {
+        logger.debug(docs);
+        return resolve(docs);
+      });
+    });
   });
-});
+};
+
+const dropCollection = (model) => {
+  return new Promise((resolve) => {
+    model.remove(() => {
+      logger.debug('remove');
+      resolve();
+    });
+  });
+};
 
 router.get('/users', async (req, res) => {
   try {
