@@ -5,7 +5,9 @@ const projectHelper = require('../helpers/project');
 const router = express.Router();
 
 router.get('', (req, res) => {
-  projectModel.find((err, docs) => res.send(docs));
+  projectModel.find((err, docs) => {
+    return res.send(docs);
+  });
 });
 
 router.get('/:id', (req, res) => {

@@ -19,13 +19,10 @@ app.use(cookieParser());
 // enable cross origin
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, DELETE, PUT, OPTIONS, PATCH',
-  );
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, OPTIONS, PATCH');
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, x-access-token',
+    'Origin, X-Requested-With, Content-Type, Accept, x-access-token'
   );
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
@@ -38,7 +35,9 @@ app.use('/', index);
 app.use('/explorer', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api', api);
 app.use('/seed', seed);
-app.use((req, res) => { res.send(404); });
+app.use((req, res) => {
+  res.send(404);
+});
 
 // config server
 const port = process.env.port || config.server.port;
@@ -46,7 +45,8 @@ app.listen(port, () => {
   logger.info(`server api is running on : ${port} port ...`);
 });
 
-mongoose.connect(`mongodb://${config.db.host}/${config.db.name}`)
+mongoose
+  .connect(`mongodb://${config.db.host}/${config.db.name}`)
   .then(() => {
     mongoose.set('debug', true);
     return logger.info(`database connection on ${mongoose.connection.port} port with success!`);
