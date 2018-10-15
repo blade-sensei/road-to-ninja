@@ -5,7 +5,7 @@ export class User {
   password: string;
   admin: boolean;
 
-  constructor()
+  constructor();
   constructor(username?, uid?, name?, password?) {
     this.username = username;
     this.uid = uid;

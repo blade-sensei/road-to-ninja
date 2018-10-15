@@ -6,7 +6,7 @@ import { Project } from '../../models/project';
 export class FilterProjectsService {
   private filteredProjects$ = new Subject<Project[]>();
 
-  constructor() { }
+  constructor() {}
 
   getFilteredProjects() {
     return this.filteredProjects$.asObservable();

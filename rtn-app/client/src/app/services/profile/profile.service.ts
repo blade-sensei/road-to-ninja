@@ -6,7 +6,7 @@ import { Subject } from 'rxjs/Subject';
 export class ProfileService {
   private currentProfile$ = new Subject<string>();
   currentUser: User = new User();
-  constructor() { }
+  constructor() {}
 
   static getCurrentUserToken() {
     return JSON.parse(localStorage.getItem('currentUser'));
@@ -30,5 +30,4 @@ export class ProfileService {
   setCurrentProfil(profil: string) {
     this.currentProfile$.next(profil);
   }
-
 }

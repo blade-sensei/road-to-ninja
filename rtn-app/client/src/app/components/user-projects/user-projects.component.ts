@@ -13,7 +13,8 @@ import { FilterProjectsService } from '../../services/filter/filter-projects.ser
 export class UserProjectsComponent implements OnInit {
   projects: any = [];
   isUserLogged: boolean;
-  @Input() user: any;
+  @Input()
+  user: any;
   projectToAddSavedSubscription: Subscription;
   projectToFilteredSubscription: Subscription;
 
@@ -27,29 +28,34 @@ export class UserProjectsComponent implements OnInit {
     this.subscribeToProjectAddSaved();
     this.subscribeToProjectEditSaved();
     this.subscribeToFilteredProjects();
-    this.userProjectService.getUserProjects(this.user.uid)
-      .subscribe(projects => this.projects = projects);
+    this.userProjectService
+      .getUserProjects(this.user.uid)
+      .subscribe(projects => (this.projects = projects));
     this.isUserLogged = this.isUserLoggedIn();
   }
 
   isUserLoggedIn(): boolean {
     const token = ProfileService.getCurrentUserToken();
     if (token) {
-      return ProfileService.getCurrentUserToken().username === this.user.username;
+      return (
+        ProfileService.getCurrentUserToken().username === this.user.username
+      );
     }
     return false;
   }
 
   subscribeToProjectAddSaved() {
     this.projectToAddSavedSubscription = this.modalTrelloLikeService
-      .getProjectToAddSaved().subscribe(projectSaved => {
+      .getProjectToAddSaved()
+      .subscribe(projectSaved => {
         this.projects.push(projectSaved);
       });
   }
 
   subscribeToProjectEditSaved() {
     this.projectToAddSavedSubscription = this.modalTrelloLikeService
-      .getProjectToEditSaved().subscribe(projectSaved => {
+      .getProjectToEditSaved()
+      .subscribe(projectSaved => {
         const projectsUpdated = this.projects.map(project => {
           if (project._id === projectSaved._id) {
             Object.assign(project, projectSaved);
@@ -61,7 +67,8 @@ export class UserProjectsComponent implements OnInit {
   }
 
   subscribeToFilteredProjects() {
-    this.projectToFilteredSubscription = this.filterService.getFilteredProjects()
+    this.projectToFilteredSubscription = this.filterService
+      .getFilteredProjects()
       .subscribe(projects => {
         this.projects = [...projects];
       });

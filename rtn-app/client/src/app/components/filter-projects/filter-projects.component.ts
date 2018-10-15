@@ -20,7 +20,7 @@ export class FilterProjectsComponent implements OnInit {
     private userService: UserService,
     private filterService: FilterProjectsService,
     private profileService: ProfileService,
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.subscribeForCurrentProfile();
@@ -36,13 +36,15 @@ export class FilterProjectsComponent implements OnInit {
     if (this.searchUserInput) {
       Reflect.set(options, 'search', this.searchUserInput);
     }
-    this.userService.getUserByName(this.profileUsername).subscribe((user: User) => {
-      this.userProjectsService
-        .getUserProjects(user.uid, options)
-        .subscribe(projects => {
-          this.filterService.setFilteredProjects(projects);
-        });
-    });
+    this.userService
+      .getUserByName(this.profileUsername)
+      .subscribe((user: User) => {
+        this.userProjectsService
+          .getUserProjects(user.uid, options)
+          .subscribe(projects => {
+            this.filterService.setFilteredProjects(projects);
+          });
+      });
   }
 
   subscribeForCurrentProfile() {
@@ -50,5 +52,4 @@ export class FilterProjectsComponent implements OnInit {
       this.profileUsername = profile;
     });
   }
-
 }

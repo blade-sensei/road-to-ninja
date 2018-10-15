@@ -3,7 +3,7 @@
     "node_modules/codelyzer"
   ],
   "extends": [
-    "tslint-config-core",
-    "tslint-config-prettier"
-  ]
+    "tslint-config-core"
+  ],
+  "exclude": ["build", "node_modules"]
 }
