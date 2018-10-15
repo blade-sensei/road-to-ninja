@@ -2,5 +2,8 @@
   "rulesDirectory": [
     "node_modules/codelyzer"
   ],
-  "extends": "tslint-config-core"
+  "extends": [
+    "tslint-config-core",
+    "tslint-config-prettier"
+  ]
 }
