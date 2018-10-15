@@ -5,8 +5,7 @@ import { Token } from '../../models/token';
 
 @Injectable()
 export class AuthenticationService {
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   login(credentials): Observable<any> {
     const endpoint = 'http://localhost:3000/api/auth/login';

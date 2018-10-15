@@ -9,8 +9,7 @@ export class RequiredProjectsComponent implements OnInit {
   @Input()
   requiredProjects: any;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { }
-
+  ngOnInit() {}
 }

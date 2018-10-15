@@ -2,7 +2,8 @@ import {
   Component,
   ComponentFactoryResolver,
   ComponentRef,
-  Input, OnInit,
+  Input,
+  OnInit,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
@@ -24,12 +25,12 @@ export class ProjectInfoComponent implements OnInit {
   private isUpdateActivated = false;
   private requiredListIsOpen = false;
   requiredListToggleArrow = '▶';
-  @Input() project: any;
-  @Input() isUserLogged: boolean;
-  @ViewChild(
-    'currentUserRequiredProjectsTemplate',
-    { read: ViewContainerRef },
-  ) requiredProjectsTemplate;
+  @Input()
+  project: any;
+  @Input()
+  isUserLogged: boolean;
+  @ViewChild('currentUserRequiredProjectsTemplate', { read: ViewContainerRef })
+  requiredProjectsTemplate;
   requiredProjectsComponentRef: ComponentRef<RequiredProjectsComponent>;
 
   constructor(
@@ -39,10 +40,9 @@ export class ProjectInfoComponent implements OnInit {
     private projectService: ProjectService,
     private userService: UserService,
     private toaster: ToastrService,
-  ) { }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   showRequiredProjects() {
     if (this.requiredListIsOpen) {
@@ -50,19 +50,24 @@ export class ProjectInfoComponent implements OnInit {
       this.requiredProjectsComponentRef.destroy();
     } else {
       this.requiredProjectsTemplate.clear();
-      const factory = this.componentFactory
-        .resolveComponentFactory(RequiredProjectsComponent);
-      this.projectService.getProjectById(this.project._id).subscribe((project: Project) => {
-        this.project.requires = project.requires;
-        this.requiredProjectsComponentRef = this.requiredProjectsTemplate.createComponent(factory);
-        const requiredProjects = <RequiredProjectsComponent>this.requiredProjectsComponentRef
-          .instance;
-        requiredProjects.requiredProjects = this.project.requires;
-      });
+      const factory = this.componentFactory.resolveComponentFactory(
+        RequiredProjectsComponent,
+      );
+      this.projectService
+        .getProjectById(this.project._id)
+        .subscribe((project: Project) => {
+          this.project.requires = project.requires;
+          this.requiredProjectsComponentRef = this.requiredProjectsTemplate.createComponent(
+            factory,
+          );
+          const requiredProjects = <RequiredProjectsComponent>(
+            this.requiredProjectsComponentRef.instance
+          );
+          requiredProjects.requiredProjects = this.project.requires;
+        });
     }
     this.requiredListIsOpen = !this.requiredListIsOpen;
     this.changeRequiredListArrow();
-
   }
 
   showUpdateButton() {
@@ -78,7 +83,8 @@ export class ProjectInfoComponent implements OnInit {
   }
 
   showEditModal(project, target) {
-    const infoProjectDOMElement = target.parentElement.parentElement.parentElement.parentElement;
+    const infoProjectDOMElement =
+      target.parentElement.parentElement.parentElement.parentElement;
     let top = infoProjectDOMElement.getBoundingClientRect().top;
     const left = infoProjectDOMElement.offsetLeft + 15;
     const width = infoProjectDOMElement.offsetWidth - 30;
@@ -92,10 +98,14 @@ export class ProjectInfoComponent implements OnInit {
       width,
     };
 
-    this.modalTrelloLikeService.setProjectToEditContainerPosition(cardinalContainerPosition);
+    this.modalTrelloLikeService.setProjectToEditContainerPosition(
+      cardinalContainerPosition,
+    );
     this.modalTrelloLikeService.setIsCreationMode(false);
     this.modalTrelloLikeService.setIsOpenModal(true);
-    this.modalTrelloLikeService.setProjectToEdit(JSON.parse(JSON.stringify(project)));
+    this.modalTrelloLikeService.setProjectToEdit(
+      JSON.parse(JSON.stringify(project)),
+    );
   }
 
   isProjectInProgressStatus(project) {
@@ -115,8 +125,10 @@ export class ProjectInfoComponent implements OnInit {
     if (!userHasProjectInProgress) {
       this.changeStatus('in progress', project);
     } else {
-      this.toaster
-        .info('Information', 'You have already an in progress project');
+      this.toaster.info(
+        'Information',
+        'You have already an in progress project',
+      );
     }
   }
 
@@ -135,13 +147,18 @@ export class ProjectInfoComponent implements OnInit {
   }
 
   async hasUserProjectInProgress() {
-    const currentUser: User = await this.userService.getCurrentUser().toPromise();
-    const userProjects = await this.userProjectService.getUserProjects(currentUser.uid).toPromise();
-    return userProjects.some((userProject) => userProject.status === 'in progress');
+    const currentUser: User = await this.userService
+      .getCurrentUser()
+      .toPromise();
+    const userProjects = await this.userProjectService
+      .getUserProjects(currentUser.uid)
+      .toPromise();
+    return userProjects.some(
+      userProject => userProject.status === 'in progress',
+    );
   }
 
   changeRequiredListArrow() {
     this.requiredListToggleArrow = this.requiredListIsOpen ? '▼' : '▶';
   }
-
 }

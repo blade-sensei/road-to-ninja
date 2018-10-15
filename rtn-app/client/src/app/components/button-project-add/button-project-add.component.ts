@@ -8,13 +8,9 @@ import { Project } from '../../models/project';
   styleUrls: ['./button-project-add.component.css'],
 })
 export class ButtonProjectAddComponent implements OnInit {
+  constructor(private modalTrelloLikeService: ModalTrelloLikeService) {}
 
-  constructor(
-    private modalTrelloLikeService: ModalTrelloLikeService,
-  ) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   showAddProjectModal() {
     const project = new Project();
@@ -28,6 +24,5 @@ export class ButtonProjectAddComponent implements OnInit {
       left: left - 200,
       width: 390,
     });
-
   }
 }

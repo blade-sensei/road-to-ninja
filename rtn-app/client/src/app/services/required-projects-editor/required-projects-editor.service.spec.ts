@@ -9,12 +9,10 @@ describe('RequiredProjectsEditorService', () => {
     });
   });
 
-  it(
-    'should be created',
-    inject(
-      [RequiredProjectsEditorService],
-      (service: RequiredProjectsEditorService) => {
-        expect(service).toBeTruthy();
-      }),
-  );
+  it('should be created', inject(
+    [RequiredProjectsEditorService],
+    (service: RequiredProjectsEditorService) => {
+      expect(service).toBeTruthy();
+    },
+  ));
 });

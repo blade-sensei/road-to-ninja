@@ -13,9 +13,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./project-edit.component.css'],
 })
 export class ProjectEditComponent implements OnInit, OnDestroy {
-  @Input() project: any = {};
+  @Input()
+  project: any = {};
   projectBeingUpdated: any = {};
-  @Input() isCreationMode = false;
+  @Input()
+  isCreationMode = false;
   projectToEditSavedSubscription: Subscription;
   requiredProjectsToEditSavedSubscription: Subscription;
   projectForm: FormGroup;
@@ -25,7 +27,7 @@ export class ProjectEditComponent implements OnInit, OnDestroy {
     private requiredProjectsEditorService: RequiredProjectsEditorService,
     private userProjectsService: UserProjectsService,
     private userService: UserService,
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.subscribeToProjectToEditSaved();
@@ -43,18 +45,21 @@ export class ProjectEditComponent implements OnInit, OnDestroy {
   saveProject() {
     this.userService.getCurrentUser().subscribe((user: User) => {
       if (this.isCreationMode) {
-        this.userProjectsService.addUserProject(user.uid, this.projectBeingUpdated)
+        this.userProjectsService
+          .addUserProject(user.uid, this.projectBeingUpdated)
           .subscribe(project => {
             this.modalTrelloLikeService.setProjectToAddSaved(project);
           });
       } else {
-        this.userProjectsService.updateUserProject(
-          this.projectBeingUpdated.uid,
-          this.projectBeingUpdated._id,
-          this.projectBeingUpdated,
-        ).subscribe(editedProject => {
-          this.modalTrelloLikeService.setProjectToEditSaved(editedProject);
-        });
+        this.userProjectsService
+          .updateUserProject(
+            this.projectBeingUpdated.uid,
+            this.projectBeingUpdated._id,
+            this.projectBeingUpdated,
+          )
+          .subscribe(editedProject => {
+            this.modalTrelloLikeService.setProjectToEditSaved(editedProject);
+          });
       }
       this.modalTrelloLikeService.setIsOpenModal(false);
     });
@@ -66,14 +71,15 @@ export class ProjectEditComponent implements OnInit, OnDestroy {
 
   hasRequiredProjects(project) {
     return (
-      Object.prototype.hasOwnProperty.call(project, 'requires')
-      && this.project.requires.length > 0
+      Object.prototype.hasOwnProperty.call(project, 'requires') &&
+      this.project.requires.length > 0
     );
   }
 
   subscribeToProjectToEditSaved() {
     this.projectToEditSavedSubscription = this.modalTrelloLikeService
-      .getIsSaveActionDemanded().subscribe(() => this.saveProject());
+      .getIsSaveActionDemanded()
+      .subscribe(() => this.saveProject());
   }
 
   subscribeToRequiredProjectsToEditSaved() {
@@ -98,9 +104,9 @@ export class ProjectEditComponent implements OnInit, OnDestroy {
 
   onChanges(): void {
     this.projectForm.get('title').valueChanges.subscribe(() => {
-      this.modalTrelloLikeService
-        .setHasFormEditorErrors(!!this.projectForm.get('title').errors);
+      this.modalTrelloLikeService.setHasFormEditorErrors(
+        !!this.projectForm.get('title').errors,
+      );
     });
   }
-
 }

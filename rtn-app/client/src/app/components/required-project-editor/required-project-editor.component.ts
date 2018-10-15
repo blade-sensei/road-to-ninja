@@ -10,7 +10,6 @@ import { UserService } from '../user/user.service';
   styleUrls: ['./required-project-editor.component.css'],
 })
 export class RequiredProjectsEditorComponent implements OnInit {
-
   @Input()
   currentUserRequiredProjects = [];
   requiredProjectsSearchResult: any = {};
@@ -19,7 +18,7 @@ export class RequiredProjectsEditorComponent implements OnInit {
     private requiredProjectsEditorService: RequiredProjectsEditorService,
     private userProjectService: UserProjectsService,
     private userService: UserService,
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.requiredProjectsSearchResult = this.currentUserRequiredProjects.slice();
@@ -35,32 +34,35 @@ export class RequiredProjectsEditorComponent implements OnInit {
     } else {
       this.removeFromCurrentUserRequiredProjects(project);
     }
-    this.requiredProjectsEditorService
-      .setRequiredProjectsToEdit(this.currentUserRequiredProjects);
+    this.requiredProjectsEditorService.setRequiredProjectsToEdit(
+      this.currentUserRequiredProjects,
+    );
   }
 
   removeFromCurrentUserRequiredProjects(project) {
-    this.currentUserRequiredProjects = this.currentUserRequiredProjects
-      .filter(editionProject => editionProject.title !== project.title);
+    this.currentUserRequiredProjects = this.currentUserRequiredProjects.filter(
+      editionProject => editionProject.title !== project.title,
+    );
   }
 
   searchProject(event: any) {
-    this.userService.getCurrentUser()
-      .subscribe((currentUser: User) => {
-        const searchText = event.target.value;
-        if (searchText) {
-          this.userProjectService
-            .getUserProjects(currentUser.uid, { search: searchText })
-            .subscribe(projects => this.requiredProjectsSearchResult = projects);
-        } else {
-          this.requiredProjectsSearchResult = this.currentUserRequiredProjects.slice();
-        }
-      });
+    this.userService.getCurrentUser().subscribe((currentUser: User) => {
+      const searchText = event.target.value;
+      if (searchText) {
+        this.userProjectService
+          .getUserProjects(currentUser.uid, { search: searchText })
+          .subscribe(
+            projects => (this.requiredProjectsSearchResult = projects),
+          );
+      } else {
+        this.requiredProjectsSearchResult = this.currentUserRequiredProjects.slice();
+      }
+    });
   }
 
   isIncludeInCurrentRequiredProjects(editionProject) {
-    return this.currentUserRequiredProjects
-      .some(project => project.title === editionProject.title);
+    return this.currentUserRequiredProjects.some(
+      project => project.title === editionProject.title,
+    );
   }
-
 }

@@ -8,9 +8,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
     "e2e": "ng e2e",
-    "format": "prettier --write 'src/**/*.{ts*}' "
-
+    "format": "prettier-tslint fix './src/**/*.ts'"
   },
   "private": true,
   "dependencies": {
@@ -27,7 +27,7 @@
     "ngx-bootstrap": "^2.0.2",
     "ngx-toastr": "^8.10.2",
     "rxjs": "^5.5.6",
-    "tslint-config-core": "^1.1.0",
+    "tslint-config-core": "^1.2.0",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
@@ -46,10 +46,10 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "prettier": "^1.14.3",
+    "prettier-tslint": "^0.4.0",
     "protractor": "^5.4.1",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
-    "tslint-config-prettier": "^1.15.0",
     "typescript": "~2.5.3"
   }
 }
