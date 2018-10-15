@@ -10,7 +10,6 @@ import { User } from '../../../models/user';
   styleUrls: ['./auth-form.component.css'],
 })
 export class AuthFormComponent implements OnInit {
-
   public username: string;
   public password: string;
   public errors: string[] = [];
@@ -19,10 +18,9 @@ export class AuthFormComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private router: Router,
     private userService: UserService,
-  ) { }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmitLogin() {
     const credentials = { username: this.username, password: this.password };
@@ -36,7 +34,7 @@ export class AuthFormComponent implements OnInit {
       error => {
         this.errors.push(error.error);
         this.router.navigate(['/login']);
-      });
+      },
+    );
   }
-
 }

@@ -14,7 +14,7 @@ export class ModalTrelloLikeService {
   private hasFormEditorErrors$ = new Subject<boolean>();
   private projectToEditContainerPosition$ = new Subject<object>();
 
-  constructor() { }
+  constructor() {}
 
   setProjectToEdit(project: any) {
     this.projectToEdit$.next(project);

@@ -15,7 +15,7 @@ export class UserComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private profileService: ProfileService,
-  ) { }
+  ) {}
 
   ngOnInit() {
     const userName = this.route.snapshot.paramMap.get('username');

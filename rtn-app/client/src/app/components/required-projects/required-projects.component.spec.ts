@@ -9,8 +9,7 @@ describe('RequiredProjectsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [RequiredProjectsComponent],
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

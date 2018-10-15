@@ -1,6 +1,11 @@
 import {
-  Component, ComponentFactoryResolver, ComponentRef, OnDestroy, OnInit, ViewChild,
-  ViewContainerRef
+  Component,
+  ComponentFactoryResolver,
+  ComponentRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
 } from '@angular/core';
 import { ModalTrelloLikeService } from '../../services/modal-trello-like/modal-trello-like.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -13,17 +18,15 @@ import { ProjectEditComponent } from '../project-edit/project-edit.component';
   styleUrls: ['./modal-trello-like.component.css'],
 })
 export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
-  @ViewChild(
-    'requiredProjectsEditorContainer',
-    { read: ViewContainerRef },
-  ) requiredProjectsEditorContainer;
+  @ViewChild('requiredProjectsEditorContainer', { read: ViewContainerRef })
+  requiredProjectsEditorContainer;
   requiredProjectsEditorRef: ComponentRef<RequiredProjectsEditorComponent>;
-  @ViewChild('projectEditorContainer',
-    { read: ViewContainerRef },
-  ) projectEditorContainer;
+  @ViewChild('projectEditorContainer', { read: ViewContainerRef })
+  projectEditorContainer;
   projectsEditorRef: ComponentRef<ProjectEditComponent>;
 
-  @ViewChild('modalContainer') trelloContainer;
+  @ViewChild('modalContainer')
+  trelloContainer;
 
   isModalOpen = false;
   isCreationMode = false;
@@ -67,12 +70,15 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
 
   showRequiredProjectEditorContainer() {
     this.requiredProjectsEditorContainer.clear();
-    const RequiredProjectsEditorComponentFactory = this.componentFactory
-      .resolveComponentFactory(RequiredProjectsEditorComponent);
-    this.requiredProjectsEditorRef = this.requiredProjectsEditorContainer
-      .createComponent(RequiredProjectsEditorComponentFactory);
-    const requiresEditionContainer =
-      <RequiredProjectsEditorComponent>this.requiredProjectsEditorRef.instance;
+    const RequiredProjectsEditorComponentFactory = this.componentFactory.resolveComponentFactory(
+      RequiredProjectsEditorComponent,
+    );
+    this.requiredProjectsEditorRef = this.requiredProjectsEditorContainer.createComponent(
+      RequiredProjectsEditorComponentFactory,
+    );
+    const requiresEditionContainer = <RequiredProjectsEditorComponent>(
+      this.requiredProjectsEditorRef.instance
+    );
     requiresEditionContainer.currentUserRequiredProjects = this.projectToEdit.requires;
   }
 
@@ -91,22 +97,22 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
     this.requiredProjectsEditorContainer.clear();
     this.projectEditorContainer.clear();
     this.projectsEditorRef.destroy();
-
   }
 
   setDropBackClickEvent() {
     window.addEventListener('click', (event: any) => {
       if (
-        this.isClickedTargetModal(event)
-        || event.target.className.includes('modal-content-row')
-        || event.target.className.includes('edit-requires-button')) {
+        this.isClickedTargetModal(event) ||
+        event.target.className.includes('modal-content-row') ||
+        event.target.className.includes('edit-requires-button')
+      ) {
         this.closeModal();
       }
     });
   }
 
   isClickedTargetModal(event) {
-    return (event.target.className.includes('modal-trello-edition'));
+    return event.target.className.includes('modal-trello-edition');
   }
 
   onSaveProject() {
@@ -119,7 +125,8 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   }
 
   subscribeForIsModalOpen() {
-    this.isOpenSubscription = this.modalTrelloLikeService.getIsOpenModal()
+    this.isOpenSubscription = this.modalTrelloLikeService
+      .getIsOpenModal()
       .subscribe(openModal => {
         if (!openModal) {
           this.closeModal();
@@ -129,7 +136,8 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
       });
   }
   subscribeForProjectToEdit() {
-    this.projectSubscription = this.modalTrelloLikeService.getProjectToEdit()
+    this.projectSubscription = this.modalTrelloLikeService
+      .getProjectToEdit()
       .subscribe(project => {
         this.projectToEdit = project;
         this.showprojectEditorContainer();
@@ -138,7 +146,8 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
 
   subscribeForIsCreationMode() {
     this.isCreationModeSubscription = this.modalTrelloLikeService
-      .getIsCreationMode().subscribe(isCreationMode => {
+      .getIsCreationMode()
+      .subscribe(isCreationMode => {
         this.isCreationMode = isCreationMode;
       });
   }
@@ -146,23 +155,31 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   subscribeForHasFormErrors() {
     this.hasFormErrorsSubscription = this.modalTrelloLikeService
       .getHasFormEditorErrors()
-      .subscribe(hasErrors => this.hasFormErrors = hasErrors);
+      .subscribe(hasErrors => (this.hasFormErrors = hasErrors));
   }
 
   subscribeForProjectEditorPosition() {
+    const test =
+      'alalllaalalalllaalalalllaalalalllaalalalllaalalalllaalalalllaalalalllaalalalllaalalalllaal';
+    console.log(test);
     this.projectEditorPositionSubscription = this.modalTrelloLikeService
       .getProjectToEditContainerPosition()
-      .subscribe(containerPosition => this.editorPosition = containerPosition);
+      .subscribe(
+        containerPosition => (this.editorPosition = containerPosition),
+      );
   }
 
   showprojectEditorContainer() {
     this.projectEditorContainer.clear();
-    const ProjectEditorComponentFactory = this.componentFactory
-      .resolveComponentFactory(ProjectEditComponent);
-    this.projectsEditorRef = this.projectEditorContainer
-      .createComponent(ProjectEditorComponentFactory);
-    const editionContainer =
-      <ProjectEditComponent>this.projectsEditorRef.instance;
+    const ProjectEditorComponentFactory = this.componentFactory.resolveComponentFactory(
+      ProjectEditComponent,
+    );
+    this.projectsEditorRef = this.projectEditorContainer.createComponent(
+      ProjectEditorComponentFactory,
+    );
+    const editionContainer = <ProjectEditComponent>(
+      this.projectsEditorRef.instance
+    );
     editionContainer.project = this.projectToEdit;
     editionContainer.isCreationMode = this.isCreationMode;
   }
@@ -178,11 +195,11 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   requiredProjectsPositionStyle() {
     let left = this.editorPosition.left + this.editorPosition.width - 15;
     if (!this.hasContainerEnoughPlace()) {
-      left = (this.editorPosition.left - (360 + 25));
+      left = this.editorPosition.left - (360 + 25);
     }
     return {
-      'margin-top': `${ this.editorPosition.top - 15 }px`,
-      'margin-left': `${ left }px`,
+      'margin-top': `${this.editorPosition.top - 15}px`,
+      'margin-left': `${left}px`,
     };
   }
 
@@ -193,6 +210,10 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   }
 
   hasContainerEnoughPlace() {
-    return (window.innerWidth - (this.editorPosition.left + this.editorPosition.width ) > 300);
+    return (
+      window.innerWidth -
+        (this.editorPosition.left + this.editorPosition.width) >
+      300
+    );
   }
 }

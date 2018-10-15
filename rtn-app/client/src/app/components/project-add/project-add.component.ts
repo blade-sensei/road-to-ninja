@@ -11,14 +11,11 @@ export class ProjectAddComponent implements OnInit {
   project: Project = new Project('', '1a');
   uid: any = '1a';
 
-  constructor(public bsModalRef: BsModalRef) {
-  }
+  constructor(public bsModalRef: BsModalRef) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onRegister(): void {
     this.bsModalRef.hide();
   }
-
 }

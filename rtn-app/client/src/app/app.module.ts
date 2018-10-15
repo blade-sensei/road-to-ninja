@@ -1,4 +1,3 @@
-///<reference path='app.routes.ts'/>
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -81,5 +80,4 @@ import { HomeComponent } from './components/home/home.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

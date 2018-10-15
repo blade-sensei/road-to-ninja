@@ -8,11 +8,9 @@ import { ProfileService } from '../../services/profile/profile.service';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onRedirectToLogin() {
     this.router.navigate(['/login']);
@@ -26,5 +24,4 @@ export class MenuComponent implements OnInit {
     ProfileService.logout();
     this.router.navigate(['/']);
   }
-
 }

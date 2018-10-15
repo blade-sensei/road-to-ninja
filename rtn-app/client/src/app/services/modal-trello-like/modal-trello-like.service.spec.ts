@@ -9,7 +9,10 @@ describe('ModalTrelloLikeService', () => {
     });
   });
 
-  it('should be created', inject([ModalTrelloLikeService], (service: ModalTrelloLikeService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [ModalTrelloLikeService],
+    (service: ModalTrelloLikeService) => {
+      expect(service).toBeTruthy();
+    },
+  ));
 });
