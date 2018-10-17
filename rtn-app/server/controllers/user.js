@@ -2,8 +2,8 @@ const express = require('express');
 const token = require('../middlewares/token');
 const userModel = require('../models/user.model');
 const ProjectModel = require('../models/project.model');
-const verifyReq = require('../helpers/request');
-const projectHelper = require('../helpers/project');
+const verifyReq = require('../utils/request');
+const projectHelper = require('../utils/project');
 
 const router = express.Router();
 

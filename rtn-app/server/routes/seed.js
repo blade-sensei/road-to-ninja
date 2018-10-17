@@ -1,7 +1,7 @@
 const express = require('express');
-const logger = require('../helpers/logger');
-const userData = require('../helpers/seeds/user.feed');
-const projectData = require('../helpers/seeds/project.feed');
+const logger = require('../utils/logger');
+const userData = require('../utils/seeds/user.feed');
+const projectData = require('../utils/seeds/project.feed');
 
 const router = express.Router();
 const userModel = require('../models/user.model');
