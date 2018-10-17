@@ -16,7 +16,7 @@
     "winston": "^2.4.0"
   },
   "scripts": {
-    "test": "ava --verbose",
+    "test": "ava ./**/*.test.js --verbose",
     "test:w": "ava ./**/*.test.js --verbose --watch",
     "start": "nodemon server.js --verbose",
     "lint": "./node_modules/.bin/eslint  . --ext .js  --ignore-pattern node_modules/ || exit 0",
