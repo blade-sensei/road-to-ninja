@@ -9,7 +9,7 @@ const index = require('./routes/index');
 const seed = require('./routes/seed');
 const config = require('./config');
 const cors = require('./middlewares/cors');
-const logger = require('./helpers/logger');
+const logger = require('./utils/logger');
 
 const app = express();
 
