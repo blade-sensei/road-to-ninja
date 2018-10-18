@@ -1,5 +1,7 @@
+const cors = require('../utils/cors');
+
 const enablePreFlightRequest = (req, res, next) => {
-  if (req.method === 'OPTIONS') {
+  if (cors.isPreFlightRequest(req)) {
     return res.end();
   }
   return next();
