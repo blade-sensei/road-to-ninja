@@ -1,7 +1,7 @@
-const project = require('../models/project.model');
+const projectModel = require('../models/project.model');
 
 const getAll = () => {
-  return project.find();
+  return projectModel.getAll();
 };
 
 module.exports = {

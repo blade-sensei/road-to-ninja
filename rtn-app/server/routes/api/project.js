@@ -2,13 +2,16 @@ const express = require('express');
 const projectModel = require('../../models/project.model');
 const projectHelper = require('../../utils/project');
 const projectController = require('../../controllers/project');
+const logger = require('../../utils/logger');
 
 const router = express.Router();
 
 router.get('', async (req, res) => {
   try {
-    return res.send(await projectController.getAll());
+    const projects = await projectController.getAll();
+    res.send(projects);
   } catch (e) {
+    logger.info(e.message);
     return res.status(500).send('not found');
   }
 });
