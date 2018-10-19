@@ -20,4 +20,11 @@ const schema = new mongoose.Schema({
 
 const Project = mongoose.model('projects', schema);
 
-module.exports = Project;
+const getAll = () => {
+  return Project.find().exec();
+};
+
+module.exports = {
+  Project,
+  getAll,
+};
