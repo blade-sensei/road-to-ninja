@@ -11,7 +11,7 @@ test('hasRequiredParameters should be true when body request has the required pa
   t.is(
     requestHelper.hasRequiredParameters(requiredParameters, bodyRequest),
     true,
-    'hasRequiredParameters should be true',
+    'hasRequiredParameters should be true'
   );
 });
 
@@ -25,7 +25,7 @@ test('hasRequiredParameters should be false when body request has not the requir
   t.is(
     requestHelper.hasRequiredParameters(requiredParameters, bodyRequest),
     false,
-    'hasRequiredParameters should be false',
+    'hasRequiredParameters should be false'
   );
 });
 
