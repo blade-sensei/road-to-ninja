@@ -12,6 +12,9 @@ const cors = require('./middlewares/cors');
 const logger = require('./utils/logger');
 
 const app = express();
+app.set('secret_key', config.auth.key);
+
+module.exports = app;
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -29,7 +32,6 @@ app.use((req, res, next) => {
 });
 app.use(cors.enablePreFlightRequest);
 
-app.set('secret_key', config.auth.key);
 // adding routes modules
 app.use('/', index);
 app.use('/explorer', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -55,5 +57,3 @@ mongoose
     logger.info('fail to connect to database');
     logger.error(error.message);
   });
-
-module.exports = app;
