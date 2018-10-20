@@ -1,6 +1,4 @@
 const express = require('express');
-const projectModel = require('../../models/project.model');
-const projectHelper = require('../../utils/project');
 const projectController = require('../../controllers/project');
 const logger = require('../../utils/logger');
 
@@ -16,19 +14,18 @@ router.get('', async (req, res) => {
   }
 });
 
-router.get('/:id', (req, res) => {
-  projectModel.findById(req.params.id, async (err, project) => {
+router.get('/:id', async (req, res) => {
+  try {
+    const project = await projectController.findById(req.params.id);
     if (project) {
-      let projectWithRequires = JSON.parse(JSON.stringify(project));
-      if (projectHelper.hasRequiredProjects(project)) {
-        projectWithRequires = await projectHelper.getRequiredProjects(project);
-      }
       res.status(200);
-      res.send(projectWithRequires);
-    } else {
-      res.status(404).send('not found');
+      return res.send(project);
     }
-  });
+    return res.status(404).send({ error: 'not found' });
+  } catch (e) {
+    logger.info(e.message);
+    return res.status(404).send({ error: 'query parameter is not valid' });
+  }
 });
 
 module.exports = router;
