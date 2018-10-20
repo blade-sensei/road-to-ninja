@@ -24,7 +24,12 @@ const getAll = () => {
   return Project.find().exec();
 };
 
+const findById = (id) => {
+  return Project.findById(id);
+};
+
 module.exports = {
   Project,
   getAll,
+  findById,
 };
