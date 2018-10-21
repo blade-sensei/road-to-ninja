@@ -2,7 +2,10 @@ const userModel = require('../models/user.model');
 const tokenHelper = require('../utils/token');
 
 const login = async (username, password) => {
-  const user = await userModel.findOneBy(username, password);
+  const user = await userModel.findOneBy({
+    username,
+    password,
+  });
   if (!user) {
     return user;
   }
