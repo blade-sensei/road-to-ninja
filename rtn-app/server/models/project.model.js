@@ -20,7 +20,10 @@ const schema = new mongoose.Schema({
 
 const Project = mongoose.model('projects', schema);
 
-const getAll = () => {
+const findAll = (condition = {}) => {
+  if (condition) {
+    return Project.find(condition).exec();
+  }
   return Project.find().exec();
 };
 
@@ -28,8 +31,13 @@ const findById = (id) => {
   return Project.findById(id);
 };
 
+const add = (project) => {
+  new Project(project).save();
+};
+
 module.exports = {
   Project,
-  getAll,
+  findAll,
   findById,
+  add,
 };

@@ -1,8 +1,8 @@
 const projectModel = require('../models/project.model');
 const projectHelper = require('../utils/project');
 
-const getAll = () => {
-  return projectModel.getAll();
+const findAll = () => {
+  return projectModel.findAll();
 };
 
 const findById = async (id) => {
@@ -16,7 +16,12 @@ const findById = async (id) => {
   return project;
 };
 
+const add = (project) => {
+  return projectModel.add(project);
+};
+
 module.exports = {
-  getAll,
+  findAll,
   findById,
+  add,
 };

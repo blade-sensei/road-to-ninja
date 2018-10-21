@@ -9,14 +9,16 @@ const schema = new mongoose.Schema({
 });
 const User = mongoose.model('users', schema);
 
-const findOneBy = (username, password) => {
-  return User.findOne({
-    username,
-    password,
-  });
+const findOneBy = (condition) => {
+  return User.findOne(condition);
+};
+
+const findAll = () => {
+  return User.find().exe();
 };
 
 module.exports = {
   User,
   findOneBy,
+  findAll,
 };
