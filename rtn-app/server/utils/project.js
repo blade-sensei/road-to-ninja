@@ -17,7 +17,7 @@ function getRequiredProjects(project) {
 }
 
 function hasRequiredProjects(project) {
-  if (!Object.prototype.hasOwnProperty.call(project, 'requires')) {
+  if (!Reflect.has(project, 'requires')) {
     throw new Error('project object has not requires property');
   }
   return project.requires.length > 0;

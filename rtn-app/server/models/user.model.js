@@ -14,7 +14,7 @@ const findOneBy = (condition) => {
 };
 
 const findAll = () => {
-  return User.find().exe();
+  return User.find().exec();
 };
 
 module.exports = {
