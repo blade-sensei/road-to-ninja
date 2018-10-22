@@ -32,7 +32,15 @@ const findById = (id) => {
 };
 
 const add = (project) => {
-  new Project(project).save();
+  return new Project(project).save();
+};
+
+const findOneAndUpdate = (condition, instance, options) => {
+  return Project.findOneAndUpdate(
+    condition,
+    instance,
+    options,
+  );
 };
 
 module.exports = {
@@ -40,4 +48,5 @@ module.exports = {
   findAll,
   findById,
   add,
+  findOneAndUpdate,
 };

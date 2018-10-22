@@ -1,7 +1,6 @@
 const express = require('express');
 const token = require('../../middlewares/token');
-const userController = require('../../controllers/user');
-const projectController = require('../../controllers/project.controller');
+const projectService = require('../../services/project.service');
 const userService = require('../../services/user.service');
 const logger = require('../../utils/logger');
 const requestMiddleware = require('../../middlewares/request');
@@ -10,7 +9,7 @@ const router = express.Router();
 
 router.get('', async (req, res) => {
   try {
-    const users = await userController.findAll();
+    const users = await userService.findAll();
     res.send(users);
   } catch (e) {
     logger.info(e.message);
@@ -20,7 +19,7 @@ router.get('', async (req, res) => {
 
 router.get('/current-user', token.verifyToken, async (req, res) => {
   try {
-    const user = await userController.getCurrentUser(req.auth);
+    const user = await userService.getCurrentUser(req.auth);
     if (user) {
       return res.send(user);
     }
@@ -33,7 +32,7 @@ router.get('/current-user', token.verifyToken, async (req, res) => {
 // user projects
 router.get('/:uid/projects', async (req, res) => {
   try {
-    const userProjects = await userController.getProjects(req.params.uid, req.query);
+    const userProjects = await userService.getProjects(req.params.uid, req.query);
     res.status(200);
     return res.send(userProjects);
   } catch (e) {
@@ -46,10 +45,10 @@ router.post(
   token.verifyToken,
   token.isAuthorized,
   requestMiddleware.hasRequiredParametersProject,
-  (req, res) => {
+  async (req, res) => {
     req.body.uid = req.params.uid;
     try {
-      const project = projectController.add(req.body);
+      const project = await projectService.add(req.body);
       return res.send(project);
     } catch (e) {
       return res.status(500).send({ error: 'Internal error' });
@@ -62,9 +61,9 @@ router.patch(
   token.verifyToken,
   token.isAuthorized,
   requestMiddleware.hasRequiredParametersProject,
-  (req, res) => {
+  async (req, res) => {
     try {
-      const project = userController.updateProject(req.params.uid, req.params.id);
+      const project = await userService.updateProject(req.params.uid, req.params.id, req.body);
       res.status(200);
       return res.send(project);
     } catch (e) {
