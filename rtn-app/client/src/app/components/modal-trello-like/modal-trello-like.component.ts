@@ -159,9 +159,6 @@ export class ModalTrelloLikeComponent implements OnInit, OnDestroy {
   }
 
   subscribeForProjectEditorPosition() {
-    const test =
-      'alalllaalalalllaalalalllaalalalllaalalalllaalalalllaalalalllaalalalllaalalalllaalalalllaal';
-    console.log(test);
     this.projectEditorPositionSubscription = this.modalTrelloLikeService
       .getProjectToEditContainerPosition()
       .subscribe(
