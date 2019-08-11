@@ -3,7 +3,7 @@
     <input class="form-control" placeholder="search by name..." (keyup)="searchProject($event)" type="search" id="project-name">
   </div>
 <div class="requires-list-edition">
-  <p *ngIf="!requiredProjectsSearchResult.length > 0">
+  <p *ngIf="!(requiredProjectsSearchResult.length > 0)">
     There no required projects yet
   </p>
   <ul *ngFor="let project of requiredProjectsSearchResult">

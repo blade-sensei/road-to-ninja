@@ -22,7 +22,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./project-info.component.css'],
 })
 export class ProjectInfoComponent implements OnInit {
-  private isUpdateActivated = false;
+  isUpdateActivated = false;
   private requiredListIsOpen = false;
   requiredListToggleArrow = '▶';
   @Input()
