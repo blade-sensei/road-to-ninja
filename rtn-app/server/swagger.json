@@ -1,5 +1,5 @@
 {
-  "swagger": "3.0",
+  "swagger": "2.0",
   "info": {
     "version": "0.1.0",
     "title": "Road To Ninja Application API",
