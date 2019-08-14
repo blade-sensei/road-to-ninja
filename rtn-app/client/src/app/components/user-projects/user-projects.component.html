@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-12 col-lg-12">
+    <h3 class="user-projects-name-color"> Projects owner: {{ user.name | titlecase }} </h3>
+  </div>
+</div>
+<div class="row user-projects-scrolling">
+  <app-project-info class="col-lg-3 col-md-12 info-project" *ngFor="let project of projects"
+                    [project] = "project" [isUserLogged]="isUserLogged">
+  </app-project-info>
+</div>
+<div class="row" *ngIf="!(projects.length > 0)">
+  This user has not projects
+</div>

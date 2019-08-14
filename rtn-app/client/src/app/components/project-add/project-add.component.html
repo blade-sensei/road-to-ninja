@@ -1,0 +1,12 @@
+<label for="name-id"> name * : </label>
+<input id="name-id" [(ngModel)]="project.title" type="text"> <BR>
+<label for="data-source-id"> data source : </label>
+<input id="data-source-id" type="text"> <BR>
+<label for="description-id"> description : </label>
+<textarea name="description" id="description-id" cols="30" rows="10"></textarea> <BR>
+<label for="requires-id">requires : </label>
+<input id="requires-id" type="text"> <BR>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()"> close </button>
+  <button type="button" class="btn btn-default" (click)="onRegister()"> Valider </button>
+</div>

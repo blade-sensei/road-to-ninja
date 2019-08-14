@@ -1,0 +1,16 @@
+.input-title {
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  font-size: 18px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.required-list {
+  margin-bottom: 8px;
+}
+
+.textarea-description-font {
+
+}

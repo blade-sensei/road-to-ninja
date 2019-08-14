@@ -1,0 +1,30 @@
+<div #modalContainer id="modal" class="modal-trello-edition container-fluid"  [style.display]="getDisplayStyle()">
+  <div class="row modal-content-row">
+    <div class="modal-content" [ngStyle]="editorPositionStyle()">
+      <div class="modal-content-editor card border-primary">
+        <template class="project-editor-container col-sm-3" #projectEditorContainer> </template>
+      </div>
+      <div class="modal-content-save">
+        <button class="btn btn-success btn-sm" [ngStyle]="saveButtonPosition()" [disabled]="hasFormErrors" (click)="onSaveProject()"> save </button>
+      </div>
+    </div>
+    <div class="edit-requires-button" [ngStyle]="requiredProjectsPositionStyle()">
+      <div
+        [ngClass]="{
+        'float-left': hasContainerEnoughPlace(),
+        'float-right': !hasContainerEnoughPlace()
+        }" >
+        <button [ngClass]="{ 'selected-margin': hasContainerEnoughPlace() }"
+                class="btn btn-sm btn-primary" (click)="showRequiredProjectsEditor()"> edit required projects </button>
+      </div>
+      <div class="requires-container-edition"
+           [ngClass]="{
+           'float-right': !hasContainerEnoughPlace(),
+           'float-left': hasContainerEnoughPlace()
+           }">
+        <template #requiredProjectsEditorContainer>
+        </template>
+      </div>
+    </div>
+  </div>
+</div>

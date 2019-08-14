@@ -1,0 +1,17 @@
+<div>
+  <span *ngIf="!(requiredProjects.length > 0)" class="project-no-required-project-font">
+    There's no required projects yet
+  </span>
+</div>
+<ul class="list-group" *ngFor="let project of requiredProjects">
+  <li class="list-group-item list-group-item-info required-list">
+    {{ project.title }}  <span class="badge float-right"
+                               [ngClass]="{
+          'badge-danger': project.status === 'in progress',
+          'badge-success': project.status === 'finished',
+          'badge-warning': project.status === 'not started'
+          }">
+      {{ project.status }}
+    </span>
+  </li>
+</ul>

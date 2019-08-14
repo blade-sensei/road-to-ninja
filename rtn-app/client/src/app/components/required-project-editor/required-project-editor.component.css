@@ -1,0 +1,38 @@
+.editor-container {
+  background-color: #fefefe;
+  padding:10px;
+}
+
+.requires-list-edition {
+  padding-top: 5px;
+}
+
+h6 {
+  display: inline;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  padding: 5px;
+}
+
+li:hover {
+  padding-left: 15px;
+}
+
+.select-project {
+  cursor: pointer;
+  color: #fff;
+  border-radius: 0.25em;
+}
+
+.check-icon {
+  float: right;
+  color: #fff;
+}
+
+

@@ -1,0 +1,12 @@
+.info-project {
+  margin-bottom: 20px;
+}
+
+.user-projects-name-color {
+  color: #fff;
+}
+
+.user-projects-scrolling {
+  overflow-y: scroll!important;
+  height: 500px;
+}

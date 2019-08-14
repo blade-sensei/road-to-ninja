@@ -1,0 +1,73 @@
+.modal-trello-edition {
+  display: none;
+  position: fixed; /* Stay in place */
+  left: 0;
+  top: 0;
+  z-index: 900; /* Sit on top */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  /* Fallback color */
+  /* Black w/ opacity */
+  background: rgba(0, 0, 0, .6);
+}
+
+.modal-content {
+  margin-top: 96px; /* 15% from the top and centered */
+  margin-left: 12px;
+  position: absolute;
+  width: 290px; /* Could be more or less, depending on screen size */
+  background-color: transparent;
+  border: none;
+}
+.modal-content-editor {
+  background-color: #fff;
+  padding: 13px 7px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.body.modal-trello-edition {
+  overflow: hidden;
+}
+
+.edit-requires-button {
+  margin-top: 96px; /* 15% from the top and centered */
+  padding: 15px 20px;
+  width: 400px;
+  clear: left;
+  z-index: 10;
+  position: absolute;
+}
+
+.edit-required-btn {
+  background: #17258c;
+  color: #e6e6e6;
+}
+.edit-required-btn:hover {
+  margin-left: 8px;
+}
+
+.edit-requires-container {
+  background-color: #fefefe;
+  border: 1px solid #888;
+  width: 200px;
+}
+.requires-container-edition {
+  width: 300px;
+}
+
+.selected-margin:hover {
+  margin-right: 8px;
+}

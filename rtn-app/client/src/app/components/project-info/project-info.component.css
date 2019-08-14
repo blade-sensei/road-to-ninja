@@ -1,0 +1,23 @@
+.float-right {
+  float: right !important;
+}
+
+.toggle-requires-btn {
+  margin-bottom: 8px;
+}
+
+.toggle-requires-btn-size {
+  font-size: 12px;
+}
+
+.status-action {
+  margin-bottom: 30px;
+}
+
+.badge {
+  font-size: 100%;
+}
+
+.required-list {
+  margin-top: 10px;
+}

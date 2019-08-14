@@ -1,0 +1,330 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.1.0",
+    "title": "Road To Ninja Application API",
+    "description": "Documentation Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    },
+    {
+      "name": "Projects",
+      "description": "API for projects"
+    },
+    {
+      "name": "Authentication",
+      "description": "API for authentication"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all users in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          }
+        }
+      }
+    },
+    "/users/{name}": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "path",
+          "required": true,
+          "description": "name of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get one user by name",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/{uid}/projects": {
+      "parameters": [
+        {
+          "name": "uid",
+          "in": "path",
+          "required": true,
+          "description": "Uid of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get projects of this user",
+        "responses": {
+          "200": {
+            "description": "All projects",
+            "schema": {
+              "$ref": "#/definitions/Projects"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create one project for this user",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "project info",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project added",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/users/{uid}/projects/{id}": {
+      "patch": {
+        "summary": "Update project of this user uid",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "description": "uid of the user",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id of project to update",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated project",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/users/current-user": {
+      "get": {
+        "tags": ["Users"],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Get current user through provided token",
+        "responses": {
+          "200": {
+            "description": "Current user",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Get token",
+        "tags": [
+          "Authentication"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "credentials",
+            "in": "body",
+            "required": true,
+            "description": "credentials",
+            "schema": {
+              "$ref": "#/definitions/Credentials"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TokenInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/projects": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "summary": "Get all projects in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Projects"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "x-access-token",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": [
+      ],
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "admin": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Project":{
+      "required": [
+        "title",
+        "uid"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "requires" : {
+          "type": "array"
+        },
+        "uid": {
+          "type": "string"
+        }
+      }
+    },
+    "Credentials": {
+      "required": [
+        "username",
+        "password"
+      ],
+      "properties": {
+        "username": {
+         "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "TokenInfo": {
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "logged": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Users": {
+      "type": "array",
+      "$ref": "#/definitions/User"
+    },
+    "Projects": {
+      "type": "array",
+      "$ref": "#/definitions/Project"
+    }
+  }
+}

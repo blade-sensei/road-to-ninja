@@ -1,0 +1,14 @@
+ul {
+  list-style-type: none;
+}
+
+.required-list {
+  margin-top: 8px;
+}
+
+.project-no-required-project-font {
+  font-family: Helvetica Neue,Arial,Helvetica,sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+}

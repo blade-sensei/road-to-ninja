@@ -1,6 +1,24 @@
 const mongoose = require('mongoose');
 
-let schema = new mongoose.Schema({ name: String});
-let User = mongoose.model("users", schema);
+const schema = new mongoose.Schema({
+  username: String,
+  uid: String,
+  name: String,
+  password: String,
+  admin: Boolean,
+});
+const User = mongoose.model('users', schema);
 
-module.exports = User;
+const findOneBy = (condition) => {
+  return User.findOne(condition);
+};
+
+const findAll = () => {
+  return User.find().exec();
+};
+
+module.exports = {
+  User,
+  findOneBy,
+  findAll,
+};

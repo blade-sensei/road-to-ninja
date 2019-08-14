@@ -1,0 +1,26 @@
+<div class="editor-container card">
+  <div class="form-group">
+    <input class="form-control" placeholder="search by name..." (keyup)="searchProject($event)" type="search" id="project-name">
+  </div>
+<div class="requires-list-edition">
+  <p *ngIf="!(requiredProjectsSearchResult.length > 0)">
+    There no required projects yet
+  </p>
+  <ul *ngFor="let project of requiredProjectsSearchResult">
+    <li class="select-project btn-primary" (click)="onPickProject(project)">
+
+      <span> {{ project.title }}
+        <span class="badge"
+              [ngClass]="{
+          'badge-danger': project.status === 'in progress',
+          'badge-success': project.status === 'finished',
+          'badge-warning': project.status === 'not started'
+          }">
+        {{ project.status }}
+        </span>
+      </span>
+      <span class="check-icon"> {{ getProjectStatusIcone(project) }} </span>
+    </li>
+  </ul>
+</div>
+</div>
