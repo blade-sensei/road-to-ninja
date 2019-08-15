@@ -42,15 +42,16 @@ app.use((req, res) => {
 });
 
 // config server
-const port = process.env.port || config.server.port;
+const port = process.env.PORT || config.server.port;
 app.listen(port, () => {
   logger.info(`server api is running on : ${port} port ...`);
 });
 
+// config database
+const mongoURI = process.env.DB_URI || config.db.uri;
 mongoose
-  .connect(`mongodb://${config.db.host}/${config.db.name}`)
+  .connect(mongoURI)
   .then(() => {
-    mongoose.set('debug', true);
     return logger.info(`database connection on ${mongoose.connection.port} port with success!`);
   })
   .catch((error) => {
