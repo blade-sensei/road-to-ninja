@@ -57,6 +57,15 @@ const data = [
     uid: '1',
     requires: ['5b9e1794a626cddcb03a6df5', '5ba0f2a2b41162092b59d902'],
   },
+  {
+    _id: ObjectId('5ba0f2a2b41162092b59d904'),
+    title: 'project demo',
+    description: 'This is the description for project demo',
+    status: 'not started',
+    data: 'https://',
+    uid: '3',
+    requires: [],
+  }
 ];
 
 module.exports = data;

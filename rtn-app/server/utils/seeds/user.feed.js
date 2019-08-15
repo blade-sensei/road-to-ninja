@@ -14,10 +14,10 @@ const data = [
     admin: true,
   },
   {
-    username: 'pampa',
+    username: 'demo',
     uid: '3',
     name: 'pampa',
-    password: 'pswd',
+    password: 'demo',
     admin: false,
   },
 ];
