@@ -1,8 +1,6 @@
 {
   "db" : {
-    "host" : "127.0.0.1",
-    "port" : 27017,
-    "name" : "roadToNinja"
+    "uri" : "mongodb://admin:admin@127.0.0.1:27017/roadToNinja"
   },
   "server" : {
     "host" : "127.0.0.1",
