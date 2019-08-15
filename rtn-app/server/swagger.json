@@ -152,6 +152,14 @@
             "schema": {
               "$ref": "#/definitions/Project"
             }
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "description": "project info",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
           }
         ],
         "responses": {
@@ -289,6 +297,13 @@
         "uid": {
           "type": "string"
         }
+      },
+      "example": {
+        "title": "",
+        "description": "",
+        "data": "",
+        "requires" : "",
+        "uid": ""
       }
     },
     "Credentials": {
