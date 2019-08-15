@@ -4,8 +4,8 @@ const userData = require('../utils/seeds/user.feed');
 const projectData = require('../utils/seeds/project.feed');
 
 const router = express.Router();
-const userModel = require('../models/user.model');
-const projectModel = require('../models/project.model');
+const { User: userModel } = require('../models/user.model');
+const { Project: projectModel } = require('../models/project.model');
 
 const createCollection = (model, documents) => {
   return new Promise((resolve) => {
@@ -19,10 +19,10 @@ const createCollection = (model, documents) => {
 };
 
 const dropCollection = (model) => {
-  return new Promise((resolve) => {
-    model.remove(() => {
-      logger.debug('remove');
+  return new Promise((resolve, reject) => {
+    model.deleteMany({}, (err) => {
       resolve();
+      if (err) reject();
     });
   });
 };
@@ -33,7 +33,7 @@ router.get('/users', async (req, res) => {
     const createdUsers = await createCollection(userModel, userData);
     res.send(createdUsers);
   } catch (e) {
-    throw new Error('fail to seed users');
+    res.send(`fail to seed users ${e}`);
   }
 });
 
