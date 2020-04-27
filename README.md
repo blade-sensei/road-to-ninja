@@ -1,6 +1,11 @@
 Road to ninja !
 ==
 
+![](https://i.imgur.com/djrcUIq.jpg)
+
+
+https://roadtoninja-f5ad8.firebaseapp.com/
+
 ## Présentation 
 Road to ninja, est un projet visant à améliorer les compétences techniques de l'utilisateur. Il a été pensé pour les domaines de la programmation/coding, mais aussi pour l'infrastucture (réseaux/systèmes), la sécurité informatique, l'IA et le design graphique.
 
@@ -22,20 +27,6 @@ Bien qu'il s'agisse plutôt d'un problème personnel, je vais utiliser le pronom
 - On n'arrive pas à garder un focus, sur un objectif précis.
 
 En extension, le projet permettra aussi de garder une trace pour voir l'évolution des compétences. 
-
-## Comment ?
-### Ce projet va-t-il améliorer mes compétences ?
-
-Grâce à cette liste: 
-
-- **Exercices :** pour comprendre rapidement une techno avant de passer aux projects. On pourra se donner comme projet, 1 semaine maximum pour terminer 30 exercices sur un thème, comme javascript, POO etc... A nous de trouver les exercices avec les corrections. (C'est un exemple).
-- **Projets solo :** On pourra créer des projets, pour mettre en pratique les notions vues dans les exercices, et apprendre à bien gérer un projet. 
-- **Projets groupe :** pour apprendre à travailler avec d'autres personnes, et apprendre à utiliser des outils collaboratifs (git, trello, etc...).
-- **Tutoriels et Documentation :** les tutoriels et documentations servent à synthétiser le savoir et les acquis : si l'on est incapable d'expliquer ce que l'on apprend, c'est peut-être que le sujet a été mal compris. Ils servent aussi à garder une trace de ce que l'on a pu faire, les erreurs et problèmes rencontrés pour y revenir plus tard et gagner du temps. Tous les documents du projet se trouveront sur le lien git relié au projet.
-
-### Va-t-il résoudre le problème de focus et procrastination ? 
-
-Le fait d'avoir une interface bloquant les futurs projets et demandant de terminer 1 ET 1 seul projet, va obliger l'utilisateur à se concentrer uniquement sur ce projet pour évoluer. La finalisation des projets et leur avancée vont nous donner envie de continuer... (en tout cas j'espère :+1:)
 
  Structure 
  ==
