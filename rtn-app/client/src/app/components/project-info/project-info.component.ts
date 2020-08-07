@@ -78,24 +78,18 @@ export class ProjectInfoComponent implements OnInit {
     this.isUpdateActivated = false;
   }
 
-  hasEnoughVerticalPlace(top) {
-    return top <= 275;
-  }
-
   showEditModal(project, target) {
     const infoProjectDOMElement =
       target.parentElement.parentElement.parentElement.parentElement;
     let top = infoProjectDOMElement.getBoundingClientRect().top;
-    const left = infoProjectDOMElement.offsetLeft + 15;
-    const width = infoProjectDOMElement.offsetWidth - 30;
-
-    if (!this.hasEnoughVerticalPlace(top)) {
-      top = 127;
-    }
+    const left = infoProjectDOMElement.offsetLeft;
+    const width = infoProjectDOMElement.offsetWidth;
+    const height = infoProjectDOMElement.offsetHeight;
     const cardinalContainerPosition = {
       top,
       left,
       width,
+      height,
     };
 
     this.modalTrelloLikeService.setProjectToEditContainerPosition(

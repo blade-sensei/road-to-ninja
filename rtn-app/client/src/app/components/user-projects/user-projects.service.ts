@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Project } from '../../models/project';
+import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class UserProjectsService {
+  private apiURL = environment.apiEndPoint;
   constructor(private http: HttpClient) {}
 
   getUserProjects(uid, options?: object): Observable<Project[]> {
-    const basicApiUrl = `http://localhost:3000/api/users/${uid}/projects`;
+    const basicApiUrl = `${this.apiURL}/users/${uid}/projects`;
     let queryParameters = '';
     if (options) {
       if (Reflect.has(options, 'filter')) {
@@ -31,14 +33,14 @@ export class UserProjectsService {
 
   updateUserProject(uid, id, project): Observable<any> {
     return this.http.patch<Project>(
-      `http://localhost:3000/api/users/${uid}/projects/${id}`,
+      `${this.apiURL}/users/${uid}/projects/${id}`,
       project,
     );
   }
 
   addUserProject(uid, project): Observable<any> {
     return this.http.post<Project>(
-      `http://localhost:3000/api/users/${uid}/projects`,
+      `${this.apiURL}/users/${uid}/projects`,
       project,
     );
   }

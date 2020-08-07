@@ -1,3 +1,39 @@
-.quote-font {
-  color: #fff;
+.description {
+  font-size: 2.2em;
+  text-align: center;
+  display: block;
+  margin-top: 50%;
+}
+
+.sub-description {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  display: block;
+}
+
+.instructions {
+  display: block;
+  padding: 30px;
+  text-align: center;
+}
+
+@media screen and (min-width: 721px) {
+  .img {
+    width: 40%;
+    float: left;
+  }
+
+  .description {
+    font-size: 2em;
+    display: block;
+    font-size: 2em;
+    margin-top: 20%;
+    margin-left: 30%;
+    margin-right: 30%;
+  }
+
+  .sub-description {
+    display: block;
+  }
 }

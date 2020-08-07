@@ -1,16 +1,36 @@
-.input-title {
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: 18px;
+.editior-input {
+  width: 100%;
+  font-size: 1em;
+  background-color: rgb(40, 46, 104);
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(39, 199, 236);
+  padding: 8px 7px;
+  box-sizing: border-box;
+  border-radius: 3px;
 }
 
-ul {
-  list-style-type: none;
+.editior-input:focus {
+  border-color: rgb(63, 232, 84);
 }
 
-.required-list {
-  margin-bottom: 8px;
+.editor-title {
+  margin-bottom: 7px;
 }
 
-.textarea-description-font {
+.editor-description {
+  margin-bottom: 15px;
+  height: 36%;
+}
 
+.editor-description > textarea {
+  height: 100%;
+}
+
+.form-errors {
+  margin-top: 20px;
+  color: #f63333;
+}
+
+.error-message {
+  margin-left: 5px;
 }

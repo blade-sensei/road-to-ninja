@@ -1,0 +1,76 @@
+.form-error-container {
+  height: 30px;
+  color: #f63333;
+  margin-bottom: 10px;
+}
+
+.form-title {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.form-set label {
+  display: block;
+  margin-bottom: 2%;
+  font-size: 1.2em;
+
+}
+
+.form-error-message-item {
+  list-style-type: none;
+}
+
+.form-field {
+  box-sizing: border-box;
+  margin-bottom: 30px;
+  height: 40px;
+  width: 100%;
+  font-size: 1.2em;
+  padding: 0 0 0 10px;
+  background-color: rgb(40, 46, 104);
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(39, 199, 236);
+  border-radius: 3px;
+}
+
+.form-field:focus {
+  border-color: rgb(63, 232, 84);
+}
+
+.form-set {
+  margin-bottom: 9px;
+}
+
+.btn-sign-in {
+  width: 100%;
+  background-color: #a11ec6;
+  height: 50px;
+  font-size: 1.2em;
+  color: white;
+  border-style: none;
+  cursor: pointer;
+}
+
+.btn-sign-in:hover {
+  color: black;
+  background-color: #92eaff;
+}
+
+.component {
+  padding: 20px;
+}
+
+
+@media screen and (min-width: 768px) {
+  .component {
+    padding: 20px 200px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .component {
+    padding: 20px 400px;
+  }
+}

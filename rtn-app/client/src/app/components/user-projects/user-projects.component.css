@@ -1,12 +1,43 @@
-.info-project {
-  margin-bottom: 20px;
-}
-
 .user-projects-name-color {
   color: #fff;
 }
 
-.user-projects-scrolling {
-  overflow-y: scroll!important;
-  height: 500px;
+.component {
+  padding: 0 20px;
+}
+
+.create-project-icon {
+  float: right;
+  color: rgb(46, 199, 237);
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+.component-header {
+  margin-bottom: 30px;
+}
+
+.component-filter {
+  margin-bottom: 30px;
+}
+
+
+@media screen and (min-width: 721px) {
+  .component {
+    padding: 0 10%;
+  }
+
+  .project-info-component {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .project-info-component {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+  }
 }

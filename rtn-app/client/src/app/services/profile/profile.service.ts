@@ -5,14 +5,12 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class ProfileService {
   private currentProfile$ = new Subject<string>();
+  private $isUserLoggedIn = new Subject<boolean>();
   currentUser: User = new User();
   constructor() {}
 
   static getCurrentUserToken() {
     return JSON.parse(localStorage.getItem('currentUser'));
-  }
-  static logout() {
-    localStorage.removeItem('currentUser');
   }
 
   static isUserLogged(): boolean {
@@ -23,11 +21,24 @@ export class ProfileService {
     return false;
   }
 
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.setIsUserLoggedIn(false);
+  }
+
   getCurrentProfil() {
     return this.currentProfile$.asObservable();
   }
 
   setCurrentProfil(profil: string) {
     this.currentProfile$.next(profil);
+  }
+
+  getIsUserLoggedIn() {
+    return this.$isUserLoggedIn.asObservable();
+  }
+
+  setIsUserLoggedIn(loggedIn: boolean) {
+    return this.$isUserLoggedIn.next(loggedIn);
   }
 }

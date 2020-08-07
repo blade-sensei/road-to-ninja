@@ -1,46 +1,23 @@
-<div [formGroup]="projectForm" class="form-group">
-  <input [required]="true" placeholder="* title" [(ngModel)]="projectBeingUpdated.title" class="form-control input-title"
+<div [formGroup]="projectForm" class="editor-title">
+  <input autofocus placeholder="title (required)" [(ngModel)]="projectBeingUpdated.title" class="editior-input"
          formControlName="title" type="text" id="title"
-         required value="{{ projectBeingUpdated.title | titlecase }}">
+         required value="{{ projectBeingUpdated.title }}">
 
 </div>
-<div class="form-group">
-  <textarea class="form-control project-description-font" [(ngModel)]="projectBeingUpdated.description"></textarea>
+<div class="editor-description">
+  <textarea class="editior-input" placeholder="description"
+            [(ngModel)]="projectBeingUpdated.description"></textarea>
 </div>
-<div class="form-group">
-  <input class="form-control" type="text" id="sources" [(ngModel)]="projectBeingUpdated.data">
+<div class="editor-source">
+  <input class="editior-input" placeholder="sources/http" type="text" id="sources" [(ngModel)]="projectBeingUpdated.data">
 </div>
 
-<div class="form-group">
-  <h5>
-    <span class="badge">required projects: </span>
-  </h5>
-  <div *ngIf="title.invalid && (title.dirty || title.touched)"
-       class="alert alert-danger">
-
-    <div *ngIf="title.errors.required">
-      title is required.
-    </div>
+<div *ngIf="title.invalid && (title.dirty || title.touched)"
+class="form-errors">
+  <div *ngIf="title.errors.required">
+    <span class="error-message">
+        <i class="fas fa-exclamation-triangle fa-sm"></i>
+        Title is required. Please fill in this field
+    </span>
   </div>
-
-  <p *ngIf="!hasRequiredProjects(projectBeingUpdated); else requiresList">
-    There's no required projects yet
-  </p>
-
-  <ng-template #requiresList>
-    <ul class="list-group" *ngFor="let project of projectBeingUpdated.requires">
-      <li class="list-group-item list-group-item-info required-list">
-        {{ project.title }}
-        <span class="badge float-right"
-              [ngClass]="{
-          'badge-danger': project.status === 'in progress',
-          'badge-success': project.status === 'finished',
-          'badge-warning': project.status === 'not started'
-          }">
-          {{ project.status }}
-        </span>
-      </li>
-    </ul>
-  </ng-template>
 </div>
-

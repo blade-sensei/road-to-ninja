@@ -1,3 +1,25 @@
-.filter-select-height {
-  height: 4px;
+.search-input {
+  width: 100%;
+  height: 45px;
+  font-size: 1em;
+  background-color: rgb(40, 46, 104);
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(46, 199, 237);
+  padding: 8px 7px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  font-family: FontAwesome, "Space Mono", monospace;
+}
+
+.search-input:focus {
+  border-color: rgb(0, 255, 149);
+}
+
+.clear-search-input {
+  float: right;
+  position: relative;
+  top: -30px;
+  right: 10px;
+  color: rgb(46, 199, 237);
+  cursor: pointer;
 }

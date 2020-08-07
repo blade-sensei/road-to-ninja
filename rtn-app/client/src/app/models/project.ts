@@ -10,7 +10,7 @@ export class Project {
     this.title = title;
     this.description = '';
     this.status = 'not started';
-    this.data = 'http://';
+    this.data = '';
     this.uid = uid;
     this.requires = [];
   }

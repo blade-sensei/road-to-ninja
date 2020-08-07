@@ -4,15 +4,15 @@ import { Project } from '../../models/project';
 
 @Injectable()
 export class FilterProjectsService {
-  private filteredProjects$ = new Subject<Project[]>();
+  private filteredProjects$ = new Subject<any>();
 
   constructor() {}
 
-  getFilteredProjects() {
+  getFilteredOptions() {
     return this.filteredProjects$.asObservable();
   }
 
-  setFilteredProjects(projects) {
-    this.filteredProjects$.next(projects);
+  setFilteredOptions(options: object) {
+    this.filteredProjects$.next(options);
   }
 }

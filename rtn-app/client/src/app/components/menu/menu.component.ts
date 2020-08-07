@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from '../../services/profile/profile.service';
 
@@ -8,20 +8,48 @@ import { ProfileService } from '../../services/profile/profile.service';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
-  constructor(private router: Router) {}
 
-  ngOnInit() {}
+  public isUserLogged = false;
+  @ViewChild('toggleMenu')
+  toggleMenu;
+
+  constructor(private router: Router, private profileService: ProfileService) {}
+
+  ngOnInit() {
+    this.isUserLogged = ProfileService.isUserLogged();
+    this.profileService.getIsUserLoggedIn()
+      .subscribe(isLoggedIn => this.isUserLogged = isLoggedIn);
+  }
 
   onRedirectToLogin() {
     this.router.navigate(['/login']);
   }
 
-  isUserLoggedIn(): boolean {
-    return ProfileService.isUserLogged();
+  onLogout() {
+    this.profileService.logout();
+    this.isUserLogged = false;
+    this.router.navigate(['/']);
+    this.closeMenuToggle();
   }
 
-  onLogout() {
-    ProfileService.logout();
-    this.router.navigate(['/']);
+  onLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  redirectToUserProjects() {
+    const username = this.getCurrentUserName();
+    this.router.navigate([`user/${username}`]);
+    this.closeMenuToggle();
+  }
+
+  getCurrentUserName() {
+    if (ProfileService.getCurrentUserToken()) {
+      return ProfileService.getCurrentUserToken().name;
+    }
+    return '';
+  }
+
+  closeMenuToggle() {
+    this.toggleMenu.nativeElement.checked = false;
   }
 }

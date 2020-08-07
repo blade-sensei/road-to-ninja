@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'user/:username', component: UserComponent },
   { path: 'login', component: AuthFormComponent },
   { path: '', component: HomeComponent },
+  { path: '**', component: HomeComponent },
 ];
 
 @NgModule({

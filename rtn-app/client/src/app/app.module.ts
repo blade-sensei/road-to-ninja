@@ -28,6 +28,8 @@ import { ProjectService } from './services/project/project.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { HomeComponent } from './components/home/home.component';
+import { APP_BASE_HREF } from '@angular/common';
+import { environment } from "../environments/environment";
 
 @NgModule({
   declarations: [
@@ -77,6 +79,9 @@ import { HomeComponent } from './components/home/home.component';
     ModalTrelloLikeService,
     RequiredProjectsEditorService,
     ToastrService,
+    {
+      provide: APP_BASE_HREF, useValue: environment.appURL
+    },
   ],
   bootstrap: [AppComponent],
 })

@@ -1,44 +1,51 @@
-<div class="card border-primary" (mouseenter)="showUpdateButton()"
-     (mouseleave)="hiddeUpdateButton()">
-  <div class="card-body">
-    <div class="edit-btn" *ngIf="isUpdateActivated && isUserLogged">
-      <button class="float-right btn btn-sm btn-outline-success" (click)="showEditModal(project, $event.target)"> edit</button>
-    </div>
-    <h3 class="card-title">{{ project.title | titlecase }}</h3>
-    <span class="card-text project-description-font">
-      {{ project.description }}
-    </span>
-    <div class="form-group">
-      <a title="{{ project.data }}" target="_blank" rel="noopener" href="{{ project.data }}">go to sources</a>
-    </div>
-    <span class="badge"
-          [ngClass]="{
-          'badge-danger': isProjectInProgressStatus(project),
-          'badge-success': isProjectFinishedStatus(project),
-          'badge-warning': isProjectNotStartedStatus(project)
-          }">
-      {{ project.status }}
-    </span>
-    <div class="form-group required-list">
-      <button class="btn btn-third toggle-requires-btn toggle-requires-btn-size" type="submit"
-              (click)="showRequiredProjects()">
-        <span> {{ requiredListToggleArrow }} </span>
-        <span>Required projects</span>
-      </button>
-      <template #currentUserRequiredProjectsTemplate>
-      </template>
-    </div>
-    <div class="status-action" *ngIf="isUserLogged">
-      <button *ngIf="isProjectInProgressStatus(project)"
-              type="button"
-              class="float-right btn btn-sm btn-outline-success"  (click)="finishProjectWork(project)">
-        finish this !
-      </button>
-      <button *ngIf="isProjectNotStartedStatus(project)"
-              type="button"
-              class="float-right btn btn-sm btn-outline-secondary" (click)="startProjectWork(project)">
-        Start work
-      </button>
+<div class="component">
+  <div
+    class="box-container"
+    (mouseenter)="showUpdateButton()"
+    (mouseleave)="hiddeUpdateButton()"
+  >
+    <div class="box-body">
+      <div class="btn-edit-box" *ngIf="isUserLogged">
+        <span
+          class=""
+          (click)="showEditModal(project, $event.target)"
+        >
+          <i class="fas fa-edit fa-lg btn-edit-icon"></i>
+        </span>
+      </div>
+      <span class="box-title">{{ project.title }}</span>
+      <span class="box-description">{{ project.description }}</span>
+      <span class="box-link">
+          <a title="{{ project.data }}" ref="noopener" target="_blank" href="{{ project.data }}">
+              <i class="fas fa-link"></i>
+          </a>
+      </span>
+      <span
+        class="badge-status"
+        [ngClass]="{
+          'badge-start': isProjectInProgressStatus(project),
+          'badge-finished': isProjectFinishedStatus(project),
+          'badge-progress': isProjectNotStartedStatus(project)
+        }"
+      >
+        {{ project.status }}
+      </span>
+        <button
+          *ngIf="isUserLogged && isProjectInProgressStatus(project)"
+          type="button"
+          class="btn-change-status"
+          (click)="finishProjectWork(project)"
+        >
+          finish this !
+        </button>
+        <button
+          *ngIf="isUserLogged && isProjectNotStartedStatus(project)"
+          type="button"
+          class="btn-change-status"
+          (click)="startProjectWork(project)"
+        >
+          Start work
+        </button>
     </div>
   </div>
 </div>

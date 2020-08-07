@@ -12,6 +12,7 @@ const login = async ({ username, password }) => {
   const token = tokenHelper.getToken(user);
   return {
     username: user.username,
+    name: user.name,
     logged: true,
     token,
   };

@@ -28,28 +28,22 @@ export class FilterProjectsComponent implements OnInit {
 
   onFilterProjects() {
     const options = {};
-    if (!(this.statusFilter === '')) {
-      const filter = { status: this.statusFilter };
-      Reflect.set(options, 'filter', filter);
-    }
-
-    if (this.searchUserInput) {
-      Reflect.set(options, 'search', this.searchUserInput);
-    }
-    this.userService
-      .getUserByName(this.profileUsername)
-      .subscribe((user: User) => {
-        this.userProjectsService
-          .getUserProjects(user.uid, options)
-          .subscribe(projects => {
-            this.filterService.setFilteredProjects(projects);
-          });
-      });
+    Reflect.set(options, 'search', this.searchUserInput);
+    this.filterService.setFilteredOptions(options);
   }
 
   subscribeForCurrentProfile() {
     this.profileService.getCurrentProfil().subscribe((profile: string) => {
       this.profileUsername = profile;
     });
+  }
+
+  isSearchFilled() {
+    return this.searchUserInput !== '';
+  }
+
+  clearSearchField() {
+    this.searchUserInput = '';
+    this.onFilterProjects();
   }
 }

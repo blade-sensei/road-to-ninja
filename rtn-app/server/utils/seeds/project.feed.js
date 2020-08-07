@@ -62,7 +62,7 @@ const data = [
     title: 'project demo',
     description: 'This is the description for project demo',
     status: 'not started',
-    data: 'https://',
+    data: 'https://github.com/YoSensei',
     uid: '3',
     requires: [],
   }

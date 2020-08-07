@@ -9,11 +9,14 @@ h3 {
 }
 
 body {
-  background-color: #2d1c44;
+  background-color: #1d2149;
   color: #fff;
-  margin-bottom: 100px;
-  overflow: hidden;
-  font-size: 13px;
+  font-size: 16px;
+  margin: 0;
+}
+
+* {
+  font-family: "Space Mono", monospace;
 }
 
 [class*="btn-primary"] {
@@ -35,26 +38,9 @@ body {
   border-color: transparent!important;
 }
 
-.btn-outline-success {
-  color: #a3153d;
-  background-color: transparent;
-  border-color: #ff195b;
-}
-
-.btn-outline-success:hover {
-  color: #ffffff;
-  background-color: #A3153D;
-  border-color: #ff195b;
-}
-
 .badge {
   font-size: 87%!important;
   margin-top: 3px;
-}
-
-.badge-success {
-  background-color: #1AC400;
-  color: #212529;
 }
 
 .list-group-item-info {
@@ -92,4 +78,26 @@ textarea:focus {
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
+}
+
+.horizontal-center {
+  text-align: center;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.container {
+  margin-top: 100px;
+}
+
+@media screen and (min-width: 721px) {
+  .container {
+    margin-top: 150px;
+  }
 }

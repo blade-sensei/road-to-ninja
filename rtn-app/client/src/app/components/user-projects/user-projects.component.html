@@ -1,13 +1,27 @@
-<div class="row">
-  <div class="col-md-12 col-lg-12">
-    <h3 class="user-projects-name-color"> Projects owner: {{ user.name | titlecase }} </h3>
+<div class="component">
+  <div class="component-filter">
+    <app-filter-projects></app-filter-projects>
   </div>
-</div>
-<div class="row user-projects-scrolling">
-  <app-project-info class="col-lg-3 col-md-12 info-project" *ngFor="let project of projects"
-                    [project] = "project" [isUserLogged]="isUserLogged">
-  </app-project-info>
-</div>
-<div class="row" *ngIf="!(projects.length > 0)">
-  This user has not projects
+  <div class="component-header">
+    <span class="owner-title">
+      Projects owner: {{ user.name | titlecase }}
+    </span>
+    <span class="create-project-icon">
+        <app-button-project-add *ngIf="isUserLogged"></app-button-project-add>
+    </span>
+  </div>
+  <div class="row" *ngIf="!(projects.length > 0)">
+    <div>
+      This user has any project for the moment
+    </div>
+  </div>
+  <div class="project-info-component">
+    <app-project-info
+      class="col-lg-3 col-md-12 info-project"
+      *ngFor="let project of filteredProjects"
+      [project]="project"
+      [isUserLogged]="isUserLogged"
+    >
+    </app-project-info>
+  </div>
 </div>

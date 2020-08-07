@@ -1,19 +1,8 @@
-.menu-title-rtn {
-  margin-left: 10em;
-}
-
-.menu-right-side {
-  margin-left: auto;
-  margin-right: 16px;
-}
-
-.menu-title-link {
-  cursor: pointer;
-  color: #AF1944;
-}
-
-.navbar {
-  height: 50px;
+.nav-title-link {
+  color: #cf09b9;
+  text-decoration: none;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  font-size: 21px;
 }
 
 .navbar-brand {
@@ -23,15 +12,125 @@
   margin: 0 auto;
 }
 
-.menu-title-link:hover {
-  color: #FF195B;
+.navbar-item {
+  display: inline-block;
 }
 
-.header-title-center {
-  margin: 0 auto;
+.nav-bar {
+  background-color:#181c44;
+  min-height: 4.5rem;
+  position: fixed;
+  top:0;
+  width: 100%;
+  z-index: 1;
 }
 
-.center-title {
-  margin-left: 40%;
+.section-item {
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 1.2em;
+  line-height: 50px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
 }
 
+.section-item:hover {
+  color: #cf09b9;
+}
+
+#burger-menu-toggle {
+  display: none;
+}
+
+.close-icon {
+  display: none;
+}
+
+.burger-menu {
+  cursor: pointer;
+}
+
+.navbar-item {
+  margin: 15px 20px 0 0;
+}
+
+div.nav-title {
+  margin: 15px 0 0 20px;
+  cursor: pointer;
+}
+
+.navbar-btn {
+  background-color: #a11ec6;
+  border: none;
+  color: white;
+  padding: 12px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.navbar-btn:hover {
+  color: black;
+  background-color: #92eaff;
+}
+
+
+
+@media screen and (max-width: 720px) {
+
+  .nav-section-container {
+    display: none;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  #burger-menu-toggle:checked ~ .nav-section-container{
+    display: block;
+  }
+
+  #burger-menu-toggle:checked ~ .burger-menu .close-icon {
+    display: inline-block;
+  }
+
+  #burger-menu-toggle:checked ~ .burger-menu .open-icon {
+    display: none;
+  }
+
+  .nav-bar .section-item {
+    display: block;
+    height: 60px;
+    cursor:pointer;
+  }
+
+}
+
+@media screen and (min-width: 721px) {
+  .nav-bar .section-item {
+    display: inline-block;
+    cursor:pointer;
+
+  }
+
+  .nav-section-container {
+    float: right;
+    margin-right: 50px;
+  }
+
+  .burger-menu {
+    display: none;
+  }
+
+  .btn-logout {
+    margin-left: 30px;
+  }
+
+  .nav-bar {
+    padding: 15px 20px 0;
+  }
+
+  .nav-login {
+    margin: 10px 40px 0 0;
+  }
+}

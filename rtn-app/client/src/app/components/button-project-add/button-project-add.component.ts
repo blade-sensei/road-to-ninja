@@ -21,8 +21,9 @@ export class ButtonProjectAddComponent implements OnInit {
     const left = window.innerWidth / 2;
     this.modalTrelloLikeService.setProjectToEditContainerPosition({
       top: 200,
-      left: left - 200,
-      width: 390,
+      left: left - 140,
+      width: 280,
+      height: 300,
     });
   }
 }

@@ -1,23 +1,87 @@
-.float-right {
-  float: right !important;
+.box-container {
+  background-color: #282d69;
+  color: #99a1b3;
+  padding: 20px;
 }
 
-.toggle-requires-btn {
-  margin-bottom: 8px;
+.component {
+  padding: 1.2em 0;
 }
 
-.toggle-requires-btn-size {
-  font-size: 12px;
+.box-title {
+  display: block;
+  margin-bottom: 25px;
+  color: rgb(255, 255, 255);
 }
 
-.status-action {
-  margin-bottom: 30px;
+.box-description {
+  display: block;
+  white-space: pre-line;
 }
 
-.badge {
-  font-size: 100%;
+.box-link {
+  margin-top: 30px;
+  display: block;
 }
 
-.required-list {
-  margin-top: 10px;
+.box-link > a {
+  text-decoration: none;
+  color: rgb(39, 199, 236);
+}
+
+.badge-status {
+  display: inline-block;
+  margin-top: 60px;
+  padding: 2px 5px;
+}
+
+.badge-finished {
+  color: #3fe854;
+
+}
+
+.badge-progress {
+  color: #fbff00;
+}
+
+.badge-start {
+  color: #f80ea1;
+}
+
+.btn-change-status {
+  background-color:  rgb(39, 199, 236);
+  color: black;
+  border: none;
+  display: block;
+  margin-top: 25px;
+  height: 30px;
+  font-size: 0.9em;
+}
+
+.btn-edit-box {
+  float: right;
+}
+
+.btn-edit-icon {
+  color: rgb(39, 199, 236);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1024px) {
+
+  .btn-change-status:hover {
+    background-color: #3fe854;
+    cursor: pointer;
+  }
+
+}
+
+@media screen and (min-width: 721px) {
+
+  .btn-change-status {
+    display: block;
+    float: none;
+    margin-top: 30px;
+  }
+
 }
